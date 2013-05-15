@@ -109,7 +109,7 @@ function stanford_publication_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '9',
+        'weight' => '10',
       ),
     ),
   );
@@ -255,7 +255,7 @@ function stanford_publication_field_default_fields() {
           'year_range' => '-10:+3',
         ),
         'type' => 'date_select',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
@@ -366,7 +366,7 @@ function stanford_publication_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -449,7 +449,78 @@ function stanford_publication_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '7',
+        'weight' => '8',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-publication-field_s_pub_pub_type'.
+  $fields['node-publication-field_s_pub_pub_type'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_s_pub_pub_type',
+      'foreign keys' => array(
+        'tid' => array(
+          'columns' => array(
+            'tid' => 'tid',
+          ),
+          'table' => 'taxonomy_term_data',
+        ),
+      ),
+      'indexes' => array(
+        'tid' => array(
+          0 => 'tid',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'taxonomy',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => array(
+            'vocabulary' => 'publication_type',
+            'parent' => '0',
+          ),
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'taxonomy_term_reference',
+    ),
+    'field_instance' => array(
+      'bundle' => 'publication',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Choose the publication type (e.g., Book, Article, etc.)',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => 6,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_s_pub_pub_type',
+      'label' => 'Publication Type',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '5',
       ),
     ),
   );
@@ -548,7 +619,7 @@ function stanford_publication_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -556,6 +627,7 @@ function stanford_publication_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Choose the date of publication.');
+  t('Choose the publication type (e.g., Book, Article, etc.)');
   t('Description');
   t('Document(s)');
   t('Enter a URL and a Title. The "Title" is what will display as the hyperlink text, e.g., "Visit book website."');
@@ -564,6 +636,7 @@ function stanford_publication_field_default_fields() {
   t('Featured Image');
   t('Link');
   t('Publication Date');
+  t('Publication Type');
   t('Publisher');
   t('Select a featured image for the publication and add an optional caption.');
   t('Upload document(s) associated with this publication.');
