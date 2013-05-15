@@ -1,6 +1,10 @@
 Stanford Publication x.x-x.x, xxxx-xx-xx
 ----------------------------------------
 
-Stanford Publication 7.x-1.0-alpha1, 2013-05-15
+Stanford Publication 7.x-1.0-alpha2, 2013-05-15
+-----------------------------------------------
+Added "Publication Type" term reference field to content type
+
+Stanford Publication 7.x-1.0-alpha1, 2013-05-14
 -----------------------------------------------
 Initial release. Content type and vocabulary only.
