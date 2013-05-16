@@ -19,7 +19,7 @@ function stanford_publication_ctools_plugin_api() {
  */
 function stanford_publication_node_info() {
   $items = array(
-    'publication' => array(
+    'stanford_publication' => array(
       'name' => t('Publication'),
       'base' => 'node_content',
       'description' => t('A publication can be a book, an article, a poem, etc.'),

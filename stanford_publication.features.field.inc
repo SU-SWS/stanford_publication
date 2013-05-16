@@ -10,8 +10,8 @@
 function stanford_publication_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-publication-body'.
-  $fields['node-publication-body'] = array(
+  // Exported field: 'node-stanford_publication-body'.
+  $fields['node-stanford_publication-body'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -40,7 +40,7 @@ function stanford_publication_field_default_fields() {
       'type' => 'text_with_summary',
     ),
     'field_instance' => array(
-      'bundle' => 'publication',
+      'bundle' => 'stanford_publication',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Enter a description for this publication. Optionally, by clicking "edit summary," you can enter a brief summary of the description.',
@@ -114,8 +114,8 @@ function stanford_publication_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-publication-field_s_image_info'.
-  $fields['node-publication-field_s_image_info'] = array(
+  // Exported field: 'node-stanford_publication-field_s_image_info'.
+  $fields['node-stanford_publication-field_s_image_info'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -134,7 +134,7 @@ function stanford_publication_field_default_fields() {
       'type' => 'field_collection',
     ),
     'field_instance' => array(
-      'bundle' => 'publication',
+      'bundle' => 'stanford_publication',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Select a featured image for the publication and add an optional caption.',
@@ -176,8 +176,8 @@ function stanford_publication_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-publication-field_s_pub_date'.
-  $fields['node-publication-field_s_pub_date'] = array(
+  // Exported field: 'node-stanford_publication-field_s_pub_date'.
+  $fields['node-stanford_publication-field_s_pub_date'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -207,7 +207,7 @@ function stanford_publication_field_default_fields() {
       'type' => 'datetime',
     ),
     'field_instance' => array(
-      'bundle' => 'publication',
+      'bundle' => 'stanford_publication',
       'deleted' => '0',
       'description' => 'Choose the date of publication.',
       'display' => array(
@@ -260,8 +260,8 @@ function stanford_publication_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-publication-field_s_pub_document'.
-  $fields['node-publication-field_s_pub_document'] = array(
+  // Exported field: 'node-stanford_publication-field_s_pub_document'.
+  $fields['node-stanford_publication-field_s_pub_document'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
@@ -292,7 +292,7 @@ function stanford_publication_field_default_fields() {
       'type' => 'file',
     ),
     'field_instance' => array(
-      'bundle' => 'publication',
+      'bundle' => 'stanford_publication',
       'deleted' => '0',
       'description' => 'Upload document(s) associated with this publication.',
       'display' => array(
@@ -315,7 +315,7 @@ function stanford_publication_field_default_fields() {
       'label' => 'Document(s)',
       'required' => 0,
       'settings' => array(
-        'description_field' => 0,
+        'description_field' => 1,
         'file_directory' => 'publications',
         'file_extensions' => 'csv doc docx gz pdf ppt pptx tar txt xls xlsx zip',
         'max_filesize' => '',
@@ -371,8 +371,8 @@ function stanford_publication_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-publication-field_s_pub_link'.
-  $fields['node-publication-field_s_pub_link'] = array(
+  // Exported field: 'node-stanford_publication-field_s_pub_link'.
+  $fields['node-stanford_publication-field_s_pub_link'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -402,7 +402,7 @@ function stanford_publication_field_default_fields() {
       'type' => 'link_field',
     ),
     'field_instance' => array(
-      'bundle' => 'publication',
+      'bundle' => 'stanford_publication',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Enter a URL and a Title. The "Title" is what will display as the hyperlink text, e.g., "Visit book website."',
@@ -454,8 +454,8 @@ function stanford_publication_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-publication-field_s_pub_pub_type'.
-  $fields['node-publication-field_s_pub_pub_type'] = array(
+  // Exported field: 'node-stanford_publication-field_s_pub_pub_type'.
+  $fields['node-stanford_publication-field_s_pub_pub_type'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
@@ -489,7 +489,7 @@ function stanford_publication_field_default_fields() {
       'type' => 'taxonomy_term_reference',
     ),
     'field_instance' => array(
-      'bundle' => 'publication',
+      'bundle' => 'stanford_publication',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Choose the publication type (e.g., Book, Article, etc.)',
@@ -525,8 +525,8 @@ function stanford_publication_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-publication-field_s_pub_publisher'.
-  $fields['node-publication-field_s_pub_publisher'] = array(
+  // Exported field: 'node-stanford_publication-field_s_pub_publisher'.
+  $fields['node-stanford_publication-field_s_pub_publisher'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -555,7 +555,7 @@ function stanford_publication_field_default_fields() {
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'publication',
+      'bundle' => 'stanford_publication',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => 'Enter the name of the publisher.',

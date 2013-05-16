@@ -13,7 +13,7 @@ function stanford_publication_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_node__publication';
+  $strongarm->name = 'field_bundle_settings_node__stanford_publication';
   $strongarm->value = array(
     'view_modes' => array(),
     'extra_fields' => array(
@@ -34,54 +34,47 @@ function stanford_publication_strongarm() {
       'display' => array(),
     ),
   );
-  $export['field_bundle_settings_node__publication'] = $strongarm;
+  $export['field_bundle_settings_node__stanford_publication'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_options_publication';
+  $strongarm->name = 'menu_options_stanford_publication';
   $strongarm->value = array(
     0 => 'main-menu',
   );
-  $export['menu_options_publication'] = $strongarm;
+  $export['menu_options_stanford_publication'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_parent_publication';
+  $strongarm->name = 'menu_parent_stanford_publication';
   $strongarm->value = 'main-menu:0';
-  $export['menu_parent_publication'] = $strongarm;
+  $export['menu_parent_stanford_publication'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_publication';
+  $strongarm->name = 'node_options_stanford_publication';
   $strongarm->value = array(
     0 => 'status',
     1 => 'revision',
   );
-  $export['node_options_publication'] = $strongarm;
+  $export['node_options_stanford_publication'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_preview_publication';
+  $strongarm->name = 'node_preview_stanford_publication';
   $strongarm->value = '1';
-  $export['node_preview_publication'] = $strongarm;
+  $export['node_preview_stanford_publication'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_submitted_publication';
+  $strongarm->name = 'node_submitted_stanford_publication';
   $strongarm->value = 0;
-  $export['node_submitted_publication'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'save_continue_publication';
-  $strongarm->value = 'Save and add fields';
-  $export['save_continue_publication'] = $strongarm;
+  $export['node_submitted_stanford_publication'] = $strongarm;
 
   return $export;
 }
