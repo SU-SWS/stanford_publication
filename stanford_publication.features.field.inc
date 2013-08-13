@@ -50,7 +50,7 @@ function stanford_publication_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 0,
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -109,7 +109,7 @@ function stanford_publication_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '10',
+        'weight' => '12',
       ),
     ),
   );
@@ -140,17 +140,17 @@ function stanford_publication_field_default_fields() {
       'description' => 'Select a featured image for the publication and add an optional caption.',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'field_collection',
           'settings' => array(
-            'add' => 'Add',
-            'delete' => 'Delete',
-            'description' => TRUE,
-            'edit' => 'Edit',
-            'view_mode' => 'full',
+            'add' => '',
+            'delete' => '',
+            'description' => 0,
+            'edit' => '',
+            'view_mode' => '300_flex_width_no_caption',
           ),
           'type' => 'field_collection_view',
-          'weight' => 4,
+          'weight' => '1',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -171,58 +171,53 @@ function stanford_publication_field_default_fields() {
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '1',
+        'weight' => '2',
       ),
     ),
   );
 
-  // Exported field: 'node-stanford_publication-field_s_pub_date'.
-  $fields['node-stanford_publication-field_s_pub_date'] = array(
+
+  // Exported field: 'node-stanford_publication-field_s_pub_author'.
+  $fields['node-stanford_publication-field_s_pub_author'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_s_pub_date',
-      'foreign keys' => array(),
-      'indexes' => array(),
-      'locked' => '0',
-      'module' => 'date',
-      'settings' => array(
-        'cache_count' => '1',
-        'cache_enabled' => 1,
-        'granularity' => array(
-          'day' => 0,
-          'hour' => 0,
-          'minute' => 0,
-          'month' => 'month',
-          'second' => 0,
-          'year' => 'year',
+      'field_name' => 'field_s_pub_author',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
         ),
-        'timezone_db' => '',
-        'todate' => '',
-        'tz_handling' => 'none',
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
       ),
       'translatable' => '0',
-      'type' => 'datetime',
+      'type' => 'text',
     ),
     'field_instance' => array(
       'bundle' => 'stanford_publication',
+      'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Choose the date of publication.',
+      'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => 'date',
-          'settings' => array(
-            'format_type' => 'long',
-            'fromto' => 'both',
-            'multiple_from' => '',
-            'multiple_number' => '',
-            'multiple_to' => '',
-          ),
-          'type' => 'date_default',
-          'weight' => 1,
+          'label' => 'hidden',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_plain',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -232,30 +227,21 @@ function stanford_publication_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_s_pub_date',
-      'label' => 'Publication Date',
+      'field_name' => 'field_s_pub_author',
+      'label' => 'Author',
       'required' => 0,
       'settings' => array(
-        'default_value' => 'now',
-        'default_value2' => 'same',
-        'default_value_code' => '',
-        'default_value_code2' => '',
+        'text_processing' => 0,
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
-        'module' => 'date',
+        'module' => 'text',
         'settings' => array(
-          'display_all_day' => 0,
-          'increment' => '15',
-          'input_format' => 'm/d/Y - H:i:s',
-          'input_format_custom' => '',
-          'label_position' => 'above',
-          'text_parts' => array(),
-          'year_range' => '-10:+3',
+          'size' => '60',
         ),
-        'type' => 'date_select',
-        'weight' => '6',
+        'type' => 'text_textfield',
+        'weight' => '8',
       ),
     ),
   );
@@ -297,11 +283,11 @@ function stanford_publication_field_default_fields() {
       'description' => 'Upload document(s) associated with this publication.',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'file',
           'settings' => array(),
           'type' => 'file_default',
-          'weight' => 5,
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -366,7 +352,7 @@ function stanford_publication_field_default_fields() {
           'progress_indicator' => 'throbber',
         ),
         'type' => 'file_generic',
-        'weight' => '9',
+        'weight' => '11',
       ),
     ),
   );
@@ -405,14 +391,14 @@ function stanford_publication_field_default_fields() {
       'bundle' => 'stanford_publication',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Enter a URL and a Title. The "Title" is what will display as the hyperlink text, e.g., "Visit book website."',
+      'description' => 'Enter the Publisher\'s URL link (e.g., http://www.stanford.edu).',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'link',
           'settings' => array(),
           'type' => 'link_default',
-          'weight' => 3,
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -437,9 +423,9 @@ function stanford_publication_field_default_fields() {
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 0,
-        'title' => 'optional',
+        'title' => 'value',
         'title_maxlength' => '128',
-        'title_value' => '',
+        'title_value' => 'Learn more on publisher\'s website',
         'url' => 0,
         'user_register_form' => FALSE,
         'validate_url' => 1,
@@ -449,78 +435,7 @@ function stanford_publication_field_default_fields() {
         'module' => 'link',
         'settings' => array(),
         'type' => 'link_field',
-        'weight' => '8',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-stanford_publication-field_s_pub_pub_type'.
-  $fields['node-stanford_publication-field_s_pub_pub_type'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_s_pub_pub_type',
-      'foreign keys' => array(
-        'tid' => array(
-          'columns' => array(
-            'tid' => 'tid',
-          ),
-          'table' => 'taxonomy_term_data',
-        ),
-      ),
-      'indexes' => array(
-        'tid' => array(
-          0 => 'tid',
-        ),
-      ),
-      'locked' => '0',
-      'module' => 'taxonomy',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => array(
-            'vocabulary' => 'publication_type',
-            'parent' => '0',
-          ),
-        ),
-      ),
-      'translatable' => '0',
-      'type' => 'taxonomy_term_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'stanford_publication',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'Choose the publication type (e.g., Book, Article, etc.)',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'taxonomy',
-          'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => 6,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_s_pub_pub_type',
-      'label' => 'Publication Type',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_buttons',
-        'weight' => '5',
+        'weight' => '10',
       ),
     ),
   );
@@ -561,11 +476,11 @@ function stanford_publication_field_default_fields() {
       'description' => 'Enter the name of the publisher.',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'hidden',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 2,
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -619,26 +534,112 @@ function stanford_publication_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '9',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-stanford_publication-field_s_publication_year'.
+  $fields['node-stanford_publication-field_s_publication_year'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_s_publication_year',
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'date',
+      'settings' => array(
+        'cache_count' => '1',
+        'cache_enabled' => 1,
+        'granularity' => array(
+          'day' => 0,
+          'hour' => 0,
+          'minute' => 0,
+          'month' => 0,
+          'second' => 0,
+          'year' => 'year',
+        ),
+        'timezone_db' => '',
+        'todate' => '',
+        'tz_handling' => 'none',
+      ),
+      'translatable' => '0',
+      'type' => 'datetime',
+    ),
+    'field_instance' => array(
+      'bundle' => 'stanford_publication',
+      'deleted' => '0',
+      'description' => 'Choose the year of publication.',
+      'display' => array(
+        'default' => array(
+          'label' => 'hidden',
+          'module' => 'date',
+          'settings' => array(
+            'format_type' => 'long',
+            'fromto' => 'both',
+            'multiple_from' => '',
+            'multiple_number' => '',
+            'multiple_to' => '',
+          ),
+          'type' => 'date_default',
+          'weight' => '6',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_s_publication_year',
+      'label' => 'Publication Year',
+      'required' => 0,
+      'settings' => array(
+        'default_value' => 'now',
+        'default_value2' => 'same',
+        'default_value_code' => '',
+        'default_value_code2' => '',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'date',
+        'settings' => array(
+          'display_all_day' => 0,
+          'increment' => '15',
+          'input_format' => 'M j Y - H:i:s',
+          'input_format_custom' => '',
+          'label_position' => 'none',
+          'text_parts' => array(),
+          'year_range' => '1980:+4',
+        ),
+        'type' => 'date_select',
+        'weight' => '6',
       ),
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Choose the date of publication.');
-  t('Choose the publication type (e.g., Book, Article, etc.)');
+  t('Author/Editor');
+  t('Choose the year of publication.');
+  t('Co-Author');
   t('Description');
   t('Document(s)');
-  t('Enter a URL and a Title. The "Title" is what will display as the hyperlink text, e.g., "Visit book website."');
   t('Enter a description for this publication. Optionally, by clicking "edit summary," you can enter a brief summary of the description.');
+  t('Enter the Publisher\'s URL link (e.g., http://www.stanford.edu).');
   t('Enter the name of the publisher.');
+  t('Featured');
   t('Featured Image');
   t('Link');
-  t('Publication Date');
-  t('Publication Type');
+  t('Publication Year');
   t('Publisher');
   t('Select a featured image for the publication and add an optional caption.');
+  t('This is a setting used to feature a Publication in the carousel slideshow (e.g., check "Featured" if you want to display this item, leave un-checked  if you do not want to feature this item).');
   t('Upload document(s) associated with this publication.');
 
   return $fields;
