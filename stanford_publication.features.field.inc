@@ -127,7 +127,7 @@ function stanford_publication_field_default_fields() {
       'locked' => '0',
       'module' => 'field_collection',
       'settings' => array(
-        'hide_blank_items' => 1,
+        'hide_blank_items' => TRUE,
         'path' => '',
       ),
       'translatable' => '0',
