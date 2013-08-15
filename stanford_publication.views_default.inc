@@ -694,11 +694,7 @@ function stanford_publication_views_default_views() {
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
   $handler->display->display_options['path'] = 'bookshelf/all-publications';
-  $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Department Bookshelf: All Publications';
-  $handler->display->display_options['menu']['weight'] = '0';
-  $handler->display->display_options['menu']['name'] = 'main-menu';
-  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['title'] = 'Department Bookshelf';
 
   /* Display: Faculty Pubs */
   $handler = $view->new_display('block', 'Faculty Pubs', 'block');
