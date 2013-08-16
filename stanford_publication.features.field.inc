@@ -176,7 +176,6 @@ function stanford_publication_field_default_fields() {
     ),
   );
 
-
   // Exported field: 'node-stanford_publication-field_s_pub_author'.
   $fields['node-stanford_publication-field_s_pub_author'] = array(
     'field_config' => array(
@@ -625,21 +624,18 @@ function stanford_publication_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Author/Editor');
+  t('Author');
   t('Choose the year of publication.');
-  t('Co-Author');
   t('Description');
   t('Document(s)');
   t('Enter a description for this publication. Optionally, by clicking "edit summary," you can enter a brief summary of the description.');
   t('Enter the Publisher\'s URL link (e.g., http://www.stanford.edu).');
   t('Enter the name of the publisher.');
-  t('Featured');
   t('Featured Image');
   t('Link');
   t('Publication Year');
   t('Publisher');
   t('Select a featured image for the publication and add an optional caption.');
-  t('This is a setting used to feature a Publication in the carousel slideshow (e.g., check "Featured" if you want to display this item, leave un-checked  if you do not want to feature this item).');
   t('Upload document(s) associated with this publication.');
 
   return $fields;
