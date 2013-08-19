@@ -523,7 +523,7 @@ function stanford_publication_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Publications';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
-  $handler->display->display_options['css_class'] = 'views-grid-seven well';
+  $handler->display->display_options['css_class'] = 'views-grid-five well';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
@@ -667,7 +667,7 @@ function stanford_publication_views_default_views() {
   /* Display: 14 Item Publication Page Block */
   $handler = $view->new_display('block', '14 Item Publication Page Block', 'block');
   $handler->display->display_options['defaults']['css_class'] = FALSE;
-  $handler->display->display_options['css_class'] = 'views-grid-seven';
+  $handler->display->display_options['css_class'] = 'views-grid-five';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
