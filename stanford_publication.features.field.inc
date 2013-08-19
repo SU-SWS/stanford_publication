@@ -50,7 +50,7 @@ function stanford_publication_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '5',
+          'weight' => '13',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -216,7 +216,7 @@ function stanford_publication_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_plain',
-          'weight' => '3',
+          'weight' => '11',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -286,7 +286,7 @@ function stanford_publication_field_default_fields() {
           'module' => 'file',
           'settings' => array(),
           'type' => 'file_default',
-          'weight' => '6',
+          'weight' => '14',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -360,7 +360,7 @@ function stanford_publication_field_default_fields() {
   $fields['node-stanford_publication-field_s_pub_link'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '3',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_s_pub_link',
@@ -390,7 +390,7 @@ function stanford_publication_field_default_fields() {
       'bundle' => 'stanford_publication',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Enter the Publisher\'s URL link (e.g., http://www.stanford.edu).',
+      'description' => 'If you want to link to the publisher\'s website in the Title field, enter "Learn more on publisher\'s website" and add the URL in the Link field (e.g., http://www.stanford.edu).',
       'display' => array(
         'default' => array(
           'label' => 'hidden',
@@ -422,9 +422,9 @@ function stanford_publication_field_default_fields() {
           'url_cutoff' => '80',
         ),
         'enable_tokens' => 0,
-        'title' => 'value',
+        'title' => 'optional',
         'title_maxlength' => '128',
-        'title_value' => 'Learn more on publisher\'s website',
+        'title_value' => '',
         'url' => 0,
         'user_register_form' => FALSE,
         'validate_url' => 1,
@@ -629,9 +629,9 @@ function stanford_publication_field_default_fields() {
   t('Description');
   t('Document(s)');
   t('Enter a description for this publication. Optionally, by clicking "edit summary," you can enter a brief summary of the description.');
-  t('Enter the Publisher\'s URL link (e.g., http://www.stanford.edu).');
   t('Enter the name of the publisher.');
   t('Featured Image');
+  t('If you want to link to the publisher\'s website in the Title field, enter "Learn more on publisher\'s website" and add the URL in the Link field (e.g., http://www.stanford.edu).');
   t('Link');
   t('Publication Year');
   t('Publisher');

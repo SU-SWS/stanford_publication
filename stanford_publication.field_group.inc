@@ -21,7 +21,7 @@ function stanford_publication_field_group_info() {
   $field_group->parent_name = 'group_s_postcard_content';
   $field_group->data = array(
     'label' => 'Descriptor group',
-    'weight' => '4',
+    'weight' => '12',
     'children' => array(
       0 => 'field_s_pub_publisher',
       1 => 'field_s_publication_year',
@@ -53,7 +53,7 @@ function stanford_publication_field_group_info() {
   $field_group->parent_name = 'group_s_postcard_content';
   $field_group->data = array(
     'label' => 'More Link group',
-    'weight' => '7',
+    'weight' => '15',
     'children' => array(
       0 => 'field_s_pub_link',
     ),
@@ -88,10 +88,9 @@ function stanford_publication_field_group_info() {
     'children' => array(
       0 => 'body',
       1 => 'field_s_pub_document',
-      2 => 'field_s_pub_author',
-      3 => 'field_s_pub_co_author',
-      4 => 'group_descriptor_info',
-      5 => 'group_morelink_group',
+      2 => 'group_s_pub_author_summary',
+      3 => 'group_descriptor_info',
+      4 => 'group_morelink_group',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -153,8 +152,8 @@ function stanford_publication_field_group_info() {
     'label' => 'Postcard',
     'weight' => '0',
     'children' => array(
-      0 => 'group_s_postcard_image',
-      1 => 'group_s_postcard_content',
+      0 => 'group_s_postcard_content',
+      1 => 'group_s_postcard_image',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -171,6 +170,37 @@ function stanford_publication_field_group_info() {
     ),
   );
   $export['group_s_postcard|node|stanford_publication|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_s_pub_author_summary|node|stanford_publication|default';
+  $field_group->group_name = 'group_s_pub_author_summary';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'stanford_publication';
+  $field_group->mode = 'default';
+  $field_group->parent_name = 'group_s_postcard_content';
+  $field_group->data = array(
+    'label' => 'Author Summary',
+    'weight' => '10',
+    'children' => array(
+      0 => 'field_s_pub_author',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Author Summary',
+      'instance_settings' => array(
+        'classes' => 'summary',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_s_pub_author_summary|node|stanford_publication|default'] = $field_group;
 
   return $export;
 }
