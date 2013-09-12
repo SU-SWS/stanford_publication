@@ -45,7 +45,6 @@ function stanford_publication_views_default_views() {
     'timestamp' => 'title',
     'status' => 'status',
     'changed' => 'changed',
-    'field_s_slide_featured' => 'field_s_slide_featured',
     'field_s_pub_date' => 'field_s_pub_date',
     'field_s_pub_author' => 'field_s_pub_author',
     'field_s_pub_publisher' => 'field_s_pub_publisher',
@@ -93,13 +92,6 @@ function stanford_publication_views_default_views() {
       'empty_column' => 0,
     ),
     'changed' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_s_slide_featured' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
