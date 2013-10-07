@@ -420,6 +420,7 @@ function stanford_publication_views_default_views() {
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '18';
   $handler->display->display_options['style_plugin'] = 'default';
@@ -520,6 +521,7 @@ function stanford_publication_views_default_views() {
   $handler->display->display_options['defaults']['exposed_form'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Go';
+  $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '21';
@@ -1016,6 +1018,7 @@ function stanford_publication_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'stanford_publication' => 'stanford_publication',
   );
+
   $export['publications'] = $view;
 
   return $export;
