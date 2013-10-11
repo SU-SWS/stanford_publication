@@ -410,6 +410,7 @@ function stanford_publication_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Publications';
+  $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'View More Publications';
@@ -629,27 +630,51 @@ function stanford_publication_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'stanford_publication' => 'stanford_publication',
   );
-  /* Filter criterion: Search: Search Terms */
-  $handler->display->display_options['filters']['keys']['id'] = 'keys';
-  $handler->display->display_options['filters']['keys']['table'] = 'search_index';
-  $handler->display->display_options['filters']['keys']['field'] = 'keys';
-  $handler->display->display_options['filters']['keys']['operator'] = 'required';
-  $handler->display->display_options['filters']['keys']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['keys']['expose']['operator_id'] = 'keys_op';
-  $handler->display->display_options['filters']['keys']['expose']['label'] = 'Search by title';
-  $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
-  $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Title */
   $handler->display->display_options['filters']['title']['id'] = 'title';
   $handler->display->display_options['filters']['title']['table'] = 'node';
   $handler->display->display_options['filters']['title']['field'] = 'title';
-  $handler->display->display_options['filters']['title']['relationship'] = 'field_s_pub_author_target_id';
   $handler->display->display_options['filters']['title']['operator'] = 'contains';
+  $handler->display->display_options['filters']['title']['group'] = 1;
   $handler->display->display_options['filters']['title']['exposed'] = TRUE;
   $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['label'] = 'Search by author';
+  $handler->display->display_options['filters']['title']['expose']['label'] = 'Search by title';
   $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
   $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
+  $handler->display->display_options['filters']['title']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    11 => 0,
+    9 => 0,
+    7 => 0,
+    5 => 0,
+    13 => 0,
+    15 => 0,
+    17 => 0,
+  );
+  /* Filter criterion: Content: Author (field_s_pub_author) */
+  $handler->display->display_options['filters']['field_s_pub_author_value']['id'] = 'field_s_pub_author_value';
+  $handler->display->display_options['filters']['field_s_pub_author_value']['table'] = 'field_data_field_s_pub_author';
+  $handler->display->display_options['filters']['field_s_pub_author_value']['field'] = 'field_s_pub_author_value';
+  $handler->display->display_options['filters']['field_s_pub_author_value']['operator'] = 'contains';
+  $handler->display->display_options['filters']['field_s_pub_author_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_s_pub_author_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_s_pub_author_value']['expose']['operator_id'] = 'field_s_pub_author_value_op';
+  $handler->display->display_options['filters']['field_s_pub_author_value']['expose']['label'] = 'Search by author';
+  $handler->display->display_options['filters']['field_s_pub_author_value']['expose']['operator'] = 'field_s_pub_author_value_op';
+  $handler->display->display_options['filters']['field_s_pub_author_value']['expose']['identifier'] = 'field_s_pub_author_value';
+  $handler->display->display_options['filters']['field_s_pub_author_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    11 => 0,
+    9 => 0,
+    7 => 0,
+    5 => 0,
+    13 => 0,
+    15 => 0,
+    17 => 0,
+  );
   $handler->display->display_options['path'] = 'publications';
   $handler->display->display_options['menu']['title'] = 'Publications';
 
@@ -847,82 +872,6 @@ function stanford_publication_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'stanford_publication' => 'stanford_publication',
   );
-
-  /* Display: Exposed Filters */
-  $handler = $view->new_display('block', 'Exposed Filters', 'block_3');
-  $handler->display->display_options['defaults']['exposed_form'] = FALSE;
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Go';
-  $handler->display->display_options['defaults']['header'] = FALSE;
-  $handler->display->display_options['defaults']['relationships'] = FALSE;
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Field: Image */
-  $handler->display->display_options['fields']['field_s_image_info']['id'] = 'field_s_image_info';
-  $handler->display->display_options['fields']['field_s_image_info']['table'] = 'field_data_field_s_image_info';
-  $handler->display->display_options['fields']['field_s_image_info']['field'] = 'field_s_image_info';
-  $handler->display->display_options['fields']['field_s_image_info']['label'] = '';
-  $handler->display->display_options['fields']['field_s_image_info']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_s_image_info']['settings'] = array(
-    'edit' => '',
-    'delete' => '',
-    'add' => '',
-    'description' => 0,
-    'view_mode' => 'stanford_small_profile',
-  );
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Author */
-  $handler->display->display_options['fields']['field_s_pub_author']['id'] = 'field_s_pub_author';
-  $handler->display->display_options['fields']['field_s_pub_author']['table'] = 'field_data_field_s_pub_author';
-  $handler->display->display_options['fields']['field_s_pub_author']['field'] = 'field_s_pub_author';
-  $handler->display->display_options['fields']['field_s_pub_author']['label'] = '';
-  $handler->display->display_options['fields']['field_s_pub_author']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_s_pub_author']['settings'] = array(
-    'link' => 0,
-  );
-  $handler->display->display_options['fields']['field_s_pub_author']['delta_offset'] = '0';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'stanford_publication' => 'stanford_publication',
-  );
-  /* Filter criterion: Search: Search Terms */
-  $handler->display->display_options['filters']['keys']['id'] = 'keys';
-  $handler->display->display_options['filters']['keys']['table'] = 'search_index';
-  $handler->display->display_options['filters']['keys']['field'] = 'keys';
-  $handler->display->display_options['filters']['keys']['operator'] = 'required';
-  $handler->display->display_options['filters']['keys']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['keys']['expose']['operator_id'] = 'keys_op';
-  $handler->display->display_options['filters']['keys']['expose']['label'] = 'Search the bookshelf';
-  $handler->display->display_options['filters']['keys']['expose']['operator'] = 'keys_op';
-  $handler->display->display_options['filters']['keys']['expose']['identifier'] = 'keys';
-  /* Filter criterion: Content: Title */
-  $handler->display->display_options['filters']['title']['id'] = 'title';
-  $handler->display->display_options['filters']['title']['table'] = 'node';
-  $handler->display->display_options['filters']['title']['field'] = 'title';
-  $handler->display->display_options['filters']['title']['relationship'] = 'field_s_pub_author_target_id';
-  $handler->display->display_options['filters']['title']['operator'] = 'contains';
-  $handler->display->display_options['filters']['title']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['title']['expose']['operator_id'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['label'] = 'Search by author';
-  $handler->display->display_options['filters']['title']['expose']['operator'] = 'title_op';
-  $handler->display->display_options['filters']['title']['expose']['identifier'] = 'title';
 
   /* Display: 4 Item Most Recent Publications Block */
   $handler = $view->new_display('block', '4 Item Most Recent Publications Block', 'block_4');
