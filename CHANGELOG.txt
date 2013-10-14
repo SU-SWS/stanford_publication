@@ -1,6 +1,13 @@
 Stanford Publication x.x-x.x, xxxx-xx-xx
 ----------------------------------------
 
+Stanford Publication 7.x-1.0-alpha5, 2013-10-14
+-----------------------------------------------
+Changes since 7.x-1.0-alpha4:
+  -Updates to Views
+  -Changes to fields and field groups
+  -Code cleanup
+
 Stanford Publication 7.x-1.0-alpha4, 2013-08-19
 -----------------------------------------------
 Changes since 7.x-1.0-alpha3:
