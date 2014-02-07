@@ -88,9 +88,9 @@ function stanford_publication_field_group_info() {
     'children' => array(
       0 => 'body',
       1 => 'field_s_pub_document',
-      2 => 'group_s_pub_author_summary',
-      3 => 'group_descriptor_info',
-      4 => 'group_morelink_group',
+      2 => 'group_descriptor_info',
+      3 => 'group_morelink_group',
+      4 => 'group_s_pub_author_summary',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -185,6 +185,7 @@ function stanford_publication_field_group_info() {
     'weight' => '10',
     'children' => array(
       0 => 'field_s_pub_author',
+      1 => 'field_s_person_link',
     ),
     'format_type' => 'div',
     'format_settings' => array(

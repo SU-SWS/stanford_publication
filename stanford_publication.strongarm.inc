@@ -52,20 +52,23 @@ function stanford_publication_strongarm() {
       '300_flex_width_no_caption' => array(
         'custom_settings' => FALSE,
       ),
+      'stanford_8_col_banner' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '5',
+          'weight' => '4',
         ),
         'title' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
         'path' => array(
-          'weight' => '3',
+          'weight' => '2',
         ),
         'redirect' => array(
-          'weight' => '4',
+          'weight' => '3',
         ),
       ),
       'display' => array(),
@@ -77,9 +80,7 @@ function stanford_publication_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_stanford_publication';
-  $strongarm->value = array(
-    0 => 'main-menu',
-  );
+  $strongarm->value = array();
   $export['menu_options_stanford_publication'] = $strongarm;
 
   $strongarm = new stdClass();

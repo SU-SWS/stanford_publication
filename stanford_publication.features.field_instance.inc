@@ -81,7 +81,7 @@ function stanford_publication_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 12,
+      'weight' => 6,
     ),
   );
 
@@ -133,14 +133,14 @@ function stanford_publication_field_default_field_instances() {
     'bundle' => 'stanford_publication',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This text field displays authors who do not have their profiles on the site. Enter one author per line.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_plain',
-        'weight' => 11,
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -154,6 +154,32 @@ function stanford_publication_field_default_field_instances() {
     'label' => 'Author',
     'required' => 0,
     'settings' => array(
+      'better_formats' => array(
+        'allowed_formats' => array(
+          'content_editor_text_format' => 'content_editor_text_format',
+          'filtered_html' => 'filtered_html',
+          'full_html' => 'full_html',
+          'plain_text' => 'plain_text',
+        ),
+        'allowed_formats_toggle' => 0,
+        'default_order_toggle' => 0,
+        'default_order_wrapper' => array(
+          'formats' => array(
+            'content_editor_text_format' => array(
+              'weight' => -10,
+            ),
+            'filtered_html' => array(
+              'weight' => 0,
+            ),
+            'full_html' => array(
+              'weight' => 1,
+            ),
+            'plain_text' => array(
+              'weight' => 10,
+            ),
+          ),
+        ),
+      ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
@@ -164,7 +190,7 @@ function stanford_publication_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 5,
     ),
   );
 
@@ -204,6 +230,7 @@ function stanford_publication_field_default_field_instances() {
       'module' => 'file',
       'settings' => array(
         'insert' => 0,
+        'insert_absolute' => FALSE,
         'insert_class' => '',
         'insert_default' => 'auto',
         'insert_styles' => array(
@@ -244,7 +271,7 @@ function stanford_publication_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'file_generic',
-      'weight' => 11,
+      'weight' => 7,
     ),
   );
 
@@ -297,7 +324,7 @@ function stanford_publication_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 10,
+      'weight' => 3,
     ),
   );
 
@@ -367,7 +394,7 @@ function stanford_publication_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 9,
+      'weight' => 2,
     ),
   );
 
@@ -421,31 +448,25 @@ function stanford_publication_field_default_field_instances() {
         'year_range' => '1980:+4',
       ),
       'type' => 'date_select',
-      'weight' => 6,
+      'weight' => 3,
     ),
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Author');
-  t('Caption');
   t('Choose the year of publication.');
-  t('Credits');
   t('Description');
   t('Document(s)');
   t('Enter a description for this publication. Optionally, by clicking "edit summary," you can enter a brief summary of the description.');
   t('Enter the name of the publisher.');
-  t('Enter the original name, if changed, and other information to aid in finding the original image.');
-  t('Enter the photographer or organization credits.');
   t('Featured Image');
   t('If you want to link to the publisher\'s website in the Title field, enter "Learn more on publisher\'s website" and add the URL in the Link field (e.g., http://www.stanford.edu).');
-  t('Image');
   t('Link');
-  t('Optionally enter information to appear as a caption for this image. This text may be trimmed to 180 characters.');
   t('Publication Year');
   t('Publisher');
   t('Select a featured image for the publication and add an optional caption.');
-  t('Source Info');
+  t('This text field displays authors who do not have their profiles on the site. Enter one author per line.');
   t('Upload document(s) associated with this publication.');
 
   return $field_instances;
