@@ -12,6 +12,7 @@ dependencies[] = field_group
 dependencies[] = file
 dependencies[] = image
 dependencies[] = link
+dependencies[] = options
 dependencies[] = stanford_image
 dependencies[] = strongarm
 dependencies[] = taxonomy
