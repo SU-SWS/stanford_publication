@@ -398,6 +398,42 @@ function stanford_publication_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-stanford_publication-field_s_pub_type'
+  $field_instances['node-stanford_publication-field_s_pub_type'] = array(
+    'bundle' => 'stanford_publication',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'This identifies the type of publication. Select one.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_s_pub_type',
+    'label' => 'Type',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 8,
+    ),
+  );
+
   // Exported field_instance: 'node-stanford_publication-field_s_publication_year'
   $field_instances['node-stanford_publication-field_s_publication_year'] = array(
     'bundle' => 'stanford_publication',
@@ -466,7 +502,9 @@ function stanford_publication_field_default_field_instances() {
   t('Publication Year');
   t('Publisher');
   t('Select a featured image for the publication and add an optional caption.');
+  t('This identifies the type of publication. Select one.');
   t('This text field displays authors who do not have their profiles on the site. Enter one author per line.');
+  t('Type');
   t('Upload document(s) associated with this publication.');
 
   return $field_instances;
