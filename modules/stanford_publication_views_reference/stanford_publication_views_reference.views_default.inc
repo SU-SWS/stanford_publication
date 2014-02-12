@@ -358,7 +358,6 @@ function stanford_publication_views_reference_views_default_views() {
   $handler = $view->new_display('page', 'Landing Page', 'pubs_page');
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['path'] = 'publications';
-  $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Publications';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'main-menu';
