@@ -23,7 +23,6 @@ features[ctools][] = field_group:field_group:1
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
-features[field_base][] = body
 features[field_base][] = field_s_pub_author
 features[field_base][] = field_s_pub_document
 features[field_base][] = field_s_pub_link
@@ -55,4 +54,6 @@ features[variable][] = node_submitted_stanford_publication
 features[variable][] = pathauto_node_stanford_publication_pattern
 features[views_view][] = publication_manage
 features_exclude[dependencies][stanford_person_reference] = stanford_person_reference
+features_exclude[field_base][body] = body
+
 project status url = https://drupalfeatures.stanford.edu/projects/stanford_publication/7.x
