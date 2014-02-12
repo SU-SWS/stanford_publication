@@ -66,8 +66,21 @@ function stanford_publication_views_reference_enable() {
     stanford_publication_views_reference_install();
   }
   else {
-    $exists->disabled = FALSE;
-    context_save($exists);
+    // Enable the context.
+    $context_status = variable_get('context_status', array());
+    if (isset($context_status['publications_person_reference'])) {
+      unset($context_status['publications_person_reference']);
+      variable_set('context_status', $context_status);
+    }
+  }
+
+  // Disable the default context.
+  $exists = context_load('publications_landing_page');
+  if (!empty($exists)) {
+    // Disable the context.
+    $context_status = variable_get('context_status', array());
+    $context_status['publications_landing_page'] = TRUE;
+    variable_set('context_status', $context_status);
   }
 
 }
@@ -84,6 +97,9 @@ function stanford_publication_views_reference_disable() {
     return;
   }
 
-  $context->disabled = TRUE;
-  context_save($context);
+  // Disable the context.
+  $context_status = variable_get('context_status', array());
+  $context_status['publications_person_reference'] = TRUE;
+  variable_set('context_status', $context_status);
+
 }
