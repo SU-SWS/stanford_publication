@@ -338,7 +338,7 @@ function stanford_publication_views_reference_views_default_views() {
   $handler->display->display_options['filters']['field_s_pub_type_tid']['value'] = '';
   $handler->display->display_options['filters']['field_s_pub_type_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_s_pub_type_tid']['expose']['operator_id'] = 'field_s_pub_type_tid_op';
-  $handler->display->display_options['filters']['field_s_pub_type_tid']['expose']['label'] = 'Filter by Type';
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['expose']['label'] = 'Filter by type';
   $handler->display->display_options['filters']['field_s_pub_type_tid']['expose']['operator'] = 'field_s_pub_type_tid_op';
   $handler->display->display_options['filters']['field_s_pub_type_tid']['expose']['identifier'] = 'field_s_pub_type_tid';
   $handler->display->display_options['filters']['field_s_pub_type_tid']['expose']['remember_roles'] = array(
