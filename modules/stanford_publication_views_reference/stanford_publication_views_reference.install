@@ -111,7 +111,7 @@ function stanford_publication_views_reference_enable() {
   // Disable the original view if it made its way to the database, which it
   // normally does.
   $views_status = variable_get('views_defaults', array());
-  $views_status['publications'] = 1;
+  $views_status['publications'] = TRUE;
   variable_set($views_status);
 
 
