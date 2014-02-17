@@ -61,7 +61,7 @@ function stanford_publication_views_reference_views_default_views() {
     'delete' => '',
     'add' => '',
     'description' => 1,
-    'view_mode' => 'stanford_small_square',
+    'view_mode' => 'stanford_sm_profile',
   );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -211,7 +211,7 @@ function stanford_publication_views_reference_views_default_views() {
     'delete' => '',
     'add' => '',
     'description' => 0,
-    'view_mode' => 'stanford_small_square',
+    'view_mode' => 'stanford_sm_profile',
   );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
