@@ -133,6 +133,9 @@ function stanford_publication_views_reference_views_default_views() {
 
   /* Display: Person Block */
   $handler = $view->new_display('block', 'Person Block', 'pub_author_block');
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'views-grid-five';
+
   $export['stanford_publications_author'] = $view;
 
   $view = new view();
