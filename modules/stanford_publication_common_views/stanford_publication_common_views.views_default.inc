@@ -275,13 +275,25 @@ function stanford_publication_common_views_views_default_views() {
     'link' => 0,
   );
   $handler->display->display_options['fields']['field_s_pub_author']['delta_offset'] = '0';
+  /* Field: Content: Author link */
+  $handler->display->display_options['fields']['field_s_person_link']['id'] = 'field_s_person_link';
+  $handler->display->display_options['fields']['field_s_person_link']['table'] = 'field_data_field_s_person_link';
+  $handler->display->display_options['fields']['field_s_person_link']['field'] = 'field_s_person_link';
+  $handler->display->display_options['fields']['field_s_person_link']['label'] = '';
+  $handler->display->display_options['fields']['field_s_person_link']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_person_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_s_person_link']['settings'] = array(
+  'link' => 0,
+  );
+  $handler->display->display_options['fields']['field_s_person_link']['delta_offset'] = '0';
+  $handler->display->display_options['fields']['field_s_person_link']['separator'] = ' ';
   /* Field: Content: Publication Year */
   $handler->display->display_options['fields']['field_s_publication_year']['id'] = 'field_s_publication_year';
   $handler->display->display_options['fields']['field_s_publication_year']['table'] = 'field_data_field_s_publication_year';
   $handler->display->display_options['fields']['field_s_publication_year']['field'] = 'field_s_publication_year';
   $handler->display->display_options['fields']['field_s_publication_year']['label'] = '';
   $handler->display->display_options['fields']['field_s_publication_year']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['field_s_publication_year']['alter']['text'] = '[field_s_pub_author], [field_s_publication_year]';
+  $handler->display->display_options['fields']['field_s_publication_year']['alter']['text'] = '[field_s_pub_author][field_s_person_link], [field_s_publication_year]';
   $handler->display->display_options['fields']['field_s_publication_year']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_s_publication_year']['settings'] = array(
     'format_type' => 'long',
