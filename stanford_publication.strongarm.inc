@@ -59,16 +59,16 @@ function stanford_publication_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '4',
+          'weight' => '10',
         ),
         'title' => array(
-          'weight' => '1',
+          'weight' => '0',
         ),
         'path' => array(
-          'weight' => '2',
+          'weight' => '12',
         ),
         'redirect' => array(
-          'weight' => '3',
+          'weight' => '11',
         ),
       ),
       'display' => array(),

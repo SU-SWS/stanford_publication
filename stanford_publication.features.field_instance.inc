@@ -124,7 +124,7 @@ function stanford_publication_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 2,
+      'weight' => 1,
     ),
   );
 
@@ -190,7 +190,7 @@ function stanford_publication_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 5,
+      'weight' => 3,
     ),
   );
 
@@ -324,7 +324,7 @@ function stanford_publication_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 3,
+      'weight' => 8,
     ),
   );
 
@@ -394,7 +394,7 @@ function stanford_publication_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 4,
     ),
   );
 
@@ -430,7 +430,7 @@ function stanford_publication_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -484,7 +484,7 @@ function stanford_publication_field_default_field_instances() {
         'year_range' => '1980:+4',
       ),
       'type' => 'date_select',
-      'weight' => 3,
+      'weight' => 5,
     ),
   );
 
