@@ -355,6 +355,7 @@ function stanford_publication_views_reference_views_default_views() {
     8 => 0,
     9 => 0,
   );
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_s_pub_type_tid']['vocabulary'] = 'publication_type';
 
   /* Display: Landing Page */
