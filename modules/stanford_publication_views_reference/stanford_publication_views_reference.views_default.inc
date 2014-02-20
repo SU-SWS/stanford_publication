@@ -230,7 +230,7 @@ function stanford_publication_views_reference_views_default_views() {
   $handler->display->display_options['fields']['field_s_person_link']['label'] = '';
   $handler->display->display_options['fields']['field_s_person_link']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_s_person_link']['settings'] = array(
-    'link' => 1,
+    'link' => 0,
   );
   $handler->display->display_options['fields']['field_s_person_link']['delta_offset'] = '0';
   /* Field: Content: Author */
