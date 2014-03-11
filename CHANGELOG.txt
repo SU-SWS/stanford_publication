@@ -1,6 +1,17 @@
 Stanford Publication x.x-x.x, xxxx-xx-xx
 ----------------------------------------
 
+Stanford Publication 7.x-2.0-alpha1, 2014-03-11
+-----------------------------------------------
+  -Features 2.x Compatible Version
+  -Consolidated all publication feature modules into sub modules
+  -Updated node view
+  -New publication views person reference sub module and views
+  -Updated context layout & new context layout
+  -Updated image styles
+  -Updated field weights
+  -Split out views into multiple feature modules
+
 Stanford Publication 7.x-1.0-alpha5, 2013-10-14
 -----------------------------------------------
 Changes since 7.x-1.0-alpha4:
