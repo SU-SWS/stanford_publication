@@ -26,7 +26,7 @@ function stanford_publication_common_views_views_default_views() {
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'View More Publications';
+  $handler->display->display_options['use_more_text'] = 'View more publications';
   $handler->display->display_options['link_display'] = 'page';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
