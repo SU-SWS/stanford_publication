@@ -1,6 +1,10 @@
 Stanford Publication x.x-x.x, xxxx-xx-xx
 ----------------------------------------
 
+Stanford Publication 7.x-2.0-alpha2, 2014-05-16
+-----------------------------------------------
+  - ARTDEPT-237 | Changed more link to sentence case
+
 Stanford Publication 7.x-2.0-alpha1, 2014-03-11
 -----------------------------------------------
   -Features 2.x Compatible Version
