@@ -55,5 +55,4 @@ features[variable][] = pathauto_node_stanford_publication_pattern
 features[views_view][] = publication_manage
 features_exclude[dependencies][stanford_person_reference] = stanford_person_reference
 features_exclude[field_base][body] = body
-
-project status url = https://drupalfeatures.stanford.edu/projects/stanford_publication/7.x
+project status url = https://github.com/SU-SWS/stanford_publication
