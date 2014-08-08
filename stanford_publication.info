@@ -43,4 +43,4 @@ features[variable][] = node_submitted_stanford_publication
 features[variable][] = pathauto_node_stanford_publication_pattern
 features[views_view][] = publication_manage
 features[views_view][] = publications
-project status url = https://drupalfeatures.stanford.edu/projects/stanford_publication/7.x
+project status url = https://github.com/SU-SWS/stanford_publication
