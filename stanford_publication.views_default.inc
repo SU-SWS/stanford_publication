@@ -40,20 +40,20 @@ function stanford_publication_views_default_views() {
   $handler->display->display_options['style_options']['columns'] = array(
     'counter' => 'counter',
     'views_bulk_operations' => 'views_bulk_operations',
-    'field_stanford_event_image' => 'field_stanford_event_image',
+    'field_s_image_info' => 'field_s_image_info',
     'title' => 'title',
     'timestamp' => 'title',
     'status' => 'status',
     'changed' => 'changed',
-    'field_s_pub_date' => 'field_s_pub_date',
     'field_s_pub_author' => 'field_s_pub_author',
     'field_s_pub_publisher' => 'field_s_pub_publisher',
+    'field_s_pub_type' => 'field_s_pub_type',
     'nid' => 'nid',
     'edit_node' => 'edit_node',
     'view_node' => 'edit_node',
     'delete_node' => 'edit_node',
   );
-  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['default'] = 'changed';
   $handler->display->display_options['style_options']['info'] = array(
     'counter' => array(
       'align' => '',
@@ -65,7 +65,7 @@ function stanford_publication_views_default_views() {
       'separator' => ' | ',
       'empty_column' => 0,
     ),
-    'field_stanford_event_image' => array(
+    'field_s_image_info' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -93,14 +93,7 @@ function stanford_publication_views_default_views() {
     ),
     'changed' => array(
       'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_s_pub_date' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
+      'default_sort_order' => 'desc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -111,6 +104,13 @@ function stanford_publication_views_default_views() {
       'empty_column' => 0,
     ),
     'field_s_pub_publisher' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_s_pub_type' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -155,59 +155,64 @@ function stanford_publication_views_default_views() {
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
   $handler->display->display_options['fields']['views_bulk_operations']['table'] = 'node';
   $handler->display->display_options['fields']['views_bulk_operations']['field'] = 'views_bulk_operations';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['entity_load_capacity'] = '10';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['operations'] = array(
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['display_type'] = '0';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['enable_select_all_pages'] = 1;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
+  $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
     'action::node_assign_owner_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'action::views_bulk_operations_delete_item' => array(
       'selected' => 1,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 1,
       'label' => 'Delete',
     ),
-    'action::system_message_action' => array(
+    'action::views_bulk_operations_delete_revision' => array(
       'selected' => 0,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'action::views_bulk_operations_script_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'action::node_make_sticky_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'action::node_make_unsticky_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'action::views_bulk_operations_modify_action' => array(
       'selected' => 1,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 1,
       'label' => 'Modify',
       'settings' => array(
         'show_all_tokens' => 0,
-        'display_values' => array(),
+        'display_values' => array(
+          'stanford_publication::field_s_pub_type' => 'stanford_publication::field_s_pub_type',
+        ),
       ),
     ),
     'action::views_bulk_operations_argument_selector_action' => array(
@@ -221,74 +226,62 @@ function stanford_publication_views_default_views() {
     ),
     'action::node_promote_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'action::node_publish_action' => array(
       'selected' => 1,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 1,
       'label' => 'Publish',
     ),
-    'action::system_goto_action' => array(
-      'selected' => 0,
-      'use_queue' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-    ),
     'action::node_unpromote_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'action::node_save_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'action::system_send_email_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'action::node_unpublish_action' => array(
       'selected' => 1,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 1,
       'label' => 'Unpublish',
     ),
     'action::node_unpublish_by_keyword_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
     'action::pathauto_node_update_action' => array(
       'selected' => 0,
-      'use_queue' => 0,
+      'postpone_processing' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
     ),
   );
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['enable_select_all_pages'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['display_type'] = '0';
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['display_result'] = 1;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['merge_single_action'] = 0;
-  $handler->display->display_options['fields']['views_bulk_operations']['vbo']['force_single'] = 0;
-  /* Field: Field: Featured Image */
+  /* Field: Field: Image */
   $handler->display->display_options['fields']['field_s_image_info']['id'] = 'field_s_image_info';
   $handler->display->display_options['fields']['field_s_image_info']['table'] = 'field_data_field_s_image_info';
   $handler->display->display_options['fields']['field_s_image_info']['field'] = 'field_s_image_info';
@@ -333,6 +326,11 @@ function stanford_publication_views_default_views() {
   $handler->display->display_options['fields']['field_s_pub_publisher']['id'] = 'field_s_pub_publisher';
   $handler->display->display_options['fields']['field_s_pub_publisher']['table'] = 'field_data_field_s_pub_publisher';
   $handler->display->display_options['fields']['field_s_pub_publisher']['field'] = 'field_s_pub_publisher';
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['field_s_pub_type']['id'] = 'field_s_pub_type';
+  $handler->display->display_options['fields']['field_s_pub_type']['table'] = 'field_data_field_s_pub_type';
+  $handler->display->display_options['fields']['field_s_pub_type']['field'] = 'field_s_pub_type';
+  $handler->display->display_options['fields']['field_s_pub_type']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -386,6 +384,28 @@ function stanford_publication_views_default_views() {
   $handler->display->display_options['filters']['status']['expose']['label'] = 'Published';
   $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
   $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
+  /* Filter criterion: Content: Type (field_s_pub_type) */
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['id'] = 'field_s_pub_type_tid';
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['table'] = 'field_data_field_s_pub_type';
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['field'] = 'field_s_pub_type_tid';
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['expose']['operator_id'] = 'field_s_pub_type_tid_op';
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['expose']['label'] = 'Type';
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['expose']['operator'] = 'field_s_pub_type_tid_op';
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['expose']['identifier'] = 'field_s_pub_type_tid';
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+  );
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_s_pub_type_tid']['vocabulary'] = 'publication_type';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
