@@ -49,9 +49,6 @@ function stanford_publication_strongarm() {
       'taxonomy' => array(
         'custom_settings' => FALSE,
       ),
-      '300_flex_width_no_caption' => array(
-        'custom_settings' => FALSE,
-      ),
       'stanford_8_col_banner' => array(
         'custom_settings' => FALSE,
       ),
