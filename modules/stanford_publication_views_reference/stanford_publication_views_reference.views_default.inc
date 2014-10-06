@@ -48,7 +48,7 @@ function stanford_publication_views_reference_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Field: Featured Image */
+  /* Field: Field: Image */
   $handler->display->display_options['fields']['field_s_image_info']['id'] = 'field_s_image_info';
   $handler->display->display_options['fields']['field_s_image_info']['table'] = 'field_data_field_s_image_info';
   $handler->display->display_options['fields']['field_s_image_info']['field'] = 'field_s_image_info';
@@ -135,7 +135,6 @@ function stanford_publication_views_reference_views_default_views() {
   $handler = $view->new_display('block', 'Person Block', 'pub_author_block');
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'views-grid-five';
-
   $export['stanford_publications_author'] = $view;
 
   $view = new view();
@@ -166,7 +165,7 @@ function stanford_publication_views_reference_views_default_views() {
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Go';
   $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '18';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['quantity'] = '9';
@@ -201,7 +200,7 @@ function stanford_publication_views_reference_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Field: Featured Image */
+  /* Field: Field: Image */
   $handler->display->display_options['fields']['field_s_image_info']['id'] = 'field_s_image_info';
   $handler->display->display_options['fields']['field_s_image_info']['table'] = 'field_data_field_s_image_info';
   $handler->display->display_options['fields']['field_s_image_info']['field'] = 'field_s_image_info';
@@ -469,7 +468,6 @@ function stanford_publication_views_reference_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-
   $export['stanford_publications_reference'] = $view;
 
   return $export;
