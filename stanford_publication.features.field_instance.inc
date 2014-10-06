@@ -100,7 +100,7 @@ function stanford_publication_field_default_field_instances() {
           'delete' => '',
           'description' => 0,
           'edit' => '',
-          'view_mode' => 'large-scaled',
+          'view_mode' => 'stanford_large_scaled',
         ),
         'type' => 'field_collection_view',
         'weight' => 1,
