@@ -12,7 +12,7 @@ function stanford_publication_views_brief_list_reference_views_default_views() {
 
   $view = new view();
   $view->name = 'stanford_publications_brief_list_reference';
-  $view->description = 'Publications list view with link to author and no body text';
+  $view->description = 'Publications list view with link to author and no body text. Great for the homepage!';
   $view->tag = 'default';
   $view->base_table = 'node';
   $view->human_name = 'Stanford Publications Brief List Reference';
@@ -95,7 +95,7 @@ function stanford_publication_views_brief_list_reference_views_default_views() {
     'delete' => '',
     'add' => '',
     'description' => 0,
-    'view_mode' => 'stanford_sm_profile',
+    'view_mode' => 'stanford_icon_profile',
   );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -153,10 +153,11 @@ function stanford_publication_views_brief_list_reference_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['element_wrapper_class'] = 'edit-link';
   $handler->display->display_options['fields']['edit_node']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['edit_node']['text'] = 'Edit';
-  /* Field: Global: Custom text */
+  /* Field: Global: View rewrite */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Global: View rewrite';
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="postcard-left">
   <div>
@@ -241,8 +242,8 @@ function stanford_publication_views_brief_list_reference_views_default_views() {
     19 => 0,
   );
 
-  /* Display: Publication list block */
-  $handler = $view->new_display('block', 'Publication list block', 'pub_brief_list_ref_block');
+  /* Display: Small block */
+  $handler = $view->new_display('block', 'Small block', 'small_block');
   $handler->display->display_options['link_url'] = 'publications';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
