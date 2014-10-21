@@ -113,6 +113,7 @@ function stanford_publication_views_list_reference_views_default_views() {
   $handler->display->display_options['fields']['field_s_pub_author']['field'] = 'field_s_pub_author';
   $handler->display->display_options['fields']['field_s_pub_author']['label'] = '';
   $handler->display->display_options['fields']['field_s_pub_author']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_pub_author']['alter']['text'] = ', [field_s_pub_author]';
   $handler->display->display_options['fields']['field_s_pub_author']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_s_pub_author']['delta_offset'] = '0';
   /* Field: Content: Publication Year */
@@ -179,7 +180,8 @@ function stanford_publication_views_list_reference_views_default_views() {
 
       <div class="postcard-content">
            <div><h3>[title]</h3></div>
-           <div>[field_s_person_link][field_s_pub_author]</div>
+           <div>[field_s_person_link]</div>
+           <div>[field_s_pub_author]</div>
            <div class="descriptor">[field_s_publication_year]</div>
            <div>[body]</div>
       </div>
@@ -191,6 +193,169 @@ function stanford_publication_views_list_reference_views_default_views() {
   $handler->display->display_options['sorts']['field_s_publication_year_value']['table'] = 'field_data_field_s_publication_year';
   $handler->display->display_options['sorts']['field_s_publication_year_value']['field'] = 'field_s_publication_year_value';
   $handler->display->display_options['sorts']['field_s_publication_year_value']['order'] = 'DESC';
+  /* Contextual filter: Content: Author link (field_s_person_link) */
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['id'] = 'field_s_person_link_target_id';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['table'] = 'field_data_field_s_person_link';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['field'] = 'field_s_person_link_target_id';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['summary_options']['items_per_page'] = '25';
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'stanford_publication' => 'stanford_publication',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'pubs_page');
+  $handler->display->display_options['exposed_block'] = TRUE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  /* Field: Field: Image */
+  $handler->display->display_options['fields']['field_s_image_info']['id'] = 'field_s_image_info';
+  $handler->display->display_options['fields']['field_s_image_info']['table'] = 'field_data_field_s_image_info';
+  $handler->display->display_options['fields']['field_s_image_info']['field'] = 'field_s_image_info';
+  $handler->display->display_options['fields']['field_s_image_info']['label'] = '';
+  $handler->display->display_options['fields']['field_s_image_info']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_image_info']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_s_image_info']['alter']['path'] = 'node/[nid]';
+  $handler->display->display_options['fields']['field_s_image_info']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_s_image_info']['settings'] = array(
+    'edit' => '',
+    'delete' => '',
+    'add' => '',
+    'description' => 0,
+    'view_mode' => 'stanford_sm_profile',
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Author link */
+  $handler->display->display_options['fields']['field_s_person_link']['id'] = 'field_s_person_link';
+  $handler->display->display_options['fields']['field_s_person_link']['table'] = 'field_data_field_s_person_link';
+  $handler->display->display_options['fields']['field_s_person_link']['field'] = 'field_s_person_link';
+  $handler->display->display_options['fields']['field_s_person_link']['label'] = '';
+  $handler->display->display_options['fields']['field_s_person_link']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_person_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_s_person_link']['settings'] = array(
+    'link' => 1,
+  );
+  $handler->display->display_options['fields']['field_s_person_link']['delta_offset'] = '0';
+  /* Field: Content: Author */
+  $handler->display->display_options['fields']['field_s_pub_author']['id'] = 'field_s_pub_author';
+  $handler->display->display_options['fields']['field_s_pub_author']['table'] = 'field_data_field_s_pub_author';
+  $handler->display->display_options['fields']['field_s_pub_author']['field'] = 'field_s_pub_author';
+  $handler->display->display_options['fields']['field_s_pub_author']['label'] = '';
+  $handler->display->display_options['fields']['field_s_pub_author']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_pub_author']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_s_pub_author']['delta_offset'] = '0';
+  /* Field: Content: Publication Year */
+  $handler->display->display_options['fields']['field_s_publication_year']['id'] = 'field_s_publication_year';
+  $handler->display->display_options['fields']['field_s_publication_year']['table'] = 'field_data_field_s_publication_year';
+  $handler->display->display_options['fields']['field_s_publication_year']['field'] = 'field_s_publication_year';
+  $handler->display->display_options['fields']['field_s_publication_year']['label'] = '';
+  $handler->display->display_options['fields']['field_s_publication_year']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_publication_year']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_s_publication_year']['settings'] = array(
+    'format_type' => 'stanford_time',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['body']['alter']['trim_whitespace'] = TRUE;
+  $handler->display->display_options['fields']['body']['alter']['nl2br'] = TRUE;
+  $handler->display->display_options['fields']['body']['alter']['max_length'] = '150';
+  $handler->display->display_options['fields']['body']['alter']['strip_tags'] = TRUE;
+  $handler->display->display_options['fields']['body']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['body']['alter']['preserve_tags'] = '<strong> <em> <a>';
+  $handler->display->display_options['fields']['body']['alter']['html'] = TRUE;
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'text_trimmed';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_length' => '6000',
+  );
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['field_s_pub_type']['id'] = 'field_s_pub_type';
+  $handler->display->display_options['fields']['field_s_pub_type']['table'] = 'field_data_field_s_pub_type';
+  $handler->display->display_options['fields']['field_s_pub_type']['field'] = 'field_s_pub_type';
+  $handler->display->display_options['fields']['field_s_pub_type']['label'] = '';
+  $handler->display->display_options['fields']['field_s_pub_type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_pub_type']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_s_pub_type']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = '';
+  $handler->display->display_options['fields']['edit_node']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['edit_node']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['edit_node']['element_wrapper_class'] = 'edit-link';
+  $handler->display->display_options['fields']['edit_node']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['edit_node']['text'] = 'Edit';
+  /* Field: Global: View rewrite */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Global: View rewrite';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="postcard-left">
+      <div class="postcard-image">
+           <div class="pubs-image">[field_s_image_info]</div>
+      </div>
+
+      <div class="postcard-content">
+           <div><h3>[title]</h3></div>
+           <div>[field_s_person_link]</div>
+           <div>[field_s_pub_author]</div>
+           <div class="descriptor">[field_s_publication_year]</div>
+           <div>[body]</div>
+      </div>
+      </div>
+<div class="edit-link">[edit_node]</div>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Author link (field_s_person_link) */
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['id'] = 'field_s_person_link_target_id';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['table'] = 'field_data_field_s_person_link';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['field'] = 'field_s_person_link_target_id';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -278,10 +443,6 @@ function stanford_publication_views_list_reference_views_default_views() {
   );
   $handler->display->display_options['filters']['field_s_pub_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_s_pub_type_tid']['vocabulary'] = 'publication_type';
-
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'pubs_page');
-  $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['path'] = 'publications';
   $handler->display->display_options['menu']['title'] = 'Publications';
   $handler->display->display_options['menu']['weight'] = '0';
@@ -305,7 +466,6 @@ function stanford_publication_views_list_reference_views_default_views() {
       'rendered_strip' => 0,
     ),
   );
-  $handler->display->display_options['style_options']['row_class'] = 'views-align-center';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
