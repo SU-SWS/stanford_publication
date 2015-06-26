@@ -1,6 +1,10 @@
 Stanford Publication x.x-x.x, xxxx-xx-xx
 ----------------------------------------
 
+Stanford Publication 7.x-2.1, 2015-06-26
+-----------------------------------------------
+- Added caching to lots of views.
+
 Stanford Publication 7.x-2.0, 2014-11-27
 -----------------------------------------------
 
