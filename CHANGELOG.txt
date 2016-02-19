@@ -1,6 +1,11 @@
 Stanford Publication x.x-x.x, xxxx-xx-xx
 ----------------------------------------
 
+Stanford Publication 7.x-2.1+16-dev, 2016-02-18
+-----------------------------------------------
+- SOE-485: Removed SQL rewrite from views
+- added spacing to sidebar block to address #145
+
 Stanford Publication 7.x-2.1, 2015-06-26
 -----------------------------------------------
 - Added caching to lots of views.
