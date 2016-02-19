@@ -1,5 +1,5 @@
 #[Stanford Publication](https://github.com/SU-SWS/stanford_publication)
-##### Version: 7.x-2.1+16-dev
+##### Version: 7.x-2.1+17-dev
 
 Maintainers: [jbickar](https://github.com/jbickar), [sherakama](https://github.com/sherakama)
 [Changelog.txt](CHANGELOG.txt)
