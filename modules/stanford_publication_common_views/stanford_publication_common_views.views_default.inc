@@ -477,6 +477,8 @@ function stanford_publication_common_views_views_default_views() {
   $handler->display->display_options['fields']['field_s_pub_author']['table'] = 'field_data_field_s_pub_author';
   $handler->display->display_options['fields']['field_s_pub_author']['field'] = 'field_s_pub_author';
   $handler->display->display_options['fields']['field_s_pub_author']['label'] = '';
+  $handler->display->display_options['fields']['field_s_pub_author']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_s_pub_author']['alter']['text'] = '| [field_s_pub_author]';
   $handler->display->display_options['fields']['field_s_pub_author']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_s_pub_author']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_s_pub_author']['settings'] = array(
@@ -516,7 +518,7 @@ function stanford_publication_common_views_views_default_views() {
 
       <div class="postcard-content">
            <div><h3>[title]</h3></div>
-           <div class="descriptor">[field_s_publication_year] | [field_s_pub_author]</div>
+           <div class="descriptor">[field_s_publication_year] [field_s_pub_author]</div>
            <div>[body]</div>
       </div>
 
