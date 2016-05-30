@@ -1,10 +1,13 @@
 Stanford Publication x.x-x.x, xxxx-xx-xx
 ----------------------------------------
 
-Stanford Publication 7.x-2.1+17-dev, 2016-02-18
+Stanford Publication 7.x-2.2, 2016-05-30
 -----------------------------------------------
 - SOE-485: Removed SQL rewrite from views
 - added spacing to sidebar block to address #145
+- Update human-readable name of the module
+- changed image from small profile to small scaled
+- Buh-bye foreign keys
 
 Stanford Publication 7.x-2.1, 2015-06-26
 -----------------------------------------------
