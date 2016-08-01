@@ -29,9 +29,9 @@ function stanford_publication_views_api($module = NULL, $api = NULL) {
 function stanford_publication_node_info() {
   $items = array(
     'stanford_publication' => array(
-      'name' => t('Publication'),
+      'name' => t('Document'),
       'base' => 'node_content',
-      'description' => t('A publication can be a book, an article, a poem, etc.'),
+      'description' => t('A document can be a report, a guideline, a policy, etc.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
