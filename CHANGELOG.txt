@@ -4,7 +4,7 @@ Stanford Publication x.x-x.x, xxxx-xx-xx
 Stanford Publication 7.x-2.3, 2018-06-27
 -----------------------------------------------
 - Added composer.json
-- Updated codeclimate.yml
+- Added codeclimate.yml
 
 Stanford Publication 7.x-2.2, 2016-05-30
 -----------------------------------------------
