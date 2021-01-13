@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.su_publication_link
+    - node.type.stanford_publication
+  module:
+    - link
+id: node.stanford_publication.su_publication_link
+field_name: su_publication_link
+entity_type: node
+bundle: stanford_publication
+label: 'External Link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

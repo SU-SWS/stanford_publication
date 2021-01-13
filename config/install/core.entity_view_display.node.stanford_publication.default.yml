@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.stanford_publication.su_publication_citation
+    - field.field.node.stanford_publication.su_publication_components
+    - field.field.node.stanford_publication.su_publication_cta
+    - field.field.node.stanford_publication.su_publication_link
+    - field.field.node.stanford_publication.su_publication_topics
+    - node.type.stanford_publication
+  module:
+    - user
+id: node.stanford_publication.default
+targetEntityType: node
+bundle: stanford_publication
+mode: default
+content: {  }
+hidden:
+  links: true
+  su_publication_citation: true
+  su_publication_components: true
+  su_publication_cta: true
+  su_publication_link: true
+  su_publication_topics: true
