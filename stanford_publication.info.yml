@@ -1,0 +1,6 @@
+name: 'Stanford Publications'
+type: module
+description: 'Stanford Publications Module.'
+core_version_requirement: ^8.8 || ^9
+package: Stanford
+version: 8.x-1.0-dev
