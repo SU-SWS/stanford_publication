@@ -1,10 +1,22 @@
 {
-  "name": "su-sws/stanford_publication",
-  "description": "A Drupal feature.",
-  "type": "drupal-custom-module",
-  "license": "GPL-2.0+",
-  "minimum-stability": "dev",
-  "require": {
-      "composer/installers": "^1.2"
-  }
+    "name": "su-sws/stanford_publication",
+    "description": "A Drupal feature.",
+    "type": "drupal-custom-module",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "composer/installers": "^1.2",
+        "drupal/eck": "^1.0"
+    },
+    "extra": {
+        "config": {
+            "sort-packages": true
+        }
+    }
 }
