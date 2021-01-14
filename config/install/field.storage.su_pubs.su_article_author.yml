@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+    - name
+id: su_pubs.su_article_author
+field_name: su_article_author
+entity_type: su_pubs
+type: name
+settings: {  }
+module: name
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

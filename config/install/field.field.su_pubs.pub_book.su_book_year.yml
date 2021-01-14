@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.su_pubs.pub_book
+    - field.storage.su_pubs.su_book_year
+  module:
+    - datetime
+id: su_pubs.pub_book.su_book_year
+field_name: su_book_year
+entity_type: su_pubs
+bundle: pub_book
+label: Year
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

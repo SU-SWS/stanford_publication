@@ -1,0 +1,81 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.su_pubs.pub_thesis
+    - field.field.su_pubs.pub_thesis.su_thesis_author
+    - field.field.su_pubs.pub_thesis.su_thesis_date
+    - field.field.su_pubs.pub_thesis.su_thesis_isbn
+    - field.field.su_pubs.pub_thesis.su_thesis_journal
+    - field.field.su_pubs.pub_thesis.su_thesis_year
+  module:
+    - datetime
+    - name
+id: su_pubs.pub_thesis.default
+targetEntityType: su_pubs
+bundle: pub_thesis
+mode: default
+content:
+  su_thesis_author:
+    weight: 0
+    settings:
+      labels:
+        title: Title
+        given: Given
+        middle: 'Middle name(s)'
+        family: Family
+        generational: Generational
+        credentials: Credentials
+      size:
+        title: 6
+        given: 20
+        middle: 20
+        family: 20
+        generational: 5
+        credentials: 35
+      title_display:
+        title: description
+        given: description
+        middle: description
+        family: description
+        generational: description
+        credentials: description
+      widget_layout: stacked
+      show_component_required_marker: false
+      credentials_inline: false
+      override_field_settings: false
+    third_party_settings: {  }
+    type: name_default
+    region: content
+  su_thesis_date:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  su_thesis_isbn:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  su_thesis_journal:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  su_thesis_year:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+hidden:
+  created: true
+  title: true
+  uid: true

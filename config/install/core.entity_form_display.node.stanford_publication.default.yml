@@ -1,0 +1,152 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.stanford_publication.su_publication_citation
+    - field.field.node.stanford_publication.su_publication_components
+    - field.field.node.stanford_publication.su_publication_cta
+    - field.field.node.stanford_publication.su_publication_link
+    - field.field.node.stanford_publication.su_publication_topics
+    - node.type.stanford_publication
+  module:
+    - inline_entity_form
+    - link
+    - path
+    - react_paragraphs
+id: node.stanford_publication.default
+targetEntityType: node
+bundle: stanford_publication
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 3
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 7
+    region: content
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    region: content
+    third_party_settings: {  }
+  su_publication_citation:
+    weight: 11
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: Citation
+      label_plural: Citations
+      allow_new: true
+      match_operator: CONTAINS
+      revision: false
+      collapsible: false
+      collapsed: false
+      allow_existing: false
+      allow_duplicate: false
+    third_party_settings: {  }
+    type: inline_entity_form_complex
+    region: content
+  su_publication_components:
+    weight: 12
+    settings:
+      resizable: false
+      sizes: {  }
+    third_party_settings: {  }
+    type: react_paragraphs
+    region: content
+  su_publication_cta:
+    weight: 9
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  su_publication_journal:
+    weight: 123
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  su_publication_link:
+    weight: 8
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  su_publication_page:
+    weight: 126
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  su_publication_topics:
+    weight: 10
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  su_publication_volume:
+    weight: 124
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+      match_limit: 10
+    region: content
+    third_party_settings: {  }
+  url_redirects:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

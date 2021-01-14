@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: stanford_publications_row
+label: 'Publications Row'
+description: ''
+behavior_plugins: {  }

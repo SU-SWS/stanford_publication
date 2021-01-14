@@ -1,0 +1,106 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.su_pubs.pub_journal
+    - field.field.su_pubs.pub_journal.su_journal_author
+    - field.field.su_pubs.pub_journal.su_journal_date
+    - field.field.su_pubs.pub_journal.su_journal_isbn
+    - field.field.su_pubs.pub_journal.su_journal_issue
+    - field.field.su_pubs.pub_journal.su_journal_journal
+    - field.field.su_pubs.pub_journal.su_journal_pages
+    - field.field.su_pubs.pub_journal.su_journal_volume
+    - field.field.su_pubs.pub_journal.su_journal_year
+  module:
+    - datetime
+    - name
+id: su_pubs.pub_journal.default
+targetEntityType: su_pubs
+bundle: pub_journal
+mode: default
+content:
+  su_journal_author:
+    weight: 2
+    label: above
+    settings:
+      format: default
+      markup: none
+      list_format: ''
+      link_target: ''
+      preferred_field_reference: ''
+      preferred_field_reference_separator: ', '
+      alternative_field_reference: ''
+      alternative_field_reference_separator: ', '
+    third_party_settings: {  }
+    type: name_default
+    region: content
+  su_journal_date:
+    weight: 8
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  su_journal_isbn:
+    weight: 7
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  su_journal_issue:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  su_journal_journal:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  su_journal_pages:
+    weight: 6
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  su_journal_volume:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  su_journal_year:
+    weight: 9
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  title:
+    label: hidden
+    type: string
+    weight: -5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  changed: true
+  created: true
+  uid: true

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.su_pubs.pub_thesis
+    - field.storage.su_pubs.su_thesis_year
+  module:
+    - datetime
+id: su_pubs.pub_thesis.su_thesis_year
+field_name: su_thesis_year
+entity_type: su_pubs
+bundle: pub_thesis
+label: Year
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

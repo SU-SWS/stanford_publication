@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * @file
+ * stanford_publication.module
+ */
+
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function stanford_publication_node_presave(NodeInterface $entity) {
+  $citation_entity = _stanford_pubs_get_citation_entity($entity);
+  if (!$citation_entity) {
+    return;
+  }
+  // Set the ECK entity label to the node label.
+  $citation_entity->set('title', $entity->label())->save();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_delete().
+ */
+function stanford_publication_node_delete(NodeInterface $entity) {
+  $citation_entity = _stanford_pubs_get_citation_entity($entity);
+  if (!$citation_entity) {
+    return;
+  }
+  // Clean up nested ECK entities after node deletion.
+  $citation_entity->delete();
+}
+
+/**
+ * Load the ECK entity that has the citation data.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   Node entity.
+ *
+ * @return \Drupal\eck\EckEntityInterface|null
+ *   Loaded ECK entity from the node field value.
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ * @throws \Drupal\Core\TypedData\Exception\MissingDataException
+ */
+function _stanford_pubs_get_citation_entity(NodeInterface $node) {
+  if ($node->bundle() !== 'stanford_publication') {
+    return;
+  }
+
+  $citation_field = 'su_publication_citation';
+  if (
+    $node->hasField($citation_field) &&
+    $node->get($citation_field)->count()
+  ) {
+    $value = $node->get($citation_field)->get(0)->getValue();
+    $eck_id = $value['target_id'];
+
+    return \Drupal::entityTypeManager()
+      ->getStorage('su_pubs')
+      ->load($eck_id);
+  }
+}

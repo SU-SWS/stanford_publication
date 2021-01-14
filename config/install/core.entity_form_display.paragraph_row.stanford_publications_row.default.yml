@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph_row.stanford_publications_row.su_publication_comps
+    - react_paragraphs.paragraphs_row_type.stanford_publications_row
+  module:
+    - paragraphs
+id: paragraph_row.stanford_publications_row.default
+targetEntityType: paragraph_row
+bundle: stanford_publications_row
+mode: default
+content:
+  su_publication_comps:
+    type: entity_reference_paragraphs
+    weight: 0
+    settings:
+      title: Paragraph
+      title_plural: Paragraphs
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  status: true

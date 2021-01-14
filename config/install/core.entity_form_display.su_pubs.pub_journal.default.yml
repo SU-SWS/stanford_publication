@@ -1,0 +1,108 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.su_pubs.pub_journal
+    - field.field.su_pubs.pub_journal.su_journal_author
+    - field.field.su_pubs.pub_journal.su_journal_date
+    - field.field.su_pubs.pub_journal.su_journal_isbn
+    - field.field.su_pubs.pub_journal.su_journal_issue
+    - field.field.su_pubs.pub_journal.su_journal_journal
+    - field.field.su_pubs.pub_journal.su_journal_pages
+    - field.field.su_pubs.pub_journal.su_journal_volume
+    - field.field.su_pubs.pub_journal.su_journal_year
+  module:
+    - datetime
+    - name
+id: su_pubs.pub_journal.default
+targetEntityType: su_pubs
+bundle: pub_journal
+mode: default
+content:
+  su_journal_author:
+    weight: 0
+    settings:
+      labels:
+        title: Title
+        given: Given
+        middle: 'Middle name(s)'
+        family: Family
+        generational: Generational
+        credentials: Credentials
+      size:
+        title: 6
+        given: 20
+        middle: 20
+        family: 20
+        generational: 5
+        credentials: 35
+      title_display:
+        title: description
+        given: description
+        middle: description
+        family: description
+        generational: description
+        credentials: description
+      widget_layout: stacked
+      show_component_required_marker: false
+      credentials_inline: false
+      override_field_settings: false
+    third_party_settings: {  }
+    type: name_default
+    region: content
+  su_journal_date:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  su_journal_isbn:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  su_journal_issue:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  su_journal_journal:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  su_journal_pages:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  su_journal_volume:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  su_journal_year:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+hidden:
+  created: true
+  title: true
+  uid: true
