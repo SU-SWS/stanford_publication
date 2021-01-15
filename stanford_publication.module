@@ -6,6 +6,8 @@
  */
 
 use Drupal\node\NodeInterface;
+use Drupal\stanford_publication\Services\Citation;
+use Drupal\eck\EckEntityInterface;
 
 /**
  * Implements hook_ENTITY_TYPE_presave().
@@ -29,6 +31,23 @@ function stanford_publication_node_delete(NodeInterface $entity) {
   }
   // Clean up nested ECK entities after node deletion.
   $citation_entity->delete();
+}
+
+/**
+ * Implements hook_entity_display_build_alter().
+ */
+function stanford_publication_entity_display_build_alter(&$build, $context) {
+  if ($context['entity'] instanceof EckEntityInterface) {
+    $citation = \Drupal::service('stanford_publication.citation');
+    $citation->setEntity($context['entity']);
+
+    $format = $context['view_mode'] == 'stanford_apa' ? 'apa' : 'chicago-library-list';
+    $build = [
+      'citation' => [
+        '#markup' => $citation->getMarkup($format),
+      ],
+    ];
+  }
 }
 
 /**

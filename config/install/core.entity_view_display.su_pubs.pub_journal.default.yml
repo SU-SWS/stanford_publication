@@ -13,6 +13,7 @@ dependencies:
     - field.field.su_pubs.pub_journal.su_journal_year
   module:
     - datetime
+    - field_formatter_class
     - name
 id: su_pubs.pub_journal.default
 targetEntityType: su_pubs
@@ -20,7 +21,7 @@ bundle: pub_journal
 mode: default
 content:
   su_journal_author:
-    weight: 2
+    weight: 0
     label: above
     settings:
       format: default
@@ -35,23 +36,17 @@ content:
     type: name_default
     region: content
   su_journal_date:
-    weight: 8
+    weight: 6
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
-    third_party_settings: {  }
+      format_type: stanford_month_date_year
+    third_party_settings:
+      field_formatter_class:
+        class: ''
     type: datetime_default
     region: content
   su_journal_isbn:
-    weight: 7
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  su_journal_issue:
     weight: 5
     label: above
     settings:
@@ -59,7 +54,7 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  su_journal_journal:
+  su_journal_issue:
     weight: 3
     label: above
     settings:
@@ -67,15 +62,15 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  su_journal_pages:
-    weight: 6
+  su_journal_journal:
+    weight: 1
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
-  su_journal_volume:
+  su_journal_pages:
     weight: 4
     label: above
     settings:
@@ -83,24 +78,27 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  su_journal_year:
-    weight: 9
+  su_journal_volume:
+    weight: 2
     label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  title:
-    label: hidden
-    type: string
-    weight: -5
-    region: content
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    type: string
+    region: content
+  su_journal_year:
+    weight: 7
+    label: above
+    settings:
+      timezone_override: ''
+      date_format: 'Y'
+    third_party_settings:
+      field_formatter_class:
+        class: ''
+    type: datetime_custom
+    region: content
 hidden:
   changed: true
   created: true
+  title: true
   uid: true

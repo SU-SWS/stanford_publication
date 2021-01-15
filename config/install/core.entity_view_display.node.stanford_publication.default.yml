@@ -93,6 +93,27 @@ third_party_settings:
                 entity: layout_builder.entity
                 view_mode: view_mode
             additional: {  }
+            weight: 4
+          929d0b0e-83aa-4ec1-8c55-3156cc7debc3:
+            uuid: 929d0b0e-83aa-4ec1-8c55-3156cc7debc3
+            region: main
+            configuration:
+              id: 'field_block:node:stanford_publication:su_publication_citation'
+              label: Citation
+              provider: layout_builder
+              label_display: '0'
+              formatter:
+                label: hidden
+                type: entity_reference_entity_view
+                settings:
+                  view_mode: default
+                third_party_settings:
+                  field_formatter_class:
+                    class: ''
+              context_mapping:
+                entity: layout_builder.entity
+                view_mode: view_mode
+            additional: {  }
             weight: 3
         third_party_settings: {  }
   layout_library:

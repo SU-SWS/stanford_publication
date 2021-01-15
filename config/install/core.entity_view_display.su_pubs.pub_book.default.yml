@@ -83,10 +83,12 @@ content:
     weight: 5
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
+      date_format: 'Y'
+    third_party_settings:
+      field_formatter_class:
+        class: ''
+    type: datetime_custom
     region: content
 hidden:
   changed: true
