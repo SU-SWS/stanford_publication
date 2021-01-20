@@ -38,10 +38,11 @@ function stanford_publication_node_delete(NodeInterface $entity) {
  */
 function stanford_publication_entity_display_build_alter(&$build, $context) {
   if ($context['entity'] instanceof EckEntityInterface) {
+    /** @var \Drupal\stanford_publication\Services\Citation $citation */
     $citation = \Drupal::service('stanford_publication.citation');
     $citation->setEntity($context['entity']);
 
-    $format = $context['view_mode'] == 'stanford_apa' ? 'apa' : 'chicago-library-list';
+    $format = $context['view_mode'] == 'apa' ? 'apa' : 'chicago-library-list';
     $build = [
       'citation' => [
         '#markup' => $citation->getBibliography($format),
