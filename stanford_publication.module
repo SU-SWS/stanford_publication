@@ -44,7 +44,7 @@ function stanford_publication_entity_display_build_alter(&$build, $context) {
     $format = $context['view_mode'] == 'stanford_apa' ? 'apa' : 'chicago-library-list';
     $build = [
       'citation' => [
-        '#markup' => $citation->getMarkup($format),
+        '#markup' => $citation->getBibliography($format),
       ],
     ];
   }

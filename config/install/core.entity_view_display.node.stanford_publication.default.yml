@@ -9,134 +9,16 @@ dependencies:
     - field.field.node.stanford_publication.su_publication_topics
     - node.type.stanford_publication
   module:
-    - jumpstart_ui
-    - layout_builder
-    - layout_library
     - user
-third_party_settings:
-  layout_builder:
-    allow_custom: false
-    enabled: true
-    sections:
-      -
-        layout_id: jumpstart_ui_two_column
-        layout_settings:
-          extra_classes: ''
-          centered: centered-container
-          orientation: left
-          label: ''
-        components:
-          ebffdb4a-d4b8-405b-9f37-d53803d15764:
-            uuid: ebffdb4a-d4b8-405b-9f37-d53803d15764
-            region: left
-            configuration:
-              id: 'field_block:node:stanford_publication:title'
-              label: Title
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: entity_title_heading
-                settings:
-                  tag: h1
-                third_party_settings:
-                  field_formatter_class:
-                    class: ''
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: 0
-          5210060d-2baf-45a6-b823-427ff0ccdd1e:
-            uuid: 5210060d-2baf-45a6-b823-427ff0ccdd1e
-            region: left
-            configuration:
-              id: 'field_block:node:stanford_publication:su_publication_components'
-              label: Components
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: entity_reference_revisions_entity_view
-                settings:
-                  view_mode: default
-                third_party_settings:
-                  field_formatter_class:
-                    class: ''
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: 1
-          d21d257a-53be-43b8-97e1-7c90e07c1d6c:
-            uuid: d21d257a-53be-43b8-97e1-7c90e07c1d6c
-            region: main
-            configuration:
-              id: 'field_block:node:stanford_publication:su_publication_cta'
-              label: 'Call To Action Button'
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: link_class
-                settings:
-                  trim_length: null
-                  url_only: false
-                  url_plain: false
-                  rel: '0'
-                  target: '0'
-                  class: su-button
-                third_party_settings:
-                  field_formatter_class:
-                    class: ''
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: 4
-          929d0b0e-83aa-4ec1-8c55-3156cc7debc3:
-            uuid: 929d0b0e-83aa-4ec1-8c55-3156cc7debc3
-            region: main
-            configuration:
-              id: 'field_block:node:stanford_publication:su_publication_citation'
-              label: Citation
-              provider: layout_builder
-              label_display: '0'
-              formatter:
-                label: hidden
-                type: entity_reference_entity_view
-                settings:
-                  view_mode: default
-                third_party_settings:
-                  field_formatter_class:
-                    class: ''
-              context_mapping:
-                entity: layout_builder.entity
-                view_mode: view_mode
-            additional: {  }
-            weight: 3
-        third_party_settings: {  }
-  layout_library:
-    enable: false
 id: node.stanford_publication.default
 targetEntityType: node
 bundle: stanford_publication
 mode: default
-content:
-  su_publication_citation:
-    weight: 1
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: main
+content: {  }
 hidden:
   links: true
+  su_publication_citation: true
   su_publication_components: true
   su_publication_cta: true
-  su_publication_journal: true
   su_publication_link: true
-  su_publication_page: true
   su_publication_topics: true
-  su_publication_volume: true

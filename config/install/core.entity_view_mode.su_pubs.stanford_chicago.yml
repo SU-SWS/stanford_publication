@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  module:
-    - eck
-id: su_pubs.stanford_chicago
-label: 'Chicago Citation'
-targetEntityType: su_pubs
-cache: true

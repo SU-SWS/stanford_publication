@@ -25,8 +25,5 @@ hidden:
   su_publication_citation: true
   su_publication_components: true
   su_publication_cta: true
-  su_publication_journal: true
   su_publication_link: true
-  su_publication_page: true
   su_publication_topics: true
-  su_publication_volume: true

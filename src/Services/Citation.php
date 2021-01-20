@@ -13,7 +13,7 @@ class Citation implements CitationInterface {
    */
   protected $entity;
 
-  public function getMarkup($style = 'apa') {
+  public function getBibliography($style = 'apa') {
     $data = [
       'id' => $this->entity->id(),
       'title' => $this->entity->label(),
@@ -75,14 +75,13 @@ class Citation implements CitationInterface {
   }
 
   protected function getDate() {
-    if ($date_field = $this->getEntityField('date')) {
-      $date = $this->entity->get($date_field)->getString();
+    if ($year = $this->getYear()) {
       return [
         'date-parts' => [
           [
-            date('Y', strtotime($date)),
-            date('m', strtotime($date)),
-            date('d', strtotime($date)),
+            $year,
+            $this->getMonth(),
+            $this->getDay(),
           ],
         ],
       ];

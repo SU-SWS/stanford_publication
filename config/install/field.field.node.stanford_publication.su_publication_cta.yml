@@ -10,7 +10,7 @@ id: node.stanford_publication.su_publication_cta
 field_name: su_publication_cta
 entity_type: node
 bundle: stanford_publication
-label: 'Call To Action Button'
+label: 'CTA Link'
 description: ''
 required: false
 translatable: false
