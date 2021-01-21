@@ -7,3 +7,5 @@ version: 8.x-1.0-dev
 dependencies:
   - eck:eck
   - name:name
+  - rabbit_hole:rabbit_hole
+  - react_paragraphs:react_paragraphs
