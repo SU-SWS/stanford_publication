@@ -1,4 +1,0 @@
-services:
-  stanford_publication.citation:
-    class: Drupal\stanford_publication\Services\Citation
-    arguments: []

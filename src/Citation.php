@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\stanford_publication\Services;
+namespace Drupal\stanford_publication;
 
 use Drupal\eck\EckEntityInterface;
 use Seboettg\CiteProc\StyleSheet;
@@ -14,21 +14,25 @@ use Seboettg\CiteProc\CiteProc;
 class Citation implements CitationInterface {
 
   /**
+   * ECK entity Object with the fields for the citation.
+   *
    * @var \Drupal\eck\EckEntityInterface
    */
   protected $entity;
 
   /**
-   * {@inheritDoc}
+   * Citation constructor.
+   *
+   * @param \Drupal\eck\EckEntityInterface $eckEntity
    */
-  public function setEntity(EckEntityInterface $eckEntity): void {
+  public function __construct(EckEntityInterface $eckEntity) {
     $this->entity = $eckEntity;
   }
 
   /**
    * {@inheritDoc}
    */
-  public function getBibliography($style = 'apa'): string {
+  public function getBibliography($style = self::APA): string {
     $data = [
       'id' => $this->entity->id(),
       'title' => $this->entity->label(),
@@ -38,17 +42,16 @@ class Citation implements CitationInterface {
       'publisher' => $this->getPublisher(),
       'volume' => $this->getVolume(),
       'pages' => $this->getPages(),
+      'doi' => $this->getIsbn(),
+      'issue' => $this->getIssue(),
+      'url' => 'http://google.com',
     ];
+
     // Convert the arrays into objects.
     $data = json_decode(json_encode([array_filter($data)]));
-
-    try {
-      $style = StyleSheet::loadStyleSheet($style);
-      $citeProc = new CiteProc($style);
-      return $citeProc->render($data);
-    } catch (\Exception $e) {
-      return '';
-    }
+    $style = StyleSheet::loadStyleSheet($style);
+    $citeProc = new CiteProc($style);
+    return $citeProc->render($data);
   }
 
   /**
@@ -62,7 +65,7 @@ class Citation implements CitationInterface {
    * @return string
    *   Entity field value as a string.
    */
-  public function __call($name, $args): ?string {
+  public function __call($name, $args) {
     $data_name = strtolower(preg_replace('/^get/', '', $name));
     if ($field = $this->getEntityField($data_name)) {
       return $this->entity->get($field)->getString();
@@ -75,7 +78,7 @@ class Citation implements CitationInterface {
    * @return array|null
    *   Keyed array of author data.
    */
-  protected function getAuthor(): ?array {
+  protected function getAuthor() {
     if ($field = $this->getEntityField('author')) {
       return $this->entity->get($field)->getValue();
     }
@@ -87,8 +90,16 @@ class Citation implements CitationInterface {
    * @return string
    *   Citation type.
    */
-  protected function getType(): ?string {
-    return str_replace('pub_', '', $this->entity->bundle());
+  protected function getType(): string {
+    $bundle = str_replace('pub_', '', $this->entity->bundle());
+    switch ($bundle) {
+      case 'journal':
+        return 'article-journal';
+
+      case 'article':
+        return 'article-newspaper';
+    }
+    return $bundle;
   }
 
   /**
@@ -97,16 +108,23 @@ class Citation implements CitationInterface {
    * @return array|null
    *   Keyed array of date parts.
    */
-  protected function getDate(): ?array {
-    if ($year = $this->getYear()) {
+  protected function getDate() {
+    $year = (int) $this->getYear();
+    $month = (int) $this->getMonth();
+    $day = (int) $this->getDay();
+
+    if ($year) {
+      $date_parts = [$year, $month];
+
+      // The 2nd value has to be the month. If the user populates the year,
+      // month and day, then we'll structure it correctly. Otherwise we leave
+      // the day off and if the month is also empty, it'll be stripped in the
+      // array filter below.
+      if ($month && $day) {
+        $date_parts = [$year, $month, $day];
+      }
       return [
-        'date-parts' => [
-          [
-            $year,
-            $this->getMonth(),
-            $this->getDay(),
-          ],
-        ],
+        'date-parts' => [array_filter($date_parts)],
       ];
     }
   }
@@ -120,7 +138,7 @@ class Citation implements CitationInterface {
    * @return string|null
    *   Field name if a field exists.
    */
-  protected function getEntityField($attribute): ?string {
+  protected function getEntityField($attribute) {
     $field_name = "su_$attribute";
     if ($field_name && $this->entity->hasField($field_name)) {
       return $field_name;

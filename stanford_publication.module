@@ -6,7 +6,8 @@
  */
 
 use Drupal\node\NodeInterface;
-use Drupal\stanford_publication\Services\Citation;
+use Drupal\stanford_publication\Citation;
+use Drupal\stanford_publication\CitationInterface;
 use Drupal\eck\EckEntityInterface;
 
 /**
@@ -39,22 +40,19 @@ function stanford_publication_node_delete(NodeInterface $entity) {
 function stanford_publication_entity_display_build_alter(&$build, $context) {
   if (
     !$context['entity'] instanceof EckEntityInterface ||
+    $context['entity']->getEntityTypeId() != 'su_pubs' ||
     $context['view_mode'] == 'default'
   ) {
     return;
   }
 
-  /** @var \Drupal\stanford_publication\Services\Citation $citation */
-  $citation = \Drupal::service('stanford_publication.citation');
-  $citation->setEntity($context['entity']);
-
-  $format = $context['view_mode'] == 'apa' ? 'apa' : 'chicago-library-list';
+  $citation = new Citation($context['entity']);
+  $format = $context['view_mode'] == 'apa' ? CitationInterface::APA : CitationInterface::CHICAGO;
   $build = [
     'citation' => [
       '#markup' => $citation->getBibliography($format),
     ],
   ];
-
 }
 
 /**
