@@ -10,6 +10,10 @@
             "url": "https://packages.drupal.org/8"
         },
         {
+            "url": "https://github.com/SU-SWS/citeproc-php",
+            "type": "vcs"
+        },
+        {
             "type": "package",
             "package": {
                 "name": "citation-style-language/locales",
@@ -40,7 +44,7 @@
         "citation-style-language/styles-distribution":"1.0.0",
         "drupal/eck": "^1.0",
         "drupal/name": "^1.0",
-        "seboettg/citeproc-php": "^2.2",
+        "seboettg/citeproc-php": "dev-master",
         "su-sws/react_paragraphs": "dev-8.x-2.x"
     },
     "extra": {
