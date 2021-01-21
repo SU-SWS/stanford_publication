@@ -30,7 +30,7 @@ class CitationTest extends UnitTestCase {
   protected $sourceType = 'book';
 
   /**
-   * Test the biography markup is formated.
+   * Test the biography markup for a book in APA is formatted.
    */
   public function testApaBiographyBook() {
     $this->setDefaultFieldValues();
@@ -41,6 +41,9 @@ class CitationTest extends UnitTestCase {
     $this->assertStringContainsString('>Doe, J., &#38; Doe, J. (1950). <i>Foo Bar Baz</i>. Bar Publisher.<', $biblio);
   }
 
+  /**
+   * Test the biography markup for a Journal Article in APA is formatted.
+   */
   public function testApaBiographyJournal() {
     $this->sourceType = 'pub_journal';
     $this->setDefaultFieldValues();
@@ -51,6 +54,9 @@ class CitationTest extends UnitTestCase {
     $this->assertStringContainsString('Doe, J., &#38; Doe, J. (1950). <i>Foo Bar Baz</i>. <i>Issue Number</i>.', $biblio);
   }
 
+  /**
+   * Test the biography markup for a News Article in APA is formatted.
+   */
   public function testApaBiographyArticle() {
     $this->sourceType = 'pub_article';
     $this->setDefaultFieldValues();
@@ -62,7 +68,7 @@ class CitationTest extends UnitTestCase {
   }
 
   /**
-   * Chicago style bibliography.
+   * Test the biography markup for a book in Chicago is formatted.
    */
   public function testChicagoBiographyBook() {
     $this->setDefaultFieldValues();
@@ -76,6 +82,9 @@ class CitationTest extends UnitTestCase {
     $this->assertEquals(1, substr_count($biblio, 'Bar Publisher, 1950'), $message);
   }
 
+  /**
+   * Test the biography markup for a Journal Article in Chicago is formatted.
+   */
   public function testChicagoBiograrphyJournal() {
     $this->sourceType = 'pub_journal';
     $this->setDefaultFieldValues();
@@ -87,6 +96,9 @@ class CitationTest extends UnitTestCase {
     $this->assertStringContainsString('Doe, John, and Jane Doe. “Foo Bar Baz”, no. Issue Number (June 1950).', $biblio);
   }
 
+  /**
+   * Test the biography markup for a News Article in Chicago is formatted.
+   */
   public function testChicagoBiograrphyArticle() {
     $this->sourceType = 'pub_article';
     $this->setDefaultFieldValues();
@@ -166,7 +178,10 @@ class CitationTest extends UnitTestCase {
     return array_key_exists($field_name, $this->entityValues);
   }
 
-  protected function setDefaultFieldValues() {
+  /**
+   * Set the default entity field values for the mock entity.
+   */
+  protected function setDefaultFieldValues(): void {
     $this->entityValues = [
       'su_author' => [
         ['given' => 'John', 'family' => 'Doe'],
