@@ -38,7 +38,7 @@ class CitationTest extends UnitTestCase {
 
     $citation = new Citation($entity);
     $biblio = $citation->getBibliography();
-    $this->assertStringContainsString('Doe, J., &#38; Doe, J. (1950). <i>Foo Bar Baz</i> (Issue Issue Number). Bar Publisher.', $biblio);
+    $this->assertStringContainsString('>Doe, J., &#38; Doe, J. (1950). <i>Foo Bar Baz</i>. Bar Publisher.<', $biblio);
   }
 
   public function testApaBiographyJournal() {
@@ -71,34 +71,34 @@ class CitationTest extends UnitTestCase {
     $citation = new Citation($entity);
     $biblio = $citation->getBibliography(CitationInterface::CHICAGO);
 
-    $this->assertStringContainsString('Doe, John, and Jane Doe. <i>Foo Bar Baz</i>. Bar Publisher, 1950', $biblio);
+    $this->assertStringContainsString('>Doe, John, and Jane Doe. <i>Foo Bar Baz</i>. Bar Publisher, 1950.<', $biblio);
     $message = sprintf('Publisher and year occur in the bibliography twice. %s', $biblio);
     $this->assertEquals(1, substr_count($biblio, 'Bar Publisher, 1950'), $message);
   }
 
-  //  public function testChicagoBiograrphyJournal() {
-  //    $this->sourceType = 'pub_journal';
-  //    $this->setDefaultFieldValues();
-  //    $entity = $this->getEckEntity();
-  //
-  //    $citation = new Citation($entity);
-  //    $biblio = $citation->getBibliography(CitationInterface::CHICAGO);
-  //
-  //    $this->assertStringContainsString('Doe, John, and Jane Doe. “Foo Bar Baz”, no. Issue Number (June 1950).', $biblio);
-  //  }
+  public function testChicagoBiograrphyJournal() {
+    $this->sourceType = 'pub_journal';
+    $this->setDefaultFieldValues();
+    $entity = $this->getEckEntity();
 
-  //  public function testChicagoBiograrphyArticle() {
-  //    $this->sourceType = 'pub_article';
-  //    $this->setDefaultFieldValues();
-  //    $entity = $this->getEckEntity();
-  //
-  //    $citation = new Citation($entity);
-  //    $biblio = $citation->getBibliography(CitationInterface::CHICAGO);
-  //
-  //    $this->assertStringContainsString('Doe, John, and Jane Doe. “Foo Bar Baz”. June 1950', $biblio);
-  //    $message = sprintf('The date occurs in the bibliography twice. %s', $biblio);
-  //    $this->assertEquals(1, substr_count($biblio, 'June 1950'), $message);
-  //  }
+    $citation = new Citation($entity);
+    $biblio = $citation->getBibliography(CitationInterface::CHICAGO);
+
+    $this->assertStringContainsString('Doe, John, and Jane Doe. “Foo Bar Baz”, no. Issue Number (June 1950).', $biblio);
+  }
+
+  public function testChicagoBiograrphyArticle() {
+    $this->sourceType = 'pub_article';
+    $this->setDefaultFieldValues();
+    $entity = $this->getEckEntity();
+
+    $citation = new Citation($entity);
+    $biblio = $citation->getBibliography(CitationInterface::CHICAGO);
+
+    $this->assertStringContainsString('Doe, John, and Jane Doe. “Foo Bar Baz”. June 1950', $biblio);
+    $message = sprintf('The date occurs in the bibliography twice. %s', $biblio);
+    $this->assertEquals(1, substr_count($biblio, 'June 1950'), $message);
+  }
 
   /**
    * The citation without any fields shouldn't break.

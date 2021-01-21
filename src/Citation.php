@@ -43,8 +43,7 @@ class Citation implements CitationInterface {
       'volume' => $this->getVolume(),
       'pages' => $this->getPages(),
       'doi' => $this->getIsbn(),
-      'issue' => $this->getIssue(),
-      'url' => 'http://google.com',
+      'issue' => $this->getType() != 'book' ? $this->getIssue() : NULL,
     ];
 
     // Convert the arrays into objects.

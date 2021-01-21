@@ -34,7 +34,7 @@ interface CitationInterface {
   universidade-do-porto-faculdade-de-engenharia-chicago
   university-of-york-chicago
    */
-  const CHICAGO = 'chicago-fullnote-bibliography';
+  const CHICAGO = 'chicago-note-bibliography';
 
   /**
    * Get the bibliography html for the entity.
