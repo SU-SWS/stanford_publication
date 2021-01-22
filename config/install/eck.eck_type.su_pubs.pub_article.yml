@@ -1,8 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  config:
-    - eck.eck_entity_type.su_pubs
-type: pub_article
-name: 'News/Magazine Article'
-description: ''

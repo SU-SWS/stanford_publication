@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   module:
-    - eck
     - node
+    - stanford_publication
 id: node.su_publication_citation
 field_name: su_publication_citation
 entity_type: node
 type: entity_reference
 settings:
-  target_type: su_pubs
+  target_type: citation
 module: core
 locked: false
 cardinality: 1
