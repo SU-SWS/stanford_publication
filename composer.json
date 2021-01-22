@@ -12,36 +12,10 @@
         {
             "url": "https://github.com/SU-SWS/citeproc-php",
             "type": "vcs"
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "citation-style-language/locales",
-                "version": "1.0.0",
-                "source": {
-                    "type": "git",
-                    "url": "https://github.com/citation-style-language/locales.git",
-                    "reference": "master"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "citation-style-language/styles-distribution",
-                "version": "1.0.0",
-                "source": {
-                    "type": "git",
-                    "url": "https://github.com/citation-style-language/styles-distribution.git",
-                    "reference": "master"
-                }
-            }
         }
     ],
     "require": {
         "composer/installers": "^1.2",
-        "citation-style-language/locales": "1.0.0",
-        "citation-style-language/styles-distribution": "1.0.0",
         "drupal/field_group": "^3.0",
         "drupal/inline_entity_form": "^1.0",
         "drupal/name": "^1.0",
