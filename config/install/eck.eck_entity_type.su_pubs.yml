@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: su_pubs
-label: 'Publications Citations'
-created: true
-changed: true
-uid: true
-title: true

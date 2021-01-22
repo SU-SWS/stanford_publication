@@ -11,7 +11,7 @@ class PublicationsCest {
    * Create a publication piece of content.
    */
   public function testPublicationContentType(AcceptanceTester $I) {
-    $I->logInWithRole('adminstrator');
+    $I->logInWithRole('administrator');
     $I->amOnPage('/node/add/stanford_publication');
     $I->fillField('Title', 'Foo Bar Publication');
     $I->click('Save');

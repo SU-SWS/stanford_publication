@@ -5,7 +5,11 @@ core_version_requirement: ^8.8 || ^9
 package: Stanford
 version: 8.x-1.0-dev
 dependencies:
-  - eck:eck
+  - drupal:layout_builder
+  - field_group:field_group
+  - inline_entity_form:inline_entity_form
+  - jumpstart_ui:jumpstart_ui
   - name:name
+  - node_revision_delete:node_revision_delete
   - rabbit_hole:rabbit_hole
   - react_paragraphs:react_paragraphs

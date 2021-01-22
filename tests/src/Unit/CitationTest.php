@@ -13,7 +13,7 @@ use Drupal\Tests\UnitTestCase;
  *
  * @group stanford_publication
  */
-class CitationTest extends UnitTestCase {
+abstract class CitationTest extends UnitTestCase {
 
   /**
    * Keyed array of field name to field values.
