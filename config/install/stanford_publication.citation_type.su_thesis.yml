@@ -3,3 +3,4 @@ status: true
 dependencies: {  }
 id: su_thesis
 label: Thesis
+type: thesis

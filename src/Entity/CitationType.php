@@ -40,11 +40,12 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
  *   },
  *   config_export = {
  *     "id",
- *     "label"
+ *     "label",
+ *     "type"
  *   }
  * )
  */
-class CitationType extends ConfigEntityBundleBase implements ConfigEntityInterface {
+class CitationType extends ConfigEntityBundleBase implements CitationTypeInterface {
 
   /**
    * The Citation type ID.
@@ -59,5 +60,19 @@ class CitationType extends ConfigEntityBundleBase implements ConfigEntityInterfa
    * @var string
    */
   protected $label;
+
+  /**
+   * The citation/bibliography type
+   *
+   * @var string
+   */
+  protected $type;
+
+  /**
+   * {@inheritDoc}
+   */
+  public function type(): ?string {
+    return $this->type;
+  }
 
 }

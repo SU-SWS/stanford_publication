@@ -2,12 +2,16 @@
 
 namespace Drupal\stanford_publication\Entity;
 
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Link;
+use Drupal\Core\TypedData\TranslatableInterface;
+use Drupal\Core\Url;
+use Drupal\field\Entity\FieldStorageConfig;
 use Seboettg\CiteProc\CiteProc;
-use Seboettg\CiteProc\StyleSheet;
 
 /**
  * Defines the Citation entity.
@@ -20,8 +24,13 @@ use Seboettg\CiteProc\StyleSheet;
  *   bundle_label = @Translation("Citation type"),
  *   handlers = {
  *     "view_builder" = "Drupal\stanford_publication\CitationViewBuilder",
- *     "list_builder" = "Drupal\stanford_publication\CitationListBuilder",
  *     "access" = "Drupal\stanford_publication\CitationAccessControlHandler",
+ *     "form" = {
+ *       "default" = "Drupal\Core\Entity\ContentEntityForm",
+ *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
+ *       "edit" = "Drupal\Core\Entity\ContentEntityForm"
+ *     },
+ *     "views_data" = "Drupal\views\EntityViewsData",
  *   },
  *   base_table = "citation",
  *   data_table = "citation_field_data",
@@ -86,30 +95,156 @@ class Citation extends ContentEntityBase implements CitationInterface {
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the entity was last edited.'));
 
+    $fields['parent_id'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Parent ID'))
+      ->setDescription(t('The ID of the parent entity of which this entity is referenced.'))
+      ->setSetting('is_ascii', TRUE);
+
+    $fields['parent_type'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Parent type'))
+      ->setDescription(t('The entity parent type to which this entity is referenced.'))
+      ->setSetting('is_ascii', TRUE)
+      ->setSetting('max_length', EntityTypeInterface::ID_MAX_LENGTH);
+
+    $fields['parent_field_name'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Parent field name'))
+      ->setDescription(t('The entity parent field name to which this entity is referenced.'))
+      ->setSetting('is_ascii', TRUE)
+      ->setSetting('max_length', FieldStorageConfig::NAME_MAX_LENGTH);
+
     return $fields;
   }
 
   /**
    * {@inheritDoc}
    */
+  public function getParentEntity() {
+    if (!isset($this->get('parent_type')->value) || !isset($this->get('parent_id')->value)) {
+      return NULL;
+    }
+
+    $parent = $this->entityTypeManager()
+      ->getStorage($this->get('parent_type')->value)
+      ->load($this->get('parent_id')->value);
+
+    // Return current translation of parent entity, if it exists.
+    if ($parent != NULL && ($parent instanceof TranslatableInterface) && $parent->hasTranslation($this->language()
+        ->getId())) {
+      return $parent->getTranslation($this->language()->getId());
+    }
+
+    return $parent;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setParentEntity(ContentEntityInterface $parent, $parent_field_name) {
+    $this->set('parent_type', $parent->getEntityTypeId());
+    $this->set('parent_id', $parent->id());
+    $this->set('parent_field_name', $parent_field_name);
+    return $this;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
   public function getBibliography($style = self::APA): string {
+
     $data = [
       'id' => $this->id(),
       'title' => $this->label(),
-      'type' => $this->getType(),
+      // Custom variables that wrap the title with a link tag.
+      'link-beginning' => $this->getLinkBeginning(),
+      'link-ending' => $this->getLinkBeginning() ? '</a>' : NULL,
+      'DOI' => $this->getDoi(),
+      'URL' => $this->getUrl(),
       'author' => $this->getAuthor(),
+      'edition' => (int) $this->getEdition(),
+      'issue' => $this->getIssue(),
       'issued' => $this->getDate(),
+      'genre' => $this->getGenre(),
+      'page' => $this->getPage(),
       'publisher' => $this->getPublisher(),
-      'volume' => $this->getVolume(),
-      'pages' => $this->getPages(),
-      'doi' => $this->getIsbn(),
-      'issue' => $this->getType() != 'book' ? $this->getIssue() : NULL,
+      'publisher-place' => $this->getPublisherPlace(),
+      'subtitle' => $this->getSubtitle(),
+      'type' => $this->getType(),
+      'volume' => (int) $this->getVolume(),
     ];
+
+    if ($data['type'] == 'article-journal') {
+      $data['collection-title'] = $data['publisher'];
+    }
+
     // Convert the arrays into objects.
     $data = json_decode(json_encode([array_filter($data)]));
-    $style = StyleSheet::loadStyleSheet($style);
+
+    $local_csl = __DIR__ . '/Styles/' . $style . '.xml';
+    if (!file_exists($local_csl)) {
+      return '';
+    }
+
+    // Load the style CSL file.
+    $style = file_get_contents($local_csl);
     $citeProc = new CiteProc($style);
     return $citeProc->render($data);
+  }
+
+  protected function getLinkBeginning(): ?string {
+    if ($link = $this->getLink()) {
+      preg_match('/<.*?>/', (string) $link->toString(), $matches);
+      return $matches[0] ?? NULL;
+    }
+  }
+
+
+  /**
+   * Get the label of the entity wrapped in a link tag to the parent or url.
+   *
+   * @return \Drupal\Core\Link
+   *   Label or linked label string.
+   *
+   * @throws \Drupal\Core\Entity\EntityMalformedException
+   */
+  protected function getLink(): ?Link {
+    $url = NULL;
+
+    if ($parent_entity = $this->getParentEntity()) {
+      $url = $this->getParentEntity()->toUrl();
+    }
+
+    if ($url_string = $this->getUrl()) {
+      $url = $this->getUrlFromString($url_string) ?? $url;
+    }
+
+    if ($doi = $this->getDoi()) {
+      $url = $this->getUrlFromString("https://doi.org/$doi") ?? $url;
+    }
+
+    if ($url) {
+      return Link::fromTextAndUrl('[replace]', $url);
+    }
+  }
+
+  /**
+   * Get a url object from the provided url/string.
+   *
+   * @param string $string
+   *   User entered string.
+   *
+   * @return \Drupal\Core\Url|null
+   */
+  protected function getUrlFromString($string): ?Url {
+    try {
+      return Url::fromUserInput($string);
+    } catch (\Exception $e) {
+      try {
+        return Url::fromUri($string);
+      } catch (\Exception $e) {
+
+      }
+    }
+    return NULL;
   }
 
   /**
@@ -124,8 +259,19 @@ class Citation extends ContentEntityBase implements CitationInterface {
    *   Entity field value as a string.
    */
   public function __call($name, $args) {
-    $data_name = strtolower(preg_replace('/^get/', '', $name));
-    if ($field = $this->getEntityField($data_name)) {
+    // remove the `get` from the beginning.
+    $data_name = preg_replace('/^get/', '', $name);
+
+    // Convert UpperCamelCase to snake_case. This allows us to dynamically
+    // fetch field names just by using the method names.
+    preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $data_name, $matches);
+    $ret = $matches[0];
+    foreach ($ret as &$match) {
+      $match = $match == strtoupper($match) ? strtolower($match) : lcfirst($match);
+    }
+    $data_name = implode('_', $ret);
+
+    if ($field = $this->getFieldName($data_name)) {
       return $this->get($field)->getString();
     }
   }
@@ -137,7 +283,7 @@ class Citation extends ContentEntityBase implements CitationInterface {
    *   Keyed array of author data.
    */
   protected function getAuthor() {
-    if ($field = $this->getEntityField('author')) {
+    if ($field = $this->getFieldName('author')) {
       return $this->get($field)->getValue();
     }
   }
@@ -149,8 +295,10 @@ class Citation extends ContentEntityBase implements CitationInterface {
    *   Citation type.
    */
   protected function getType(): string {
-    $bundle = str_replace('_', '-', str_replace('su_', '', $this->bundle()));
-    return $bundle;
+    return $this->entityTypeManager()
+      ->getStorage('citation_type')
+      ->load($this->bundle())
+      ->type();
   }
 
   /**
@@ -189,7 +337,7 @@ class Citation extends ContentEntityBase implements CitationInterface {
    * @return string|null
    *   Field name if a field exists.
    */
-  protected function getEntityField($attribute) {
+  protected function getFieldName($attribute) {
     $field_name = "su_$attribute";
     if ($field_name && $this->hasField($field_name)) {
       return $field_name;

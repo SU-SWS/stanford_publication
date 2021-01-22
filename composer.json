@@ -8,46 +8,17 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
-        },
-        {
-            "url": "https://github.com/SU-SWS/citeproc-php",
-            "type": "vcs"
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "citation-style-language/locales",
-                "version": "1.0.0",
-                "source": {
-                    "type": "git",
-                    "url": "https://github.com/citation-style-language/locales.git",
-                    "reference": "master"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "citation-style-language/styles-distribution",
-                "version": "1.0.0",
-                "source": {
-                    "type": "git",
-                    "url": "https://github.com/citation-style-language/styles-distribution.git",
-                    "reference": "master"
-                }
-            }
         }
     ],
     "require": {
         "composer/installers": "^1.2",
-        "citation-style-language/locales": "1.0.0",
-        "citation-style-language/styles-distribution": "1.0.0",
+        "drupal/field_formatter_class": "^1.0",
         "drupal/field_group": "^3.0",
         "drupal/inline_entity_form": "^1.0",
         "drupal/name": "^1.0",
         "drupal/node_revision_delete": "^1.0",
         "drupal/rabbit_hole": "^1.0",
-        "seboettg/citeproc-php": "dev-master#469ac468895ac5214cac3da1912687644d9376b5",
+        "seboettg/citeproc-php": "dev-master#c1df840d897b938431130445927d48a4b6cf464b",
         "su-sws/jumpstart_ui": "dev-8.x-1.x",
         "su-sws/react_paragraphs": "dev-8.x-2.x"
     },

@@ -3,16 +3,15 @@ status: true
 dependencies:
   module:
     - stanford_publication
-id: citation.su_journal
-field_name: su_journal
+id: citation.su_edition
+field_name: su_edition
 entity_type: citation
-type: string
+type: integer
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+  unsigned: false
+  size: normal
 module: core
-locked: true
+locked: false
 cardinality: 1
 translatable: true
 indexes: {  }

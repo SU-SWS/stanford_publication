@@ -6,6 +6,7 @@ dependencies:
     - node.type.stanford_publication
   module:
     - node
+    - stanford_publication
     - user
 id: stanford_publications
 label: Publications
@@ -155,6 +156,30 @@ display:
           group_type: group
           admin_label: ''
           order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: standard
+        su_author_family:
+          id: su_author_family
+          table: citation__su_author
+          field: su_author_family
+          relationship: su_publication_citation
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: standard
+        su_author_given:
+          id: su_author_given
+          table: citation__su_author
+          field: su_author_given
+          relationship: su_publication_citation
+          group_type: group
+          admin_label: ''
+          order: ASC
           exposed: false
           expose:
             label: ''

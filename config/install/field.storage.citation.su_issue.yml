@@ -6,13 +6,12 @@ dependencies:
 id: citation.su_issue
 field_name: su_issue
 entity_type: citation
-type: string
+type: integer
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+  unsigned: false
+  size: normal
 module: core
-locked: true
+locked: false
 cardinality: 1
 translatable: true
 indexes: {  }

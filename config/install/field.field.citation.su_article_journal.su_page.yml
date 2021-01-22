@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.citation.su_journal
-    - stanford_publication.citation_type.su_thesis
-id: citation.su_thesis.su_journal
-field_name: su_journal
+    - field.storage.citation.su_page
+    - stanford_publication.citation_type.su_article_journal
+id: citation.su_article_journal.su_page
+field_name: su_page
 entity_type: citation
-bundle: su_thesis
-label: 'Journal/Publisher Title'
+bundle: su_article_journal
+label: Page(s)
 description: ''
 required: false
 translatable: true

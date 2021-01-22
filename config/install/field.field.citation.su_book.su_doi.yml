@@ -3,11 +3,11 @@ status: true
 dependencies:
   config:
     - field.storage.citation.su_doi
-    - stanford_publication.citation_type.su_thesis
-id: citation.su_thesis.su_doi
+    - stanford_publication.citation_type.su_book
+id: citation.su_book.su_doi
 field_name: su_doi
 entity_type: citation
-bundle: su_thesis
+bundle: su_book
 label: 'DOI Database Name'
 description: 'DOI.org Database name. Without "https://www.doi.org/"'
 required: false
