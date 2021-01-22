@@ -3,8 +3,8 @@ status: true
 dependencies:
   module:
     - stanford_publication
-id: citation.su_newspaper
-field_name: su_newspaper
+id: citation.su_edition
+field_name: su_edition
 entity_type: citation
 type: string
 settings:
@@ -12,7 +12,7 @@ settings:
   is_ascii: false
   case_sensitive: false
 module: core
-locked: true
+locked: false
 cardinality: 1
 translatable: true
 indexes: {  }

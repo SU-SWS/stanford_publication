@@ -17,21 +17,19 @@ class CitationViewBuilder extends EntityViewBuilder {
    * {@inheritDoc}
    */
   public function build(array $build) {
-    $build = parent::build($build);
+    // This assumes the view mode name matches the constant name in the
+    // interface.
+    $constant = CitationInterface::class . '::' . strtoupper($build['#view_mode']);
 
-    switch ($build['#view_mode']) {
-      case 'apa':
-        foreach(Element::children($build) as $child){
-          unset($build[$child]);
-        }
-        $build['citation']['#markup'] = $build['#citation']->getBibliography(CitationInterface::APA);
-
-      case 'chicago':
-        foreach(Element::children($build) as $child){
-          unset($build[$child]);
-        }
-        $build['citation']['#markup'] = $build['#citation']->getBibliography(CitationInterface::CHICAGO);
+    if (defined($constant) && $style = constant($constant)) {
+      foreach (Element::children($build) as $child) {
+        unset($build[$child]);
+      }
+      $build['citation']['#markup'] = $build['#citation']->getBibliography($style);
+      return $build;
     }
+
+    $build = parent::build($build);
     return $build;
   }
 

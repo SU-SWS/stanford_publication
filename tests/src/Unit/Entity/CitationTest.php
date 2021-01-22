@@ -1,11 +1,10 @@
 <?php
 
-namespace Drupal\Tests\stanford_publication\Unit;
+namespace Drupal\Tests\stanford_publication\Unit\Entity;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\eck\EckEntityInterface;
-use Drupal\stanford_publication\Citation;
-use Drupal\stanford_publication\CitationInterface;
+use Drupal\stanford_publication\Entity\Citation;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -13,7 +12,7 @@ use Drupal\Tests\UnitTestCase;
  *
  * @group stanford_publication
  */
-abstract class CitationTest extends UnitTestCase {
+class CitationTest extends UnitTestCase {
 
   /**
    * Keyed array of field name to field values.
@@ -34,10 +33,9 @@ abstract class CitationTest extends UnitTestCase {
    */
   public function testApaBiographyBook() {
     $this->setDefaultFieldValues();
-    $entity = $this->getEckEntity();
+    $entity = $this->getCitationEntity();
 
-    $citation = new Citation($entity);
-    $biblio = $citation->getBibliography();
+    $biblio = $entity->getBibliography();
     $this->assertStringContainsString('>Doe, J., &#38; Doe, J. (1950). <i>Foo Bar Baz</i>. Bar Publisher.<', $biblio);
   }
 
@@ -47,10 +45,9 @@ abstract class CitationTest extends UnitTestCase {
   public function testApaBiographyJournal() {
     $this->sourceType = 'pub_journal';
     $this->setDefaultFieldValues();
-    $entity = $this->getEckEntity();
+    $entity = $this->getCitationEntity();
 
-    $citation = new Citation($entity);
-    $biblio = $citation->getBibliography();
+    $biblio = $entity->getBibliography();
     $this->assertStringContainsString('Doe, J., &#38; Doe, J. (1950). <i>Foo Bar Baz</i>. <i>Issue Number</i>.', $biblio);
   }
 
@@ -60,10 +57,10 @@ abstract class CitationTest extends UnitTestCase {
   public function testApaBiographyArticle() {
     $this->sourceType = 'pub_article';
     $this->setDefaultFieldValues();
-    $entity = $this->getEckEntity();
+    $entity = $this->getCitationEntity();
 
-    $citation = new Citation($entity);
-    $biblio = $citation->getBibliography();
+
+    $biblio = $entity->getBibliography();
     $this->assertStringContainsString('Doe, J., &#38; Doe, J. (1950, June). <i>Foo Bar Baz</i>. <i>Issue Number</i>.', $biblio);
   }
 
@@ -72,10 +69,10 @@ abstract class CitationTest extends UnitTestCase {
    */
   public function testChicagoBiographyBook() {
     $this->setDefaultFieldValues();
-    $entity = $this->getEckEntity();
+    $entity = $this->getCitationEntity();
 
-    $citation = new Citation($entity);
-    $biblio = $citation->getBibliography(CitationInterface::CHICAGO);
+
+    $biblio = $entity->getBibliography(CitationInterface::CHICAGO);
 
     $this->assertStringContainsString('>Doe, John, and Jane Doe. <i>Foo Bar Baz</i>. Bar Publisher, 1950.<', $biblio);
     $message = sprintf('Publisher and year occur in the bibliography twice. %s', $biblio);
@@ -88,10 +85,10 @@ abstract class CitationTest extends UnitTestCase {
   public function testChicagoBiograrphyJournal() {
     $this->sourceType = 'pub_journal';
     $this->setDefaultFieldValues();
-    $entity = $this->getEckEntity();
+    $entity = $this->getCitationEntity();
 
-    $citation = new Citation($entity);
-    $biblio = $citation->getBibliography(CitationInterface::CHICAGO);
+
+    $biblio = $entity->getBibliography(CitationInterface::CHICAGO);
 
     $this->assertStringContainsString('Doe, John, and Jane Doe. “Foo Bar Baz”, no. Issue Number (June 1950).', $biblio);
   }
@@ -102,10 +99,10 @@ abstract class CitationTest extends UnitTestCase {
   public function testChicagoBiograrphyArticle() {
     $this->sourceType = 'pub_article';
     $this->setDefaultFieldValues();
-    $entity = $this->getEckEntity();
+    $entity = $this->getCitationEntity();
 
-    $citation = new Citation($entity);
-    $biblio = $citation->getBibliography(CitationInterface::CHICAGO);
+
+    $biblio = $entity->getBibliography(CitationInterface::CHICAGO);
 
     $this->assertStringContainsString('Doe, John, and Jane Doe. “Foo Bar Baz”. June 1950', $biblio);
     $message = sprintf('The date occurs in the bibliography twice. %s', $biblio);
@@ -117,20 +114,20 @@ abstract class CitationTest extends UnitTestCase {
    */
   public function testBiographyWithoutFields() {
     $this->entityValues = [];
-    $entity = $this->getEckEntity();
+    $entity = $this->getCitationEntity();
 
-    $citation = new Citation($entity);
-    $biblio = $citation->getBibliography();
+
+    $biblio = $entity->getBibliography();
     $this->assertStringContainsString('<i>Foo Bar Baz</i>.', $biblio);
   }
 
   /**
    * Get a mock eck entity.
    *
-   * @return \Drupal\eck\EckEntityInterface
+   * @return \Drupal\stanford_publication\Entity\Citation
    *   Mock object.
    */
-  protected function getEckEntity() {
+  protected function getCitationEntity() {
     $entity = $this->createMock(EckEntityInterface::class);
     $entity->method('get')
       ->will($this->returnCallback([$this, 'entityGetCallback']));

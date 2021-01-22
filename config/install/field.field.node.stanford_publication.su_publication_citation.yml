@@ -1,3 +1,4 @@
+uuid: 74411fb7-76ff-4335-a5e6-0b09a1668308
 langcode: en
 status: true
 dependencies:
@@ -6,7 +7,7 @@ dependencies:
     - node.type.stanford_publication
     - stanford_publication.citation_type.su_article_newspaper
     - stanford_publication.citation_type.su_book
-    - stanford_publication.citation_type.su_journal_article
+    - stanford_publication.citation_type.su_article_journal
     - stanford_publication.citation_type.su_thesis
 id: node.stanford_publication.su_publication_citation
 field_name: su_publication_citation
@@ -24,7 +25,7 @@ settings:
     target_bundles:
       su_article_newspaper: su_article_newspaper
       su_book: su_book
-      su_journal_article: su_journal_article
+      su_article_journal: su_article_journal
       su_thesis: su_thesis
     sort:
       field: _none

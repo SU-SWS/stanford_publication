@@ -7,7 +7,6 @@ use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Seboettg\CiteProc\CiteProc;
-use Seboettg\CiteProc\StyleSheet;
 
 /**
  * Defines the Citation entity.
@@ -96,20 +95,38 @@ class Citation extends ContentEntityBase implements CitationInterface {
     $data = [
       'id' => $this->id(),
       'title' => $this->label(),
-      'type' => $this->getType(),
+      'DOI' => $this->getDoi(),
+      'URL' => $this->getUrl(),
       'author' => $this->getAuthor(),
+      'edition' => $this->getEdition(),
+      'issue' => $this->getIssue(),
       'issued' => $this->getDate(),
+      'genre' => $this->getGenre(),
+      'page' => $this->getPage(),
       'publisher' => $this->getPublisher(),
+      'publisher-place' => $this->getPublisherPlace(),
+      'subtitle' => $this->getSubtitle(),
+      'type' => $this->getType(),
       'volume' => $this->getVolume(),
-      'pages' => $this->getPages(),
-      'doi' => $this->getIsbn(),
-      'issue' => $this->getType() != 'book' ? $this->getIssue() : NULL,
     ];
+
+    if ($data['type'] == 'article-journal') {
+      $data['collection-title'] = $data['publisher'];
+    }
+
     // Convert the arrays into objects.
     $data = json_decode(json_encode([array_filter($data)]));
-    $style = StyleSheet::loadStyleSheet($style);
+
+    $local_csl = __DIR__ . '/Styles/' . $style . '.xml';
+    if (!file_exists($local_csl)) {
+      return '';
+    }
+
+    // Load the style CSL file.
+    $style = file_get_contents($local_csl);
     $citeProc = new CiteProc($style);
     return $citeProc->render($data);
+
   }
 
   /**
@@ -124,8 +141,19 @@ class Citation extends ContentEntityBase implements CitationInterface {
    *   Entity field value as a string.
    */
   public function __call($name, $args) {
-    $data_name = strtolower(preg_replace('/^get/', '', $name));
-    if ($field = $this->getEntityField($data_name)) {
+    // remove the `get` from the beginning.
+    $data_name = preg_replace('/^get/', '', $name);
+
+    // Convert UpperCamelCase to snake_case. This allows us to dynamically
+    // fetch field names just by using the method names.
+    preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $data_name, $matches);
+    $ret = $matches[0];
+    foreach ($ret as &$match) {
+      $match = $match == strtoupper($match) ? strtolower($match) : lcfirst($match);
+    }
+    $data_name = implode('_', $ret);
+
+    if ($field = $this->getFieldName($data_name)) {
       return $this->get($field)->getString();
     }
   }
@@ -137,7 +165,7 @@ class Citation extends ContentEntityBase implements CitationInterface {
    *   Keyed array of author data.
    */
   protected function getAuthor() {
-    if ($field = $this->getEntityField('author')) {
+    if ($field = $this->getFieldName('author')) {
       return $this->get($field)->getValue();
     }
   }
@@ -149,8 +177,7 @@ class Citation extends ContentEntityBase implements CitationInterface {
    *   Citation type.
    */
   protected function getType(): string {
-    $bundle = str_replace('_', '-', str_replace('su_', '', $this->bundle()));
-    return $bundle;
+    return str_replace('_', '-', str_replace('su_', '', $this->bundle()));
   }
 
   /**
@@ -189,7 +216,7 @@ class Citation extends ContentEntityBase implements CitationInterface {
    * @return string|null
    *   Field name if a field exists.
    */
-  protected function getEntityField($attribute) {
+  protected function getFieldName($attribute) {
     $field_name = "su_$attribute";
     if ($field_name && $this->hasField($field_name)) {
       return $field_name;

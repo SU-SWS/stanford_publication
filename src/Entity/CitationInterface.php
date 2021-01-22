@@ -45,4 +45,14 @@ interface CitationInterface extends ContentEntityInterface, EntityChangedInterfa
    */
   public function getBibliography($style = self::APA): string;
 
+  /**
+   * Gets the parent entity of the paragraph.
+   *
+   * Preserves language context with translated entities.
+   *
+   * @return ContentEntityInterface
+   *   The parent entity.
+   */
+//  public function getParentEntity();
+
 }
