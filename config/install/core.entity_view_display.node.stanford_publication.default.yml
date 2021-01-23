@@ -12,7 +12,6 @@ dependencies:
   module:
     - jumpstart_ui
     - layout_builder
-    - layout_library
     - user
 third_party_settings:
   layout_builder:
@@ -138,8 +137,6 @@ third_party_settings:
             additional: {  }
             weight: 1
         third_party_settings: {  }
-  layout_library:
-    enable: false
 id: node.stanford_publication.default
 targetEntityType: node
 bundle: stanford_publication
