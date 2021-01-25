@@ -3,7 +3,6 @@
 namespace Drupal\stanford_publication\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
-use Drupal\Core\Config\Entity\ConfigEntityInterface;
 
 /**
  * Defines the Citation type entity.
@@ -62,7 +61,7 @@ class CitationType extends ConfigEntityBundleBase implements CitationTypeInterfa
   protected $label;
 
   /**
-   * The citation/bibliography type
+   * The citation/bibliography type.
    *
    * @var string
    */

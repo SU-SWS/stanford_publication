@@ -128,8 +128,11 @@ class Citation extends ContentEntityBase implements CitationInterface {
       ->load($this->get('parent_id')->value);
 
     // Return current translation of parent entity, if it exists.
-    if ($parent != NULL && ($parent instanceof TranslatableInterface) && $parent->hasTranslation($this->language()
-        ->getId())) {
+    if (
+      $parent != NULL &&
+      ($parent instanceof TranslatableInterface) &&
+      $parent->hasTranslation($this->language()->getId())
+    ) {
       return $parent->getTranslation($this->language()->getId());
     }
 
@@ -206,7 +209,6 @@ class Citation extends ContentEntityBase implements CitationInterface {
     }
   }
 
-
   /**
    * Get the label of the entity wrapped in a link tag to the parent or url.
    *
@@ -220,7 +222,7 @@ class Citation extends ContentEntityBase implements CitationInterface {
 
     // Link to the parent node.
     if ($parent_entity = $this->getParentEntity()) {
-      $url = $this->getParentEntity()->toUrl();
+      $url = $parent_entity->toUrl();
     }
 
     // The user entered url.
@@ -245,14 +247,17 @@ class Citation extends ContentEntityBase implements CitationInterface {
    *   User entered string.
    *
    * @return \Drupal\Core\Url|null
+   *   Url object if successful.
    */
   protected function getUrlFromString($string): ?Url {
     try {
       return Url::fromUserInput($string);
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       try {
         return Url::fromUri($string);
-      } catch (\Exception $e) {
+      }
+      catch (\Exception $e) {
         // Nothing to do, just fall back to returning null.
       }
     }
@@ -264,14 +269,14 @@ class Citation extends ContentEntityBase implements CitationInterface {
    *
    * @param string $name
    *   Function name.
-   * @param $args
+   * @param mixed $args
    *   Args.
    *
    * @return string
    *   Entity field value as a string.
    */
   public function __call($name, $args) {
-    // remove the `get` from the beginning.
+    // Remove the `get` from the beginning.
     $data_name = preg_replace('/^get/', '', $name);
 
     // Convert UpperCamelCase to snake_case. This allows us to dynamically
