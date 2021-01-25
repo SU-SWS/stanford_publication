@@ -153,7 +153,10 @@ class Citation extends ContentEntityBase implements CitationInterface {
 
     $data = [
       'id' => $this->id(),
-      'title' => $this->getLinkedLabel(),
+      'title' => $this->label(),
+      // Custom variables that wrap the title with a link tag.
+      'link-beginning' => $this->getLinkBeginning(),
+      'link-ending' => $this->getLinkBeginning() ? '</a>' : NULL,
       'DOI' => $this->getDoi(),
       'URL' => $this->getUrl(),
       'author' => $this->getAuthor(),
@@ -187,44 +190,61 @@ class Citation extends ContentEntityBase implements CitationInterface {
     return $citeProc->render($data);
   }
 
+  protected function getLinkBeginning(): ?string {
+    if ($link = $this->getLink()) {
+      preg_match('/<.*?>/', (string) $link->toString(), $matches);
+      return $matches[0] ?? NULL;
+    }
+  }
+
+
   /**
    * Get the label of the entity wrapped in a link tag to the parent or url.
    *
-   * @return string
+   * @return \Drupal\Core\Link
    *   Label or linked label string.
    *
    * @throws \Drupal\Core\Entity\EntityMalformedException
    */
-  protected function getLinkedLabel(): string {
-    $parent_entity = $this->getParentEntity();
-    if ($parent_entity) {
-      $link_url = $this->getParentEntity()
-        ->toUrl();
-      $parent_link = Link::fromTextAndUrl($this->label(), $link_url)
-        ->toString();
+  protected function getLink(): ?Link {
+    $url = NULL;
+
+    if ($parent_entity = $this->getParentEntity()) {
+      $url = $this->getParentEntity()->toUrl();
     }
 
-    // Alot of try catches to account of the different ways a user can enter a
-    // url string.
-    if ($url = $this->getUrl()) {
+    if ($url_string = $this->getUrl()) {
+      $url = $this->getUrlFromString($url_string) ?? $url;
+    }
+
+    if ($doi = $this->getDoi()) {
+      $url = $this->getUrlFromString("https://doi.org/$doi") ?? $url;
+    }
+
+    if ($url) {
+      return Link::fromTextAndUrl('[replace]', $url);
+    }
+  }
+
+  /**
+   * Get a url object from the provided url/string.
+   *
+   * @param string $string
+   *   User entered string.
+   *
+   * @return \Drupal\Core\Url|null
+   */
+  protected function getUrlFromString($string): ?Url {
+    try {
+      return Url::fromUserInput($string);
+    } catch (\Exception $e) {
       try {
-        $url = Url::fromUri($url);
+        return Url::fromUri($string);
       } catch (\Exception $e) {
-        try {
-          $url = Url::fromUserInput($url);
-        } catch (\Exception $e) {
-          // Use the link to the parent entity or fallback to the label without
-          // a link.
-          return $parent_link ?? $this->label();
-        }
-      }
-      return Link::fromTextAndUrl($this->label(), $url)
-        ->toString();
-    }
 
-    // Use the link to the parent entity or fallback to the label without
-    // a link.
-    return $parent_link ?? $this->label();
+      }
+    }
+    return NULL;
   }
 
   /**
