@@ -20,11 +20,20 @@
         "drupal/name": "^1.0",
         "drupal/node_revision_delete": "^1.0",
         "drupal/rabbit_hole": "^1.0",
+        "drupal/views_taxonomy_term_name_depth": "^7.0",
         "seboettg/citeproc-php": "dev-master#c1df840d897b938431130445927d48a4b6cf464b",
         "su-sws/jumpstart_ui": "dev-8.x-1.x",
         "su-sws/react_paragraphs": "dev-8.x-2.x"
     },
     "config": {
         "sort-packages": true
+    },
+    "extra": {
+        "enable-patching": true,
+        "patches": {
+            "drupal/views_taxonomy_term_name_depth": {
+                "https://www.drupal.org/project/views_taxonomy_term_name_depth/issues/2877249": "https://www.drupal.org/files/issues/2020-05-01/2877249_21.patch"
+            }
+        }
     }
 }
