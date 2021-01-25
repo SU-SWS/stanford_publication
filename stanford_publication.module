@@ -51,6 +51,16 @@ function stanford_publication_node_delete(NodeInterface $entity) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function stanford_publication_preprocess_field__su_publication_topics(&$variables) {
+  // This will display only the first term for field displays set as "Label",
+  // but it will also display all terms for field displays set as "Label List"
+  // provided by the "element_class_formatter" module.
+  $variables['items'] = array_slice($variables['items'], 0, 1);
+}
+
+/**
  * Load the ECK entity that has the citation data.
  *
  * @param \Drupal\node\NodeInterface $node

@@ -9,9 +9,11 @@ dependencies:
     - field.field.citation.su_book.su_publisher
     - field.field.citation.su_book.su_publisher_place
     - field.field.citation.su_book.su_subtitle
+    - field.field.citation.su_book.su_url
     - field.field.citation.su_book.su_year
     - stanford_publication.citation_type.su_book
   module:
+    - link
     - name
 id: citation.su_book.default
 targetEntityType: citation
@@ -95,6 +97,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  su_url:
+    weight: 8
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   su_year:
     weight: 2

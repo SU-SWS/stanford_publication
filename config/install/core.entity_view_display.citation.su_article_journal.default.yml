@@ -9,12 +9,14 @@ dependencies:
     - field.field.citation.su_article_journal.su_month
     - field.field.citation.su_article_journal.su_page
     - field.field.citation.su_article_journal.su_publisher
+    - field.field.citation.su_article_journal.su_url
     - field.field.citation.su_article_journal.su_volume
     - field.field.citation.su_article_journal.su_year
     - stanford_publication.citation_type.su_article_journal
   module:
     - ds
     - field_formatter_class
+    - link
     - name
 id: citation.su_article_journal.default
 targetEntityType: citation
@@ -103,6 +105,18 @@ content:
     third_party_settings:
       field_formatter_class:
         class: su-margin-bottom-2
+  su_url:
+    weight: 9
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   su_volume:
     weight: 5
     label: above
