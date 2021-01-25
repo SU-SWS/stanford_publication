@@ -6,6 +6,7 @@ package: Stanford
 version: 8.x-1.0-dev
 dependencies:
   - drupal:layout_builder
+  - element_class_formatter:element_class_formatter
   - field_formatter_class:field_formatter_class
   - field_group:field_group
   - inline_entity_form:inline_entity_form
@@ -14,3 +15,4 @@ dependencies:
   - node_revision_delete:node_revision_delete
   - rabbit_hole:rabbit_hole
   - react_paragraphs:react_paragraphs
+  - views_taxonomy_term_name_depth:views_taxonomy_term_name_depth

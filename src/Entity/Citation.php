@@ -128,8 +128,11 @@ class Citation extends ContentEntityBase implements CitationInterface {
       ->load($this->get('parent_id')->value);
 
     // Return current translation of parent entity, if it exists.
-    if ($parent != NULL && ($parent instanceof TranslatableInterface) && $parent->hasTranslation($this->language()
-        ->getId())) {
+    if (
+      $parent != NULL &&
+      ($parent instanceof TranslatableInterface) &&
+      $parent->hasTranslation($this->language()->getId())
+    ) {
       return $parent->getTranslation($this->language()->getId());
     }
 
@@ -187,36 +190,47 @@ class Citation extends ContentEntityBase implements CitationInterface {
     // Load the style CSL file.
     $style = file_get_contents($local_csl);
     $citeProc = new CiteProc($style);
-    return $citeProc->render($data);
+    return htmlspecialchars_decode($citeProc->render($data));
   }
 
-  protected function getLinkBeginning(): ?string {
+  /**
+   * If the citation can be linked to a url, get the first part of the <a> tag.
+   *
+   * @return string|null
+   *   First half of the <a> tag.
+   *
+   * @throws \Drupal\Core\Entity\EntityMalformedException
+   */
+  protected function getLinkBeginning() {
     if ($link = $this->getLink()) {
+      // This will pull out the `<a href....>` part of the link.
       preg_match('/<.*?>/', (string) $link->toString(), $matches);
       return $matches[0] ?? NULL;
     }
   }
 
-
   /**
    * Get the label of the entity wrapped in a link tag to the parent or url.
    *
-   * @return \Drupal\Core\Link
+   * @return \Drupal\Core\Link|null
    *   Label or linked label string.
    *
    * @throws \Drupal\Core\Entity\EntityMalformedException
    */
-  protected function getLink(): ?Link {
+  protected function getLink() {
     $url = NULL;
 
+    // Link to the parent node.
     if ($parent_entity = $this->getParentEntity()) {
-      $url = $this->getParentEntity()->toUrl();
+      $url = $parent_entity->toUrl();
     }
 
+    // The user entered url.
     if ($url_string = $this->getUrl()) {
       $url = $this->getUrlFromString($url_string) ?? $url;
     }
 
+    // The doi field is a string, so construct the full url from that.
     if ($doi = $this->getDoi()) {
       $url = $this->getUrlFromString("https://doi.org/$doi") ?? $url;
     }
@@ -233,15 +247,18 @@ class Citation extends ContentEntityBase implements CitationInterface {
    *   User entered string.
    *
    * @return \Drupal\Core\Url|null
+   *   Url object if successful.
    */
   protected function getUrlFromString($string): ?Url {
     try {
       return Url::fromUserInput($string);
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       try {
         return Url::fromUri($string);
-      } catch (\Exception $e) {
-
+      }
+      catch (\Exception $e) {
+        // Nothing to do, just fall back to returning null.
       }
     }
     return NULL;
@@ -252,18 +269,20 @@ class Citation extends ContentEntityBase implements CitationInterface {
    *
    * @param string $name
    *   Function name.
-   * @param $args
+   * @param mixed $args
    *   Args.
    *
    * @return string
    *   Entity field value as a string.
    */
   public function __call($name, $args) {
-    // remove the `get` from the beginning.
+    // Remove the `get` from the beginning.
     $data_name = preg_replace('/^get/', '', $name);
 
     // Convert UpperCamelCase to snake_case. This allows us to dynamically
-    // fetch field names just by using the method names.
+    // fetch field names just by using the method names. Later versions it would
+    // be preferred to have a UI that allows the user to choose which field
+    // maps to which variable in the CSL.
     preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $data_name, $matches);
     $ret = $matches[0];
     foreach ($ret as &$match) {
@@ -283,6 +302,10 @@ class Citation extends ContentEntityBase implements CitationInterface {
    *   Keyed array of author data.
    */
   protected function getAuthor() {
+    // Authors are rendered using `names` render element in CSL. It expects
+    // the name array to be keyed with `given`, `family` etc keys. Luckily the
+    // name module does this for us.
+    // @link https://docs.citationstyles.org/en/1.0.1/specification.html#names
     if ($field = $this->getFieldName('author')) {
       return $this->get($field)->getValue();
     }
@@ -302,7 +325,13 @@ class Citation extends ContentEntityBase implements CitationInterface {
   }
 
   /**
-   * Get the structured date array from the enitty.
+   * Get the structured date array from the entity.
+   *
+   * The structure of a date field is an associate array with the year, month,
+   * day in that order. We have to construct the array in a way that doesn't
+   * return the year and day without the month.
+   *
+   * @link https://docs.citationstyles.org/en/1.0.1/specification.html#date
    *
    * @return array|null
    *   Keyed array of date parts.
@@ -339,6 +368,7 @@ class Citation extends ContentEntityBase implements CitationInterface {
    */
   protected function getFieldName($attribute) {
     $field_name = "su_$attribute";
+    // Later versions this will be a field mapping on the entity type config.
     if ($field_name && $this->hasField($field_name)) {
       return $field_name;
     }

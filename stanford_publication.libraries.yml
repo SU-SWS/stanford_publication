@@ -1,0 +1,12 @@
+
+node:
+  version: VERSION
+  css:
+    component:
+      dist/css/stanford_publication.node.css: {}
+
+view:
+  version: VERSION
+  css:
+    component:
+      dist/css/stanford_publication.views.css: {}

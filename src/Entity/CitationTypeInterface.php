@@ -17,6 +17,7 @@ interface CitationTypeInterface extends ConfigEntityInterface {
    * @link https://docs.citationstyles.org/en/1.0.1/specification.html#appendix-iii-types
    *
    * @return string|null
+   *   The CSL type.
    */
   public function type(): ?string;
 

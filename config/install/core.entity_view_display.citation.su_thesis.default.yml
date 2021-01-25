@@ -8,11 +8,12 @@ dependencies:
     - field.field.citation.su_thesis.su_genre
     - field.field.citation.su_thesis.su_month
     - field.field.citation.su_thesis.su_publisher
+    - field.field.citation.su_thesis.su_url
     - field.field.citation.su_thesis.su_year
     - stanford_publication.citation_type.su_thesis
   module:
-    - ds
     - field_formatter_class
+    - link
     - name
 id: citation.su_thesis.default
 targetEntityType: citation
@@ -34,8 +35,6 @@ content:
     third_party_settings:
       field_formatter_class:
         class: su-margin-bottom-2
-      ds:
-        ds_limit: ''
     type: name_default
     region: content
   su_day:
@@ -89,6 +88,18 @@ content:
       field_formatter_class:
         class: su-margin-bottom-2
     type: string
+    region: content
+  su_url:
+    weight: 7
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
     region: content
   su_year:
     weight: 3

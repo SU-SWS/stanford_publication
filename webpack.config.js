@@ -57,7 +57,7 @@ const entryPoints = glob.sync('./lib/scss/**/*.scss').reduce((acc, filePath) => 
 // Start configuring webpack.
 var webpackConfig = {
   // What am i?
-  name: 'stanford_profile_styles',
+  name: 'stanford_publication',
   // Allows for map files.
   devtool: 'source-map',
   // What build?

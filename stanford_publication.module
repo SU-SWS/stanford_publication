@@ -6,6 +6,70 @@
  */
 
 use Drupal\node\NodeInterface;
+use Drupal\views\ViewExecutable;
+use Symfony\Component\Finder\Finder;
+
+/**
+ * Implements hook_library_info_build().
+ */
+function stanford_publication_library_info_build() {
+  $libraries = [];
+  $module_path = drupal_get_path('module', 'stanford_publication');
+
+  // Find all css files in the dist/css directory.
+  $finder = new Finder();
+  $finder->in("$module_path/dist/css")
+    ->files()
+    ->name('/.css$/');
+
+  foreach ($finder->getIterator() as $file) {
+    $local_path = str_replace("$module_path/", '', $file->getPath());
+
+    $path_parts = explode('/', $local_path);
+    // Remove `dist` and `css` parts.
+    unset($path_parts[0], $path_parts[1]);
+
+    // This is the directory the file lives in.
+    $library_level = reset($path_parts);
+    $bucket = next($path_parts);
+    $lib = basename($file->getFilename(), '.css');
+
+    // Build the library definition.
+    $libraries[trim("$bucket.$lib", '. ')] = [
+      'css' => [
+        $library_level => [
+          "$local_path/{$file->getFileName()}" => [],
+        ],
+      ],
+    ];
+  }
+
+  return $libraries;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function stanford_publication_preprocess_node(&$variables) {
+
+  if (!isset($variables['page']) || !$variables['page']) {
+    return;
+  }
+
+  if (isset($variables['node']) && $variables['node'] instanceof NodeInterface && $variables['node']->bundle() == 'stanford_publication') {
+    $variables['#attached']['library'][] = 'stanford_publication/node.stanford_publication';
+  }
+
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function stanford_publication_views_pre_render(ViewExecutable $view) {
+  if ($view->id() == 'stanford_publications') {
+    $view->element['#attached']['library'][] = 'stanford_publication/views.stanford_publication';
+  }
+}
 
 /**
  * Implements hook_ENTITY_TYPE_insert().
@@ -51,12 +115,22 @@ function stanford_publication_node_delete(NodeInterface $entity) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function stanford_publication_preprocess_field__su_publication_topics(&$variables) {
+  // This will display only the first term for field displays set as "Label",
+  // but it will also display all terms for field displays set as "Label List"
+  // provided by the "element_class_formatter" module.
+  $variables['items'] = array_slice($variables['items'], 0, 1);
+}
+
+/**
  * Load the ECK entity that has the citation data.
  *
  * @param \Drupal\node\NodeInterface $node
  *   Node entity.
  *
- * @return \Drupal\stanford_publication\Entity\CitationInterface
+ * @return \Drupal\stanford_publication\Entity\CitationInterface|null
  *   Loaded entity from the node field value.
  *
  * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
@@ -65,7 +139,7 @@ function stanford_publication_node_delete(NodeInterface $entity) {
  */
 function _stanford_pubs_get_citation_entity(NodeInterface $node) {
   if ($node->bundle() !== 'stanford_publication') {
-    return;
+    return NULL;
   }
 
   $citation_field = 'su_publication_citation';
