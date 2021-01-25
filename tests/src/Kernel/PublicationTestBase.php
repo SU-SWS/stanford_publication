@@ -5,10 +5,9 @@ namespace Drupal\Tests\stanford_publication\Kernel;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
-use Drupal\stanford_publication\Entity\Citation;
 
 /**
- * Class CitationTest
+ * Class PublicationTestBase.
  *
  * @group stanford_publication
  * @coversDefaultClass \Drupal\stanford_publication\Entity\Citation

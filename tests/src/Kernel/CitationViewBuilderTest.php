@@ -13,37 +13,43 @@ use Drupal\stanford_publication\Entity\Citation;
  */
 class CitationViewBuilderTest extends PublicationTestBase {
 
-    public function testViewBuilder() {
-      /** @var \Drupal\stanford_publication\Entity\CitationInterface $citation */
-      $citation = Citation::create([
-        'type' => 'su_book',
-        'su_author' => [['given' => 'John', 'family' => 'Doe']],
-        'su_year' => date('Y'),
-        'su_edition' => 5,
-        'su_page' => '10-20',
-        'su_publisher' => 'Awesome Publishing',
-        'su_publisher_place' => 'California',
-        'su_subtitle' => 'subtitle of book',
-      ]);
-      $citation->setLabel('Foo Bar');
-      $citation->save();
+  /**
+   * The Citation entity view builder will construct the bibliography.
+   */
+  public function testViewBuilder() {
+    /** @var \Drupal\stanford_publication\Entity\CitationInterface $citation */
+    $citation = Citation::create([
+      'type' => 'su_book',
+      'su_author' => [['given' => 'John', 'family' => 'Doe']],
+      'su_year' => date('Y'),
+      'su_edition' => 5,
+      'su_page' => '10-20',
+      'su_publisher' => 'Awesome Publishing',
+      'su_publisher_place' => 'California',
+      'su_subtitle' => 'subtitle of book',
+    ]);
+    $citation->setLabel('Foo Bar');
+    $citation->save();
 
-      $view_builder = \Drupal::entityTypeManager()
-        ->getViewBuilder('citation');
-      $build = $view_builder->view($citation);
-      $build = $view_builder->build($build);
+    $view_builder = \Drupal::entityTypeManager()
+      ->getViewBuilder('citation');
+    $build = $view_builder->view($citation);
+    $build = $view_builder->build($build);
 
-      $this->assertArrayNotHasKey('citation', $build);
+    $this->assertArrayNotHasKey('citation', $build);
 
-      $build = $view_builder->view($citation, 'apa');
-      $build['field_foo'] = [];
-      $build = $view_builder->build($build);
+    $build = $view_builder->view($citation, 'apa');
+    $build['field_foo'] = [];
+    $build = $view_builder->build($build);
 
-      $this->assertArrayNotHasKey('field_foo', $build);
-      $this->assertArrayHasKey('citation', $build);
+    $this->assertArrayNotHasKey('field_foo', $build);
+    $this->assertArrayHasKey('citation', $build);
 
-    }
+  }
 
+  /**
+   * In the default display, the year, month and day fields get consolidated.
+   */
   public function testDateDisplay() {
     /** @var \Drupal\stanford_publication\Entity\CitationInterface $citation */
     $citation = Citation::create([

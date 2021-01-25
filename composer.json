@@ -51,6 +51,16 @@
         "su-sws/jumpstart_ui": "dev-8.x-1.x",
         "su-sws/react_paragraphs": "dev-8.x-2.x"
     },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\stanford_publication\\": "./src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Drupal\\Tests\\stanford_publication\\": "./tests/src"
+        }
+    },
     "config": {
         "sort-packages": true
     },

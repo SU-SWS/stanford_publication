@@ -14,6 +14,9 @@ use Drupal\Tests\stanford_publication\Kernel\PublicationTestBase;
  */
 class CitationTest extends PublicationTestBase {
 
+  /**
+   * Trying to get a biblio with an unknown format returns an empty string.
+   */
   public function testEmptyCitation() {
     /** @var \Drupal\stanford_publication\Entity\CitationInterface $citation */
     $citation = Citation::create(['type' => 'su_book']);
@@ -22,6 +25,9 @@ class CitationTest extends PublicationTestBase {
     $this->assertEmpty($citation->getBibliography('foo-bar'));
   }
 
+  /**
+   * A book source in APA format should be formatted exactly as expected.
+   */
   public function testBookApa() {
     /** @var \Drupal\stanford_publication\Entity\CitationInterface $citation */
     $citation = Citation::create([
@@ -61,6 +67,9 @@ class CitationTest extends PublicationTestBase {
     $this->assertStringContainsString($expected, $biblio);
   }
 
+  /**
+   * A book source in Chicago format should be formatted exactly as expected.
+   */
   public function testBookChicago() {
     /** @var \Drupal\stanford_publication\Entity\CitationInterface $citation */
     $citation = Citation::create([
@@ -99,6 +108,9 @@ class CitationTest extends PublicationTestBase {
     $this->assertStringContainsString($expected, $biblio);
   }
 
+  /**
+   * A Journal source in APA format should be formatted exactly as expected.
+   */
   public function testJournalApa() {
     /** @var \Drupal\stanford_publication\Entity\CitationInterface $citation */
     $citation = Citation::create([
