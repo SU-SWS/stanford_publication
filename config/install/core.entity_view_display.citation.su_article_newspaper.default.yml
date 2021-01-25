@@ -5,10 +5,13 @@ dependencies:
     - field.field.citation.su_article_newspaper.su_author
     - field.field.citation.su_article_newspaper.su_day
     - field.field.citation.su_article_newspaper.su_month
+    - field.field.citation.su_article_newspaper.su_publisher
     - field.field.citation.su_article_newspaper.su_url
     - field.field.citation.su_article_newspaper.su_year
     - stanford_publication.citation_type.su_article_newspaper
   module:
+    - ds
+    - field_formatter_class
     - link
     - name
 id: citation.su_article_newspaper.default
@@ -21,14 +24,18 @@ content:
     label: above
     settings:
       format: default
-      markup: none
       list_format: ''
+      markup: none
       link_target: ''
       preferred_field_reference: ''
       preferred_field_reference_separator: ', '
       alternative_field_reference: ''
       alternative_field_reference_separator: ', '
-    third_party_settings: {  }
+    third_party_settings:
+      field_formatter_class:
+        class: su-margin-bottom-2
+      ds:
+        ds_limit: ''
     type: name_default
     region: content
   su_day:
@@ -37,7 +44,9 @@ content:
     settings:
       thousand_separator: ''
       prefix_suffix: true
-    third_party_settings: {  }
+    third_party_settings:
+      field_formatter_class:
+        class: su-margin-bottom-2
     type: number_integer
     region: content
   su_month:
@@ -46,7 +55,9 @@ content:
     settings:
       thousand_separator: ''
       prefix_suffix: true
-    third_party_settings: {  }
+    third_party_settings:
+      field_formatter_class:
+        class: su-margin-bottom-2
     type: number_integer
     region: content
   su_publisher:
@@ -54,7 +65,9 @@ content:
     label: above
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      field_formatter_class:
+        class: su-margin-bottom-2
     type: string
     region: content
   su_url:
@@ -64,9 +77,11 @@ content:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      field_formatter_class:
+        class: su-margin-bottom-2
     type: link
     region: content
   su_year:
@@ -75,7 +90,9 @@ content:
     settings:
       thousand_separator: ''
       prefix_suffix: true
-    third_party_settings: {  }
+    third_party_settings:
+      field_formatter_class:
+        class: su-margin-bottom-2
     type: number_integer
     region: content
 hidden:

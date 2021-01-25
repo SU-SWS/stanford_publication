@@ -8,5 +8,8 @@ stanford_publication.citation_type.*:
     label:
       type: label
       label: 'Label'
+    type:
+      type: string
+      label: 'Citation Type'
     uuid:
       type: string

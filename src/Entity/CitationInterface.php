@@ -5,6 +5,7 @@ namespace Drupal\stanford_publication\Entity;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\Core\Entity\EntityPublishedInterface;
+use Drupal\paragraphs\ParagraphInterface;
 
 /**
  * Provides an interface for defining Citation entities.
@@ -53,6 +54,18 @@ interface CitationInterface extends ContentEntityInterface, EntityChangedInterfa
    * @return ContentEntityInterface
    *   The parent entity.
    */
-//  public function getParentEntity();
+  public function getParentEntity();
+
+  /**
+   * Set the parent entity of the paragraph.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $parent
+   *   The parent entity.
+   * @param string $parent_field_name
+   *   The parent field name.
+   *
+   * @return $this
+   */
+  public function setParentEntity(ContentEntityInterface $parent, $parent_field_name);
 
 }

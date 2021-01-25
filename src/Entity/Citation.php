@@ -2,10 +2,15 @@
 
 namespace Drupal\stanford_publication\Entity;
 
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Link;
+use Drupal\Core\TypedData\TranslatableInterface;
+use Drupal\Core\Url;
+use Drupal\field\Entity\FieldStorageConfig;
 use Seboettg\CiteProc\CiteProc;
 
 /**
@@ -19,8 +24,13 @@ use Seboettg\CiteProc\CiteProc;
  *   bundle_label = @Translation("Citation type"),
  *   handlers = {
  *     "view_builder" = "Drupal\stanford_publication\CitationViewBuilder",
- *     "list_builder" = "Drupal\stanford_publication\CitationListBuilder",
  *     "access" = "Drupal\stanford_publication\CitationAccessControlHandler",
+ *     "form" = {
+ *       "default" = "Drupal\Core\Entity\ContentEntityForm",
+ *       "delete" = "Drupal\Core\Entity\ContentEntityDeleteForm",
+ *       "edit" = "Drupal\Core\Entity\ContentEntityForm"
+ *     },
+ *     "views_data" = "Drupal\views\EntityViewsData",
  *   },
  *   base_table = "citation",
  *   data_table = "citation_field_data",
@@ -85,20 +95,69 @@ class Citation extends ContentEntityBase implements CitationInterface {
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the entity was last edited.'));
 
+    $fields['parent_id'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Parent ID'))
+      ->setDescription(t('The ID of the parent entity of which this entity is referenced.'))
+      ->setSetting('is_ascii', TRUE);
+
+    $fields['parent_type'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Parent type'))
+      ->setDescription(t('The entity parent type to which this entity is referenced.'))
+      ->setSetting('is_ascii', TRUE)
+      ->setSetting('max_length', EntityTypeInterface::ID_MAX_LENGTH);
+
+    $fields['parent_field_name'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Parent field name'))
+      ->setDescription(t('The entity parent field name to which this entity is referenced.'))
+      ->setSetting('is_ascii', TRUE)
+      ->setSetting('max_length', FieldStorageConfig::NAME_MAX_LENGTH);
+
     return $fields;
   }
 
   /**
    * {@inheritDoc}
    */
+  public function getParentEntity() {
+    if (!isset($this->get('parent_type')->value) || !isset($this->get('parent_id')->value)) {
+      return NULL;
+    }
+
+    $parent = $this->entityTypeManager()
+      ->getStorage($this->get('parent_type')->value)
+      ->load($this->get('parent_id')->value);
+
+    // Return current translation of parent entity, if it exists.
+    if ($parent != NULL && ($parent instanceof TranslatableInterface) && $parent->hasTranslation($this->language()
+        ->getId())) {
+      return $parent->getTranslation($this->language()->getId());
+    }
+
+    return $parent;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setParentEntity(ContentEntityInterface $parent, $parent_field_name) {
+    $this->set('parent_type', $parent->getEntityTypeId());
+    $this->set('parent_id', $parent->id());
+    $this->set('parent_field_name', $parent_field_name);
+    return $this;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
   public function getBibliography($style = self::APA): string {
+
     $data = [
       'id' => $this->id(),
-      'title' => $this->label(),
+      'title' => $this->getLinkedLabel(),
       'DOI' => $this->getDoi(),
       'URL' => $this->getUrl(),
       'author' => $this->getAuthor(),
-      'edition' => $this->getEdition(),
+      'edition' => (int) $this->getEdition(),
       'issue' => $this->getIssue(),
       'issued' => $this->getDate(),
       'genre' => $this->getGenre(),
@@ -107,7 +166,7 @@ class Citation extends ContentEntityBase implements CitationInterface {
       'publisher-place' => $this->getPublisherPlace(),
       'subtitle' => $this->getSubtitle(),
       'type' => $this->getType(),
-      'volume' => $this->getVolume(),
+      'volume' => (int) $this->getVolume(),
     ];
 
     if ($data['type'] == 'article-journal') {
@@ -126,7 +185,46 @@ class Citation extends ContentEntityBase implements CitationInterface {
     $style = file_get_contents($local_csl);
     $citeProc = new CiteProc($style);
     return $citeProc->render($data);
+  }
 
+  /**
+   * Get the label of the entity wrapped in a link tag to the parent or url.
+   *
+   * @return string
+   *   Label or linked label string.
+   *
+   * @throws \Drupal\Core\Entity\EntityMalformedException
+   */
+  protected function getLinkedLabel(): string {
+    $parent_entity = $this->getParentEntity();
+    if ($parent_entity) {
+      $link_url = $this->getParentEntity()
+        ->toUrl();
+      $parent_link = Link::fromTextAndUrl($this->label(), $link_url)
+        ->toString();
+    }
+
+    // Alot of try catches to account of the different ways a user can enter a
+    // url string.
+    if ($url = $this->getUrl()) {
+      try {
+        $url = Url::fromUri($url);
+      } catch (\Exception $e) {
+        try {
+          $url = Url::fromUserInput($url);
+        } catch (\Exception $e) {
+          // Use the link to the parent entity or fallback to the label without
+          // a link.
+          return $parent_link ?? $this->label();
+        }
+      }
+      return Link::fromTextAndUrl($this->label(), $url)
+        ->toString();
+    }
+
+    // Use the link to the parent entity or fallback to the label without
+    // a link.
+    return $parent_link ?? $this->label();
   }
 
   /**
@@ -177,7 +275,10 @@ class Citation extends ContentEntityBase implements CitationInterface {
    *   Citation type.
    */
   protected function getType(): string {
-    return str_replace('_', '-', str_replace('su_', '', $this->bundle()));
+    return $this->entityTypeManager()
+      ->getStorage('citation_type')
+      ->load($this->bundle())
+      ->type();
   }
 
   /**
