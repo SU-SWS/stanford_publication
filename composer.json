@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^1.2",
+        "drupal/field_formatter_class": "^1.0",
         "drupal/field_group": "^3.0",
         "drupal/inline_entity_form": "^1.0",
         "drupal/name": "^1.0",
