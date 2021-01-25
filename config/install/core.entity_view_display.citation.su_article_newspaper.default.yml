@@ -10,7 +10,7 @@ dependencies:
     - field.field.citation.su_article_newspaper.su_year
     - stanford_publication.citation_type.su_article_newspaper
   module:
-    - ds
+
     - field_formatter_class
     - link
     - name
@@ -34,8 +34,6 @@ content:
     third_party_settings:
       field_formatter_class:
         class: su-margin-bottom-2
-      ds:
-        ds_limit: ''
     type: name_default
     region: content
   su_day:

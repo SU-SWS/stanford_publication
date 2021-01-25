@@ -2,22 +2,24 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.citation.su_thesis.su_author
-    - field.field.citation.su_thesis.su_day
-    - field.field.citation.su_thesis.su_doi
-    - field.field.citation.su_thesis.su_genre
-    - field.field.citation.su_thesis.su_month
-    - field.field.citation.su_thesis.su_publisher
-    - field.field.citation.su_thesis.su_url
-    - field.field.citation.su_thesis.su_year
-    - stanford_publication.citation_type.su_thesis
+    - field.field.citation.su_article_journal.su_author
+    - field.field.citation.su_article_journal.su_day
+    - field.field.citation.su_article_journal.su_doi
+    - field.field.citation.su_article_journal.su_issue
+    - field.field.citation.su_article_journal.su_month
+    - field.field.citation.su_article_journal.su_page
+    - field.field.citation.su_article_journal.su_publisher
+    - field.field.citation.su_article_journal.su_url
+    - field.field.citation.su_article_journal.su_volume
+    - field.field.citation.su_article_journal.su_year
+    - stanford_publication.citation_type.su_article_journal
   module:
     - field_formatter_class
     - link
     - name
-id: citation.su_thesis.default
+id: citation.su_article_journal.default
 targetEntityType: citation
-bundle: su_thesis
+bundle: su_article_journal
 mode: default
 content:
   su_author:
@@ -32,65 +34,62 @@ content:
       preferred_field_reference_separator: ', '
       alternative_field_reference: ''
       alternative_field_reference_separator: ', '
-    third_party_settings:
-      field_formatter_class:
-        class: su-margin-bottom-2
+    third_party_settings: {}
     type: name_default
     region: content
   su_day:
+    weight: 3
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {}
+    type: number_integer
+    region: content
+  su_doi:
+    weight: 8
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+    type: string
+    region: content
+  su_issue:
+    weight: 6
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {}
+    type: number_integer
+    region: content
+  su_month:
     weight: 2
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
-    third_party_settings:
-      field_formatter_class:
-        class: su-margin-bottom-2
+    third_party_settings: {}
     type: number_integer
     region: content
-  su_doi:
-    weight: 6
+  su_page:
+    weight: 7
     label: above
     settings:
       link_to_entity: false
-    third_party_settings:
-      field_formatter_class:
-        class: su-margin-bottom-2
+    third_party_settings: {}
     type: string
-    region: content
-  su_genre:
-    weight: 4
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings:
-      field_formatter_class:
-        class: su-margin-bottom-2
-    type: string
-    region: content
-  su_month:
-    weight: 1
-    label: above
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
-    third_party_settings:
-      field_formatter_class:
-        class: su-margin-bottom-2
-    type: number_integer
     region: content
   su_publisher:
-    weight: 5
+    type: string
+    weight: 4
+    region: content
     label: above
     settings:
       link_to_entity: false
-    third_party_settings:
-      field_formatter_class:
-        class: su-margin-bottom-2
-    type: string
-    region: content
+    third_party_settings: {}
   su_url:
-    weight: 7
+    weight: 9
     label: above
     settings:
       trim_length: 80
@@ -101,15 +100,21 @@ content:
     third_party_settings: {  }
     type: link
     region: content
+  su_volume:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {}
+    type: string
+    region: content
   su_year:
-    weight: 3
+    weight: 1
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
-    third_party_settings:
-      field_formatter_class:
-        class: su-margin-bottom-2
+    third_party_settings: {}
     type: number_integer
     region: content
 hidden:

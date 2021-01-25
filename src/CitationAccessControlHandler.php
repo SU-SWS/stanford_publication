@@ -40,7 +40,10 @@ class CitationAccessControlHandler extends EntityAccessControlHandler {
    * {@inheritdoc}
    */
   protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
-    return AccessResult::allowedIfHasPermission($account, 'add citation entities');
+    $admin_permission = $this->entityType->getAdminPermission();
+    $permissions = [$admin_permission, 'add citation entities'];
+    // If the user has admin permission or permission to add new entities.
+    return AccessResult::allowedIfHasPermissions($account, $permissions, 'OR');
   }
 
 }

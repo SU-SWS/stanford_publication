@@ -25,7 +25,7 @@ class CitationViewBuilder extends EntityViewBuilder {
       foreach (Element::children($build) as $child) {
         unset($build[$child]);
       }
-      $build['citation']['#markup'] = htmlspecialchars_decode($build['#citation']->getBibliography($style));
+      $build['citation']['#markup'] = $build['#citation']->getBibliography($style);
       return $build;
     }
 
@@ -44,7 +44,7 @@ class CitationViewBuilder extends EntityViewBuilder {
    */
   protected function buildDateDisplay(array $build): array {
     if (!isset($build['su_year'])) {
-      unset($build['month'], $build['day']);
+      unset($build['su_month'], $build['su_day']);
       return $build;
     }
 
@@ -63,6 +63,7 @@ class CitationViewBuilder extends EntityViewBuilder {
 
       $build['su_year'][0]['#markup'] = "$month, " . $build['su_year'][0]['#markup'];
     }
+    unset($build['su_month'], $build['su_day']);
     return $build;
   }
 
