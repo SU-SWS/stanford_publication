@@ -26,10 +26,6 @@ class CitationViewBuilder extends EntityViewBuilder {
         unset($build[$child]);
       }
       $build['citation']['#markup'] = htmlspecialchars_decode($build['#citation']->getBibliography($style));
-      if($build['#citation']->id()== 5){
-        dpm($build['#citation']->getBibliography($style));
-        dpm($build['citation']['#markup']);
-      }
       return $build;
     }
 

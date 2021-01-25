@@ -190,6 +190,14 @@ class Citation extends ContentEntityBase implements CitationInterface {
     return $citeProc->render($data);
   }
 
+  /**
+   * If the citation can be linked to a url, get the first part of the <a> tag.
+   *
+   * @return string|null
+   *   First half of the <a> tag.
+   *
+   * @throws \Drupal\Core\Entity\EntityMalformedException
+   */
   protected function getLinkBeginning(): ?string {
     if ($link = $this->getLink()) {
       preg_match('/<.*?>/', (string) $link->toString(), $matches);
