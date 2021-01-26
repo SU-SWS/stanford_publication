@@ -22,6 +22,9 @@ class CitationViewBuilder extends EntityViewBuilder {
     $constant = CitationInterface::class . '::' . strtoupper($build['#view_mode']);
 
     if (defined($constant) && $style = constant($constant)) {
+      // Remove any field that is configured to display on the build so that
+      // we can force the markup to be structured exactly how we need it based
+      // on the citation styles.
       foreach (Element::children($build) as $child) {
         unset($build[$child]);
       }
@@ -43,6 +46,8 @@ class CitationViewBuilder extends EntityViewBuilder {
    *   Modified render array
    */
   protected function buildDateDisplay(array $build): array {
+    // Publications need a year if they have a month and/or day, so if no year
+    // is available, force the month and day to be removed.
     if (!isset($build['su_year'])) {
       unset($build['su_month'], $build['su_day']);
       return $build;
