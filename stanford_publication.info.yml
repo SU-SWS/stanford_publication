@@ -5,6 +5,7 @@ core_version_requirement: ^8.8 || ^9
 package: Stanford
 version: 8.x-1.0-dev
 dependencies:
+  - ctools:ctools
   - drupal:layout_builder
   - element_class_formatter:element_class_formatter
   - field_formatter_class:field_formatter_class
@@ -13,6 +14,8 @@ dependencies:
   - jumpstart_ui:jumpstart_ui
   - name:name
   - node_revision_delete:node_revision_delete
+  - pathauto:pathauto
   - rabbit_hole:rabbit_hole
   - react_paragraphs:react_paragraphs
+  - ui_patterns:ui_patterns_views
   - views_taxonomy_term_name_depth:views_taxonomy_term_name_depth

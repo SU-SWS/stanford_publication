@@ -5,6 +5,8 @@
  * stanford_publication.module
  */
 
+use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
 use Drupal\views\ViewExecutable;
 use Symfony\Component\Finder\Finder;
@@ -96,9 +98,11 @@ function _stanford_publication_node_post_save(NodeInterface $entity) {
   if (!$citation_entity) {
     return;
   }
+  if (empty($citation_entity->label())) {
+    $citation_entity->setLabel($entity->label());
+  }
   // Set the entity label to the node label & save the parent entity info.
-  $citation_entity->setLabel($entity->label())
-    ->setParentEntity($entity, 'su_publication_citation')
+  $citation_entity->setParentEntity($entity, 'su_publication_citation')
     ->save();
 }
 
@@ -106,12 +110,10 @@ function _stanford_publication_node_post_save(NodeInterface $entity) {
  * Implements hook_ENTITY_TYPE_delete().
  */
 function stanford_publication_node_delete(NodeInterface $entity) {
-  $citation_entity = _stanford_pubs_get_citation_entity($entity);
-  if (!$citation_entity) {
-    return;
+  if ($citation_entity = _stanford_pubs_get_citation_entity($entity)) {
+    // Clean up nested Citation entity after node deletion.
+    $citation_entity->delete();
   }
-  // Clean up nested ECK entities after node deletion.
-  $citation_entity->delete();
 }
 
 /**
@@ -125,12 +127,32 @@ function stanford_publication_preprocess_field__su_publication_topics(&$variable
 }
 
 /**
- * Load the ECK entity that has the citation data.
+ * Implements hook_field_widget_form_alter().
+ */
+function stanford_publication_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
+  if (!isset($context['items']) || !($context['items'] instanceof FieldItemListInterface)) {
+    return;
+  }
+
+  // Add the citation bundle name to the top for quick reference.
+  if ($context['items']->getName() == 'su_publication_citation' && !empty($element['form']['inline_entity_form'])) {
+    $entity_type = $element['form']['inline_entity_form']['#entity_type'];
+    $bundle = $element['form']['inline_entity_form']['#bundle'];
+    /** @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface $bundle_service */
+    $bundle_service = \Drupal::service('entity_type.bundle.info');
+    $bundle_name = $bundle_service->getBundleInfo($entity_type)[$bundle]['label'];
+    $element['form']['inline_entity_form']['#prefix'] = "$bundle_name - {$element['#title']}";
+  }
+
+}
+
+/**
+ * Load the Citation entity from the node that has the citation data.
  *
  * @param \Drupal\node\NodeInterface $node
  *   Node entity.
  *
- * @return \Drupal\stanford_publication\Entity\CitationInterface|null
+ * @return \Drupal\stanford_publication\Entity\CitationInterface|null|void
  *   Loaded entity from the node field value.
  *
  * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException

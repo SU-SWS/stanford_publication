@@ -204,7 +204,7 @@ class Citation extends ContentEntityBase implements CitationInterface {
   protected function getLinkBeginning() {
     if ($link = $this->getLink()) {
       // This will pull out the `<a href....>` part of the link.
-      preg_match('/<.*?>/', (string) $link->toString(), $matches);
+      preg_match('/<a.*?>/', (string) $link->toString(), $matches);
       return $matches[0] ?? NULL;
     }
   }
