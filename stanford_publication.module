@@ -106,12 +106,10 @@ function _stanford_publication_node_post_save(NodeInterface $entity) {
  * Implements hook_ENTITY_TYPE_delete().
  */
 function stanford_publication_node_delete(NodeInterface $entity) {
-  $citation_entity = _stanford_pubs_get_citation_entity($entity);
-  if (!$citation_entity) {
-    return;
+  if ($citation_entity = _stanford_pubs_get_citation_entity($entity)) {
+    // Clean up nested Citation entity after node deletion.
+    $citation_entity->delete();
   }
-  // Clean up nested ECK entities after node deletion.
-  $citation_entity->delete();
 }
 
 /**
@@ -125,12 +123,12 @@ function stanford_publication_preprocess_field__su_publication_topics(&$variable
 }
 
 /**
- * Load the ECK entity that has the citation data.
+ * Load the Citation entity from the node that has the citation data.
  *
  * @param \Drupal\node\NodeInterface $node
  *   Node entity.
  *
- * @return \Drupal\stanford_publication\Entity\CitationInterface|null
+ * @return \Drupal\stanford_publication\Entity\CitationInterface|null|void
  *   Loaded entity from the node field value.
  *
  * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
