@@ -1,1 +1,51 @@
 @charset "UTF-8";
+
+// Import Decanter Library:
+@import 'decanter/core/src/scss/decanter-no-markup';
+
+.publication {
+  @include responsive-spacing('padding-top', 6);
+}
+
+
+.node-stanford-publication-su-publication-topics {
+
+}
+
+// Header Related Topics
+.su-publication-topics {
+
+}
+
+// Footer Related Topics
+.node-stanford-publication-su-publication-topics {
+  border: 2px solid orangered;
+}
+
+// Right col
+.node-stanford-publication-su-publication-citation {
+  @include big-paragraph;
+
+ .su-author,
+ .su-subtitle,
+ .su-year,
+ .su-edition,
+ .su-publisher-place,
+ .su-publisher,
+ .su-page,
+ .su-doi,
+ .su-url {
+    > div:first-child {
+      @include small-paragraph;
+
+      font-weight: $su-font-bold;
+    }
+  }
+}
+
+// CTA button
+.su-publication-cta {
+  @include modular-spacing('padding', 3 null);
+}
+
+
