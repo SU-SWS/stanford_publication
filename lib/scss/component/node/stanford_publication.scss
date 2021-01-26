@@ -43,6 +43,19 @@
         li {
           display: inline;
 
+          a {
+            color: $su-color-bright-red;
+            font-weight: $su-font-regular;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+              color: $su-color-black;
+              font-weight: $su-font-regular;
+              text-decoration: none;
+            }
+          }
+
           &::after {
             content:', '
           }

@@ -15,25 +15,39 @@
 
   .su-card {
     .su-card__contents {
-      border: 3px solid lime;
 
       span {
+        @include small-paragraph;
+
         text-transform: uppercase;
       }
 
-      h2 {
-        a {
+      a {
+        @include small-paragraph;
+
+        font-weight: $su-font-regular;
+        color: $su-color-bright-red;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
           color: $su-color-black;
+          text-decoration: underline;
+        }
+      }
+
+      h2 {
+        > a {
+          @include type-e;
+
+          color: $su-color-black;
+          font-weight: $su-font-bold;
 
           &:hover,
           &:focus {
             color: $su-color-bright-red;
           }
         }
-
-      }
-
-      a {
 
       }
     }
