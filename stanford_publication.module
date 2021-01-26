@@ -5,6 +5,8 @@
  * stanford_publication.module
  */
 
+use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
 use Drupal\views\ViewExecutable;
 use Symfony\Component\Finder\Finder;
@@ -96,9 +98,11 @@ function _stanford_publication_node_post_save(NodeInterface $entity) {
   if (!$citation_entity) {
     return;
   }
+  if (empty($citation_entity->label())) {
+    $citation_entity->setLabel($entity->label());
+  }
   // Set the entity label to the node label & save the parent entity info.
-  $citation_entity->setLabel($entity->label())
-    ->setParentEntity($entity, 'su_publication_citation')
+  $citation_entity->setParentEntity($entity, 'su_publication_citation')
     ->save();
 }
 
@@ -120,6 +124,26 @@ function stanford_publication_preprocess_field__su_publication_topics(&$variable
   // but it will also display all terms for field displays set as "Label List"
   // provided by the "element_class_formatter" module.
   $variables['items'] = array_slice($variables['items'], 0, 1);
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function stanford_publication_field_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
+  if (!isset($context['items']) || !($context['items'] instanceof FieldItemListInterface)) {
+    return;
+  }
+
+  // Add the citation bundle name to the top for quick reference.
+  if ($context['items']->getName() == 'su_publication_citation' && !empty($element['form']['inline_entity_form'])) {
+    $entity_type = $element['form']['inline_entity_form']['#entity_type'];
+    $bundle = $element['form']['inline_entity_form']['#bundle'];
+    /** @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface $bundle_service */
+    $bundle_service = \Drupal::service('entity_type.bundle.info');
+    $bundle_name = $bundle_service->getBundleInfo($entity_type)[$bundle]['label'];
+    $element['form']['inline_entity_form']['#prefix'] = "$bundle_name - {$element['#title']}";
+  }
+
 }
 
 /**

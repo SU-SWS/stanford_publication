@@ -48,7 +48,7 @@ class CitationViewBuilder extends EntityViewBuilder {
   protected function buildDateDisplay(array $build): array {
     // Publications need a year if they have a month and/or day, so if no year
     // is available, force the month and day to be removed.
-    if (!isset($build['su_year'])) {
+    if (empty($build['su_year'][0]['#markup'])) {
       unset($build['su_month'], $build['su_day']);
       return $build;
     }
