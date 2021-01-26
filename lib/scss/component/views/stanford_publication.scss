@@ -1,5 +1,17 @@
 @charset "UTF-8";
 
+// Import Decanter Library:
+@import 'decanter/core/src/scss/decanter-no-markup';
+
+
+.stanford-publications-related {
+  .block__title {
+    @include type-b;
+
+    text-align: center;
+  }
+}
+
 .view {
   &.apa-list,
   &.chicago-list {
