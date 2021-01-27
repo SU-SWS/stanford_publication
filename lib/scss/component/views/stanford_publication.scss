@@ -16,56 +16,56 @@
       flex: calc(33% - 36px);
       max-width: calc(33% - 36px);
     }
+
     @include grid-media-max('md'){
       flex: calc(100% - 36px);
       max-width: calc(100% - 36px);
     }
   }
 
-  .su-card {
-    .su-card__contents {
 
-      span {
-        @include small-paragraph;
+  .su-card__contents {
 
-        text-transform: uppercase;
+    span {
+      @include small-paragraph;
+
+      text-transform: uppercase;
+    }
+
+    a {
+      @include small-paragraph;
+
+      font-weight: $su-font-regular;
+      color: $su-color-bright-red;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: $su-color-black;
+        text-decoration: underline;
       }
+    }
 
-      a {
-        @include small-paragraph;
 
-        font-weight: $su-font-regular;
-        color: $su-color-bright-red;
-        text-decoration: none;
+    h2 {
+      > a {
+        @include type-e;
+        @include link-icon(caret-right, 20px, right);
+
+        color: $su-color-black;
+        font-weight: $su-font-bold;
 
         &:hover,
-        &:focus {
-          color: $su-color-black;
-          text-decoration: underline;
-        }
-      }
+        &:focus,
+        &:active {
+          color: $su-color-bright-red;
 
-
-      h2 {
-        > a {
-          @include type-e;
-          @include link-icon(caret-right, 20px, right);
-
-          color: $su-color-black;
-          font-weight: $su-font-bold;
-
-          &:hover,
-          &:focus,
-          &:active {
-            color: $su-color-bright-red;
-
-            &::after {
-              background-color: $su-color-bright-red;
-            }
-          }
           &::after {
             background-color: $su-color-bright-red;
           }
+        }
+        &::after {
+          background-color: $su-color-bright-red;
         }
       }
     }
