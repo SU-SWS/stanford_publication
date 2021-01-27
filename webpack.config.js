@@ -70,15 +70,6 @@ var webpackConfig = {
     filename: "[name].js",
     path: path.resolve(__dirname, distJS),
   },
-  // Relative output paths for css assets.
-  resolve: {
-    alias: {
-      'decanter-assets': path.resolve(npmPackage, 'decanter/core/src/img'),
-      'decanter-src': path.resolve(npmPackage, 'decanter/core/src'),
-      '@fortawesome': path.resolve(npmPackage, '@fortawesome'),
-      'fa-fonts': path.resolve(npmPackage, '@fortawesome/fontawesome-free/webfonts')
-    }
-  },
   // Additional module rules.
   module: {
     rules: [
@@ -129,9 +120,8 @@ var webpackConfig = {
             loader: 'sass-loader',
             options: {
               includePaths: [
-                path.resolve(__dirname, npmPackage, "bourbon/core"),
-                path.resolve(__dirname, srcSass),
-                path.resolve(__dirname, npmPackage)
+                npmPackage,
+                srcSass,
               ],
               sourceMap: true,
               lineNumbers: true,
@@ -161,8 +151,8 @@ var webpackConfig = {
             loader: "file-loader",
             options: {
               name: "[name].[ext]",
-              publicPath: "../../assets/img",
-              outputPath: "../../assets/img"
+              publicPath: "../assets/img",
+              outputPath: "../assets/img"
             }
           }
         ]
@@ -210,8 +200,28 @@ var webpackConfig = {
     new FileManagerPlugin({
       onStart: {
         delete: [distDir]
-      }
-    })
+      },
+      // onEnd: {
+      // copy: [
+      // {
+      //   source: npmPackage + "/decanter/core/src/templates/**/*.twig",
+      //   destination: distDir + "/templates/decanter/"
+      // },
+      // {
+      //   source: srcDir + "/assets/**/*",
+      //   destination: distDir + "/assets/"
+      // }
+      // ],
+      // },
+    }),
+    // Add a plugin to watch other files other than that required by webpack.
+    // https://www.npmjs.com/package/filewatcher-webpack-plugin
+    new ExtraWatchWebpackPlugin( {
+      files: [
+        srcDir + '/**/*.twig',
+        srcDir + '/**/*.json'
+      ]
+    }),
   ]
 };
 
