@@ -48,7 +48,6 @@
       h2 {
         > a {
           @include type-e;
-          @include link-icon(arrow-up-right, 10px, topright);
 
           color: $su-color-black;
           font-weight: $su-font-bold;
