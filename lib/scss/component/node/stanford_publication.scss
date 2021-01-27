@@ -73,17 +73,7 @@
   .node-stanford-publication-su-publication-citation {
     @include small-paragraph;
 
-    .su-author,
-    .su-subtitle,
-    .su-year,
-    .su-edition,
-    .su-publisher-place,
-    .su-publisher,
-    .su-page,
-    .su-volume,
-    .su-issue,
-    .su-doi,
-    .su-url {
+    .label-above  {
       > div:first-child {
         // Update the font size at later date.
         // Small Paragraph should be 20 but is 18.
