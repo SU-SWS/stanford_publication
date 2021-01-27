@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
-// Import Decanter Library:
-@import 'decanter/core/src/scss/decanter-no-markup';
-
+@import '../config';
 
 .stanford-publications-related {
   @include responsive-spacing('margin-bottom', 9);
@@ -11,6 +9,17 @@
     @include type-b;
 
     text-align: center;
+  }
+
+  .flex-3-of-12 {
+    @include grid-media-min('lg'){
+      flex: calc(33% - 36px);
+      max-width: calc(33% - 36px);
+    }
+    @include grid-media-max('md'){
+      flex: calc(100% - 36px);
+      max-width: calc(100% - 36px);
+    }
   }
 
   .su-card {
@@ -39,6 +48,7 @@
       h2 {
         > a {
           @include type-e;
+          @include link-icon(arrow-up-right, 10px, topright);
 
           color: $su-color-black;
           font-weight: $su-font-bold;
