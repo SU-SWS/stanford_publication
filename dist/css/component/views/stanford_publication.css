@@ -70,12 +70,12 @@
         background-color: #2e2d29;
         -webkit-transform: translateX(0.2em);
                 transform: translateX(0.2em); } }
-    .stanford-publications-related .su-card .su-card__contents h2 > a:hover, .stanford-publications-related .su-card .su-card__contents h2 > a:focus {
+    .stanford-publications-related .su-card .su-card__contents h2 > a:hover, .stanford-publications-related .su-card .su-card__contents h2 > a:focus, .stanford-publications-related .su-card .su-card__contents h2 > a:active {
       color: #b1040e; }
+      .stanford-publications-related .su-card .su-card__contents h2 > a:hover::after, .stanford-publications-related .su-card .su-card__contents h2 > a:focus::after, .stanford-publications-related .su-card .su-card__contents h2 > a:active::after {
+        background-color: #b1040e; }
     .stanford-publications-related .su-card .su-card__contents h2 > a::after {
       background-color: #b1040e; }
-      .stanford-publications-related .su-card .su-card__contents h2 > a::after:hover, .stanford-publications-related .su-card .su-card__contents h2 > a::after:focus {
-        background-color: #b1040e; }
 
 
 /*# sourceMappingURL=stanford_publication.css.map*/

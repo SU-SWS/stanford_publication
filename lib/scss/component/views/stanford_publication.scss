@@ -55,27 +55,23 @@
           font-weight: $su-font-bold;
 
           &:hover,
-          &:focus {
+          &:focus,
+          &:active {
             color: $su-color-bright-red;
-          }
 
-          &::after {
-            background-color: $su-color-bright-red;
-
-            &:hover,
-            &:focus {
+            &::after {
               background-color: $su-color-bright-red;
             }
           }
-
+          &::after {
+            background-color: $su-color-bright-red;
+          }
         }
-
       }
     }
   }
-
-
 }
+
 
 .view {
   &.apa-list,
