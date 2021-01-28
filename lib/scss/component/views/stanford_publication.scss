@@ -76,6 +76,36 @@
 .view {
   &.apa-list,
   &.chicago-list {
+    @include modular-typography(1);
 
+    a {
+      color: $su-color-bright-red;
+      text-decoration: none;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $su-color-black;
+        text-decoration: underline;
+
+        &::after {
+          background-color: $su-color-bright-red;
+        }
+      }
+
+      &::after {
+        background-color: $su-color-bright-red;
+      }
+    }
+  }
+
+  &.chicago-list {
+
+    // This creates the indent on subsequent lines.
+    .csl-entry {
+      margin-left: .9em;
+      text-indent: -.9em;
+    }
   }
 }
+
