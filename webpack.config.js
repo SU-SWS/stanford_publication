@@ -30,6 +30,8 @@ const srcSass = path.resolve(__dirname, srcDir, "scss");
 const distSass = path.resolve(__dirname, distDir, "css");
 const srcJS = path.resolve(__dirname, srcDir, "js");
 const distJS = path.resolve(__dirname, distDir, "js");
+const srcAssets = path.resolve(__dirname, srcDir, "assets");
+const distAssets = path.resolve(__dirname, distDir, "assets");
 
 // /////////////////////////////////////////////////////////////////////////////
 // Functions ///////////////////////////////////////////////////////////////////
@@ -163,7 +165,7 @@ var webpackConfig = {
             loader: "file-loader",
             options: {
               name: "[name].[ext]",
-              publicPath: "../assets/svg",
+              publicPath: "../../../assets/svg",
               outputPath: "../assets/svg"
             }
           }
