@@ -48,9 +48,28 @@
 
 
     h2 {
+
+      > a:not(.su-link--external) {
+        @include type-e;
+        @include link-icon(caret-right, 1.2rem, right);
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: $su-color-bright-red;
+
+          &::after {
+            background-color: $su-color-bright-red;
+          }
+        }
+
+        &::after {
+          background-color: $su-color-bright-red;
+        }
+      }
+
       > a {
         @include type-e;
-        @include link-icon(caret-right, 20px, right);
 
         color: $su-color-black;
         font-weight: $su-font-bold;
@@ -66,6 +85,8 @@
         }
         &::after {
           background-color: $su-color-bright-red;
+          width: 1.2rem;
+          height: 1.2rem;
         }
       }
     }
