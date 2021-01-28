@@ -74,6 +74,7 @@
 
 
 .view {
+
   &.apa-list,
   &.chicago-list {
     @include modular-typography(1);
@@ -96,6 +97,19 @@
       &::after {
         background-color: $su-color-bright-red;
       }
+    }
+
+    > div:not(:first-of-type) {
+      @include modular-spacing('padding-top', 3);
+
+      border-top: 1px solid $su-color-black-20;
+    }
+
+    > div:last-of-type {
+      @include modular-spacing('padding-bottom', 3);
+
+      border-bottom: 1px solid $su-color-black-20;
+      margin-bottom: 0;
     }
   }
 
