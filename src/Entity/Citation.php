@@ -71,7 +71,7 @@ class Citation extends ContentEntityBase implements CitationInterface {
       ->setLabel(t('Title'))
       ->setDescription(t('The title of the Citation.'))
       ->setSettings([
-        'max_length' => 50,
+        'max_length' => 255,
         'text_processing' => 0,
       ])
       ->setDefaultValue('')
