@@ -230,11 +230,6 @@ class Citation extends ContentEntityBase implements CitationInterface {
       $url = $this->getUrlFromString($url_string) ?? $url;
     }
 
-    // The doi field is a string, so construct the full url from that.
-    if ($doi = $this->getDoi()) {
-      $url = $this->getUrlFromString("https://doi.org/$doi") ?? $url;
-    }
-
     if ($url) {
       return Link::fromTextAndUrl('[replace]', $url);
     }
