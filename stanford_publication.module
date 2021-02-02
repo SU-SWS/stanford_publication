@@ -133,6 +133,15 @@ function stanford_publication_field_widget_form_alter(&$element, FormStateInterf
   if (!isset($context['items']) || !($context['items'] instanceof FieldItemListInterface)) {
     return;
   }
+
+  // Change the help text on the title field of the citation entity form.
+  if (
+    $context['items']->getName() == 'title' &&
+    $context['items']->getEntity()->getEntityTypeId() == 'citation'
+  ) {
+    $element['value']['#description'] = t('The title of the Publication');
+  }
+
   if ($context['items']->getName() == 'su_publication_citation') {
 
     // Tweak the "Add New" button on the inline entity form.
