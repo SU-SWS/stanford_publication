@@ -60,10 +60,10 @@ class CitationTest extends PublicationTestBase {
     $expected = 'Doe, J. (2021). <a href="http://domain.org"><i>Foo Bar</i></a> (5th ed.). Awesome Publishing.';
     $this->assertStringContainsString($expected, $biblio);
 
-    // Links to the doi field.
+    // The DOI field does not get a link. The result should be the same as the
+    // result above.
     $citation->set('su_doi', 'doi/doi')->save();
     $biblio = $citation->getBibliography();
-    $expected = 'Doe, J. (2021). <a href="https://doi.org/doi/doi"><i>Foo Bar</i></a> (5th ed.). Awesome Publishing. https://doi.org/doi/doi';
     $this->assertStringContainsString($expected, $biblio);
   }
 
@@ -101,10 +101,11 @@ class CitationTest extends PublicationTestBase {
     $expected = '<a href="http://domain.org"><i>Foo Bar</i></a>. 5th ed. California: Awesome Publishing, 2021. http://domain.org.';
     $this->assertStringContainsString($expected, $biblio);
 
-    // Links to the doi field.
+    // The DOI field does not get a link. The link should be the same as the
+    // result above.
     $citation->set('su_doi', 'doi/doi')->save();
     $biblio = $citation->getBibliography(CitationInterface::CHICAGO);
-    $expected = '<a href="https://doi.org/doi/doi"><i>Foo Bar</i></a>. 5th ed. California: Awesome Publishing, 2021. https://doi.org/doi/doi.';
+    $expected = '<a href="http://domain.org"><i>Foo Bar</i></a>. 5th ed. California: Awesome Publishing, 2021. https://doi.org/doi/doi.';
     $this->assertStringContainsString($expected, $biblio);
   }
 
@@ -145,10 +146,11 @@ class CitationTest extends PublicationTestBase {
     $expected = 'Doe, J. (2021). <a href="http://domain.org">Foo Bar</a>. <i>Awesome Publishing</i>, <i>3</i>(5), 10-20. http://domain.org';
     $this->assertStringContainsString($expected, $biblio);
 
-    // Links to the doi field.
+    // The DOI field does not get a link. The link should be the same as the
+    // result above.
     $citation->set('su_doi', 'doi/doi')->save();
     $biblio = $citation->getBibliography();
-    $expected = 'Doe, J. (2021). <a href="https://doi.org/doi/doi">Foo Bar</a>. <i>Awesome Publishing</i>, <i>3</i>(5), 10-20. https://doi.org/doi/doi';
+    $expected = 'Doe, J. (2021). <a href="http://domain.org">Foo Bar</a>. <i>Awesome Publishing</i>, <i>3</i>(5), 10-20. https://doi.org/doi/doi';
     $this->assertStringContainsString($expected, $biblio);
   }
 
