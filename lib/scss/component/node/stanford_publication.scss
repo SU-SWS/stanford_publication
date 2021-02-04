@@ -70,6 +70,14 @@
   }
 
   // Right col
+  .main-region {
+    > div {
+      &:last-of-type {
+        @include modular-spacing('margin-bottom', 7);
+      }
+    }
+  }
+
   .node-stanford-publication-su-publication-citation {
     @include small-paragraph;
 
