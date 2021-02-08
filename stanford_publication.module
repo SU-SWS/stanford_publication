@@ -134,16 +134,33 @@ function stanford_publication_field_widget_form_alter(&$element, FormStateInterf
     return;
   }
 
-  // Add the citation bundle name to the top for quick reference.
-  if ($context['items']->getName() == 'su_publication_citation' && !empty($element['form']['inline_entity_form'])) {
-    $entity_type = $element['form']['inline_entity_form']['#entity_type'];
-    $bundle = $element['form']['inline_entity_form']['#bundle'];
-    /** @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface $bundle_service */
-    $bundle_service = \Drupal::service('entity_type.bundle.info');
-    $bundle_name = $bundle_service->getBundleInfo($entity_type)[$bundle]['label'];
-    $element['form']['inline_entity_form']['#prefix'] = "$bundle_name - {$element['#title']}";
+  // Change the help text on the title field of the citation entity form.
+  if (
+    $context['items']->getName() == 'title' &&
+    $context['items']->getEntity()->getEntityTypeId() == 'citation'
+  ) {
+    $element['value']['#description'] = t('The title of the Publication');
   }
 
+  if ($context['items']->getName() == 'su_publication_citation') {
+
+    // Tweak the "Add New" button on the inline entity form.
+    if (!empty($element['actions']['ief_add'])) {
+      /** @var \Drupal\Core\StringTranslation\TranslatableMarkup $button_value */
+      $button_value = $element['actions']['ief_add']['#value'];
+      $element['actions']['ief_add']['#value'] = t('Add @type_singular', $button_value->getArguments(), $button_value->getOptions());
+    }
+
+    // Add the citation bundle name to the top for quick reference.
+    if (!empty($element['form']['inline_entity_form'])) {
+      $entity_type = $element['form']['inline_entity_form']['#entity_type'];
+      $bundle = $element['form']['inline_entity_form']['#bundle'];
+      /** @var \Drupal\Core\Entity\EntityTypeBundleInfoInterface $bundle_service */
+      $bundle_service = \Drupal::service('entity_type.bundle.info');
+      $bundle_name = $bundle_service->getBundleInfo($entity_type)[$bundle]['label'];
+      $element['form']['inline_entity_form']['#prefix'] = "$bundle_name - {$element['#title']}";
+    }
+  }
 }
 
 /**

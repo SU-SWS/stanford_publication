@@ -71,7 +71,7 @@ class Citation extends ContentEntityBase implements CitationInterface {
       ->setLabel(t('Title'))
       ->setDescription(t('The title of the Citation.'))
       ->setSettings([
-        'max_length' => 50,
+        'max_length' => 255,
         'text_processing' => 0,
       ])
       ->setDefaultValue('')
@@ -228,11 +228,6 @@ class Citation extends ContentEntityBase implements CitationInterface {
     // The user entered url.
     if ($url_string = $this->getUrl()) {
       $url = $this->getUrlFromString($url_string) ?? $url;
-    }
-
-    // The doi field is a string, so construct the full url from that.
-    if ($doi = $this->getDoi()) {
-      $url = $this->getUrlFromString("https://doi.org/$doi") ?? $url;
     }
 
     if ($url) {
