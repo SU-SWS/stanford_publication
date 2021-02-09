@@ -1,9 +1,9 @@
-name: 'Stanford Publications'
+name: "Stanford Publications"
 type: module
-description: 'Stanford Publications Module.'
+description: "Stanford Publications Module."
 core_version_requirement: ^8.8 || ^9
 package: Stanford
-version: 8.x-1.0-dev
+version: 8.x-1.1-dev
 dependencies:
   - ctools:ctools
   - drupal:layout_builder
