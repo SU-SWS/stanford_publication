@@ -1,0 +1,147 @@
+@charset "UTF-8";
+
+@import '../config';
+
+.stanford-publications-related {
+  @include responsive-spacing('margin-bottom', 9);
+
+  .block__title {
+    @include type-b;
+
+    text-align: center;
+  }
+
+  .flex-3-of-12 {
+    @include grid-media-min('lg') {
+      flex: calc(33% - 36px);
+      max-width: calc(33% - 36px);
+    }
+
+    @include grid-media-max('md') {
+      flex: calc(100% - 36px);
+      max-width: calc(100% - 36px);
+    }
+  }
+
+
+  .su-card__contents {
+
+    span {
+      @include small-paragraph;
+
+      text-transform: uppercase;
+    }
+
+    a {
+      @include small-paragraph;
+
+      font-weight: $su-font-regular;
+      color: $su-color-bright-red;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: $su-color-black;
+        text-decoration: underline;
+      }
+    }
+
+
+    h2 {
+
+      > a:not(.su-link--external) {
+        @include type-e;
+        @include link-icon(caret-right, 1.2rem, right);
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: $su-color-bright-red;
+
+          &::after {
+            background-color: $su-color-bright-red;
+          }
+        }
+
+        &::after {
+          background-color: $su-color-bright-red;
+        }
+      }
+
+      > a {
+        @include type-e;
+
+        color: $su-color-black;
+        font-weight: $su-font-bold;
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: $su-color-bright-red;
+
+          &::after {
+            background-color: $su-color-bright-red;
+          }
+        }
+
+        &::after {
+          background-color: $su-color-bright-red;
+          width: 1.2rem;
+          height: 1.2rem;
+        }
+      }
+    }
+  }
+}
+
+
+.view {
+
+  &.apa-list,
+  &.chicago-list {
+    @include modular-typography(1);
+
+    a {
+      color: $su-color-bright-red;
+      text-decoration: none;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $su-color-black;
+        text-decoration: underline;
+
+        &::after {
+          background-color: $su-color-bright-red;
+        }
+      }
+
+      &::after {
+        background-color: $su-color-bright-red;
+      }
+    }
+
+    > div:not(:first-of-type) {
+      @include modular-spacing('padding-top', 3);
+
+      border-top: 1px solid $su-color-black-20;
+    }
+
+    > div:last-of-type {
+      @include modular-spacing('padding-bottom', 3);
+
+      border-bottom: 1px solid $su-color-black-20;
+      margin-bottom: 0;
+    }
+  }
+
+  &.chicago-list {
+
+    // This creates the indent on subsequent lines.
+    .csl-entry {
+      margin-left: 0.9em;
+      text-indent: -0.9em;
+    }
+  }
+}
+

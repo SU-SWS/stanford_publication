@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+@import '../config';
+
+.publication {
+  @include responsive-spacing('padding-top', 6);
+
+
+  // Header Related Topics
+  .jumpstart-ui--one-column {
+    .su-publication-topics {
+      @include responsive-spacing('margin-bottom', 0);
+    }
+  }
+
+  h1 {
+    @include responsive-spacing('margin-bottom', 5);
+  }
+
+  // Footer Related Topics
+  .jumpstart-ui--one-column {
+
+    .node-stanford-publication-su-publication-topics {
+
+      h2 {
+        @include small-paragraph;
+        @include responsive-spacing('padding-top', 0);
+
+        border-top: 1px solid $su-color-black-10;
+        font-weight: $su-font-bold;
+        margin-bottom: 6px;
+      }
+
+      .su-publication-topics {
+
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        li {
+          display: inline;
+
+          a {
+            color: $su-color-bright-red;
+            font-weight: $su-font-regular;
+            text-decoration: none;
+
+            &:hover,
+            &:focus {
+              color: $su-color-black;
+              font-weight: $su-font-regular;
+              text-decoration: none;
+            }
+          }
+
+          &::after {
+            content: ', ';
+          }
+
+          &:last-of-type {
+            &::after {
+              content: '';
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Right col
+  .node-stanford-publication-su-publication-citation {
+    @include small-paragraph;
+
+    .label-above  {
+      > div:first-child {
+        // Update the font size at later date.
+        // Small Paragraph should be 20 but is 18.
+        font-weight: $su-font-bold;
+      }
+    }
+  }
+
+  // CTA button
+  .su-publication-cta {
+    @include modular-spacing('padding', 3 null);
+  }
+}
+
+
