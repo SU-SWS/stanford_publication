@@ -51,8 +51,8 @@
         "drupal/ui_patterns": "^1.2",
         "drupal/views_taxonomy_term_name_depth": "^7.0",
         "seboettg/citeproc-php": "dev-master#c1df840d897b938431130445927d48a4b6cf464b",
-        "su-sws/jumpstart_ui": "dev-8.x-1.x",
-        "su-sws/react_paragraphs": "dev-8.x-2.x"
+        "su-sws/jumpstart_ui": "^8.1.0",
+        "su-sws/react_paragraphs": "^8.2.0"
     },
     "autoload": {
         "psr-4": {
