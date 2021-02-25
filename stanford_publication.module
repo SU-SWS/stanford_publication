@@ -62,6 +62,9 @@ function stanford_publication_preprocess_node(&$variables) {
   }
 }
 
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function stanford_publication_preprocess_menu__stanford_publication_topics(&$variables){
   $variables['#attached']['library'][] = 'stanford_publication/menu.taxonomy_menu';
 }
