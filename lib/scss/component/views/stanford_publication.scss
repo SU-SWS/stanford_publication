@@ -97,9 +97,24 @@
 
 .view {
 
+  .su-padding-top-3 {
+    border-bottom: 1px solid $su-color-cool-grey-25;
+
+    &:first-of-type {
+      padding-top: 0;
+    }
+
+    &:last-of-type {
+      border: none;
+      padding-bottom: 0;
+    }
+  }
+
+
+
   &.apa-list,
   &.chicago-list {
-    @include modular-typography(1);
+    @include big-paragraph;
 
     a {
       color: $su-color-bright-red;
@@ -135,9 +150,27 @@
     }
   }
 
+  // Default should be Chicago
+  .csl-entry {
+    margin-left: 0.9em;
+    text-indent: -0.9em;
+  }
+
+  // Apa settings
+  &.apa-list {
+
+    // This creates the indent on subsequent lines.
+    // The default Chicago list.
+    .csl-entry {
+      margin-left: inherit;
+      text-indent: unset;
+    }
+  }
+
   &.chicago-list {
 
     // This creates the indent on subsequent lines.
+    // The default Chicago list.
     .csl-entry {
       margin-left: 0.9em;
       text-indent: -0.9em;
