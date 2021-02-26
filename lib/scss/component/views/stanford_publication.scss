@@ -96,17 +96,18 @@
 
 
 .view {
+  &.stanford-publications {
+    .su-padding-top-3 {
+      border-bottom: 1px solid $su-color-cool-grey-25;
 
-  .su-padding-top-3 {
-    border-bottom: 1px solid $su-color-cool-grey-25;
+      &:first-of-type {
+        padding-top: 0;
+      }
 
-    &:first-of-type {
-      padding-top: 0;
-    }
-
-    &:last-of-type {
-      border: none;
-      padding-bottom: 0;
+      &:last-of-type {
+        border: none;
+        padding-bottom: 0;
+      }
     }
   }
 
