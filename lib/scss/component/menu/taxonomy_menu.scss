@@ -3,6 +3,7 @@
 
 .menu--stanford-publication-topics {
   @include modular-spacing('padding', 3);
+  @include modular-spacing('margin-bottom', 4);
 
   // Sidebar topics menu styles.
   border: 1px solid $su-color-cool-grey-25;
@@ -20,12 +21,14 @@
     text-decoration: none;
     width: 100%;
 
-    @include grid-media('xl') {
-      @include modular-spacing('margin-bottom', 2);
-    }
-
     &::after {
       background-color: $su-color-black;
+      float: right;
+      margin-top: 3px;
+    }
+
+    @include grid-media('xl') {
+      @include modular-spacing('margin-bottom', 2);
     }
 
   }
@@ -48,6 +51,10 @@
           text-decoration: underline;
         }
       }
+
+      &:last-of-type {
+        @include modular-spacing('padding-bottom', 0);
+      }
     }
 
     .menu-item--active-trail {
@@ -67,6 +74,5 @@
       }
     }
   }
-
 
 }

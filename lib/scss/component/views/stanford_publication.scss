@@ -95,8 +95,8 @@
 }
 
 
-.view {
-  &.stanford-publications {
+.su-publications-node {
+  .stanford-publications {
     .su-padding-top-3 {
       border-bottom: 1px solid $su-color-cool-grey-25;
 
@@ -168,13 +168,45 @@
     }
   }
 
+  // This creates the indent on subsequent lines.
+  // The default Chicago list.
   &.chicago-list {
 
-    // This creates the indent on subsequent lines.
-    // The default Chicago list.
     .csl-entry {
       margin-left: 0.9em;
       text-indent: -0.9em;
+    }
+  }
+
+  // More link
+  // Load more set up
+  .views-infinite-scroll-content-wrapper {
+    &,
+    + .js-pager__items {
+      @include modular-spacing('margin-bottom', 8);
+    }
+  }
+
+  // Load more button.
+  .js-pager__items {
+    text-align: center;
+
+    .pager__item {
+      display: inline-block;
+
+      a {
+        @include button-primary;
+      }
+    }
+  }
+}
+
+// Views in the paragraphs
+.su-padding-top-3 {
+  &.su-padding-bottom-3 {
+
+    &.views-row {
+      margin-bottom: 0;
     }
   }
 }
