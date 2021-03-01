@@ -94,19 +94,21 @@
   }
 }
 
+// Extra spacing needed.
+.centered-container {
+  &.su-publications-node--filtered {
+    @include responsive-spacing('margin-bottom', 6);
+  }
+}
 
-.su-publications-node {
+.su-publications-node,
+.su-publications-node--filtered {
   .stanford-publications {
     .su-padding-top-3 {
       border-bottom: 1px solid $su-color-cool-grey-25;
 
       &:first-of-type {
         padding-top: 0;
-      }
-
-      &:last-of-type {
-        border: 0;
-        padding-bottom: 0;
       }
     }
   }
