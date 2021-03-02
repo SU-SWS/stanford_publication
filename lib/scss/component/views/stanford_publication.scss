@@ -145,7 +145,6 @@
     > div:last-of-type {
       @include modular-spacing('padding-bottom', 3);
 
-      border-bottom: 1px solid $su-color-black-20;
       margin-bottom: 0;
     }
   }
