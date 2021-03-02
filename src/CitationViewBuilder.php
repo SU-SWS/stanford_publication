@@ -62,9 +62,12 @@ class CitationViewBuilder extends EntityViewBuilder {
       $month = (int) trim(strip_tags(render($build['su_month'])));
       $month = date('F', strtotime("1-$month-2000"));
 
-      if (!empty(render($build['su_day']))) {
+      if (isset($build['su_day'])) {
         $build['su_day']['#label_display'] = 'hidden';
-        $month .= ' ' . (int) trim(strip_tags(render($build['su_day'])));
+        $day = (int) trim(strip_tags(render($build['su_day'])));
+        if ($day) {
+          $month .= ' ' . $day;
+        }
       }
 
       $build['su_year'][0]['#markup'] = "$month, " . $build['su_year'][0]['#markup'];
