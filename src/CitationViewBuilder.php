@@ -53,6 +53,7 @@ class CitationViewBuilder extends EntityViewBuilder {
       return $build;
     }
 
+
     // Copy the year over so that it has its own unique keys.
     $build['su_year']['#title'] = $this->t('Publication Date');
 
@@ -63,12 +64,16 @@ class CitationViewBuilder extends EntityViewBuilder {
 
       if (isset($build['su_day'])) {
         $build['su_day']['#label_display'] = 'hidden';
-        $month .= ' ' . (int) trim(strip_tags(render($build['su_day'])));
+        $day = (int) trim(strip_tags(render($build['su_day'])));
+        if ($day) {
+          $month .= ' ' . $day;
+        }
       }
 
       $build['su_year'][0]['#markup'] = "$month, " . $build['su_year'][0]['#markup'];
     }
     unset($build['su_month'], $build['su_day']);
+
     return $build;
   }
 

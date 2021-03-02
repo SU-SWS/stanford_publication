@@ -48,6 +48,7 @@
         "drupal/node_revision_delete": "^1.0",
         "drupal/pathauto": "^1.8",
         "drupal/rabbit_hole": "^1.0",
+        "drupal/taxonomy_menu": "dev-3.x",
         "drupal/ui_patterns": "^1.2",
         "drupal/views_infinite_scroll": "^1.7",
         "drupal/views_taxonomy_term_name_depth": "^7.0",

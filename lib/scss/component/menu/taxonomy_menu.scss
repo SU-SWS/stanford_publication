@@ -1,0 +1,78 @@
+@charset 'UTF-8';
+@import '../config';
+
+.menu--stanford-publication-topics {
+  @include modular-spacing('padding', 3);
+  @include modular-spacing('margin-bottom', 4);
+
+  // Sidebar topics menu styles.
+  border: 1px solid $su-color-cool-grey-25;
+
+  h2 {
+    @include small-paragraph;
+    @include padding(0);
+    @include link-icon(caret-down, 14px, down);
+
+
+    background-color: transparent;
+    color: $su-color-black;
+    font-weight: $su-font-bold;
+    text-align: left;
+    text-decoration: none;
+    width: 100%;
+
+    &::after {
+      background-color: $su-color-black;
+      float: right;
+      margin-top: 3px;
+    }
+
+    @include grid-media('xl') {
+      @include modular-spacing('margin-bottom', 2);
+    }
+
+  }
+
+  .menu {
+    @include margin(0);
+    @include padding(0);
+
+    .menu-item {
+      @include modular-spacing('padding-bottom', 2);
+      @include modular-spacing('padding-left', 0);
+      @include small-paragraph;
+
+      a {
+        color: $su-color-black;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+
+      &:last-of-type {
+        @include modular-spacing('padding-bottom', 0);
+      }
+    }
+
+    .menu-item--active-trail {
+      &::before {
+        @include small-paragraph;
+
+        color: $su-color-bright-blue;
+        content: "\f00c"; ///* Need to switch to the SU icons.
+        font-family: 'Font Awesome 5 Free';
+        font-weight: $su-font-semi-bold; // Need this for the new version of FA. Will go away later.
+        left: 35px;
+        position: absolute;
+      }
+
+      .is-active {
+        color: $su-color-bright-blue;
+      }
+    }
+  }
+
+}
