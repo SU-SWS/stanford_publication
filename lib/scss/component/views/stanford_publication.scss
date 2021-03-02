@@ -139,7 +139,6 @@
     > div:not(:first-of-type) {
       @include modular-spacing('padding-top', 3);
 
-      border-top: 1px solid $su-color-black-20;
     }
 
     > div:last-of-type {
