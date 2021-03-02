@@ -23,71 +23,70 @@
     }
   }
 
+  .su-card {
+    .su-card__contents {
 
-  .su-card__contents {
-
-    span {
-      @include small-paragraph;
-
-      text-transform: uppercase;
-    }
-
-    a {
-      @include small-paragraph;
-
-      font-weight: $su-font-regular;
-      color: $su-color-bright-red;
-      text-decoration: none;
-
-      &:hover,
-      &:focus {
-        color: $su-color-black;
-        text-decoration: underline;
+      > span {
+        @include small-paragraph;
+        font-weight: 600;
       }
-    }
 
+      a {
+        @include small-paragraph;
 
-    h2 {
-
-      > a:not(.su-link--external) {
-        @include type-e;
-        @include link-icon(caret-right, 1.2rem, right);
+        font-weight: $su-font-regular;
+        color: $su-color-bright-red;
+        text-decoration: none;
 
         &:hover,
-        &:focus,
-        &:active {
-          color: $su-color-bright-red;
+        &:focus {
+          color: $su-color-black;
+          text-decoration: underline;
+        }
+      }
+
+
+      h2 {
+        > a:not(.su-link--external) {
+          @include type-e;
+          @include link-icon(caret-right, 1.2rem, right);
+
+          &:hover,
+          &:focus,
+          &:active {
+            color: $su-color-bright-red;
+
+            &::after {
+              background-color: $su-color-bright-red;
+            }
+          }
 
           &::after {
             background-color: $su-color-bright-red;
           }
         }
 
-        &::after {
-          background-color: $su-color-bright-red;
-        }
-      }
+        > a {
+          @include type-e;
 
-      > a {
-        @include type-e;
+          color: $su-color-black;
+          font-weight: $su-font-bold;
 
-        color: $su-color-black;
-        font-weight: $su-font-bold;
+          &:hover,
+          &:focus,
+          &:active {
+            color: $su-color-bright-red;
 
-        &:hover,
-        &:focus,
-        &:active {
-          color: $su-color-bright-red;
+            &::after {
+              background-color: $su-color-bright-red;
+            }
+          }
 
           &::after {
             background-color: $su-color-bright-red;
+            width: 1.2rem;
+            height: 1.2rem;
           }
-        }
-
-        &::after {
-          background-color: $su-color-bright-red;
-          width: 1.2rem;
-          height: 1.2rem;
         }
       }
     }
@@ -101,22 +100,20 @@
   }
 }
 
-.su-publications-node,
-.su-publications-node--filtered {
-  .stanford-publications {
-    .su-padding-top-3 {
-      border-bottom: 1px solid $su-color-cool-grey-25;
+// Lines and top spacing for all the views.
+.stanford-publications {
 
-      &:first-of-type {
-        padding-top: 0;
-      }
+  .su-padding-top-3 {
+    border-bottom: 1px solid $su-color-cool-grey-25;
+
+    &:first-of-type {
+      padding-top: 0;
     }
   }
+}
 
-
-
-  &.apa-list,
-  &.chicago-list {
+.stanford-publications {
+  &.view {
     @include big-paragraph;
 
     a {
