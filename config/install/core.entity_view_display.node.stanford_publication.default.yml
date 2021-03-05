@@ -146,9 +146,31 @@ third_party_settings:
                 view_mode: view_mode
             additional: {  }
             weight: 1
+        third_party_settings: {  }
+      -
+        layout_id: jumpstart_ui_one_column
+        layout_settings:
+          extra_classes: ''
+          centered: centered-container
+          columns: flex-12-of-12
+          label: ''
+        components:
+          797a272b-885d-4772-a161-853409dca684:
+            uuid: 797a272b-885d-4772-a161-853409dca684
+            region: main
+            configuration:
+              id: 'views_block:stanford_publications-related'
+              label: 'More Publications'
+              provider: views
+              label_display: visible
+              views_label: 'More Publications'
+              items_per_page: none
+              context_mapping: {  }
+            additional: {  }
+            weight: 1
           7bc27225-3b16-491d-b443-c266687f6db8:
             uuid: 7bc27225-3b16-491d-b443-c266687f6db8
-            region: left
+            region: main
             configuration:
               id: 'field_block:node:stanford_publication:su_publication_topics'
               label: 'Related Topics'
@@ -167,28 +189,6 @@ third_party_settings:
               context_mapping:
                 entity: layout_builder.entity
                 view_mode: view_mode
-            additional: {  }
-            weight: 4
-        third_party_settings: {  }
-      -
-        layout_id: jumpstart_ui_one_column
-        layout_settings:
-          extra_classes: ''
-          centered: null
-          columns: flex-12-of-12
-          label: ''
-        components:
-          797a272b-885d-4772-a161-853409dca684:
-            uuid: 797a272b-885d-4772-a161-853409dca684
-            region: main
-            configuration:
-              id: 'views_block:stanford_publications-related'
-              label: 'More Publications'
-              provider: views
-              label_display: visible
-              views_label: 'More Publications'
-              items_per_page: none
-              context_mapping: {  }
             additional: {  }
             weight: 0
         third_party_settings: {  }

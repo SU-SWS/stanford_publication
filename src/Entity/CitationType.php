@@ -13,6 +13,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBundleBase;
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\stanford_publication\CitationTypeListBuilder",
+ *     "access" = "Drupal\stanford_publication\CitationTypeAccessControlHandler",
  *     "form" = {
  *       "add" = "Drupal\stanford_publication\Form\CitationTypeForm",
  *       "edit" = "Drupal\stanford_publication\Form\CitationTypeForm",

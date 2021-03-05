@@ -346,6 +346,7 @@ class Citation extends ContentEntityBase implements CitationInterface {
       if ($month && $day) {
         $date_parts = [$year, $month, $day];
       }
+
       return [
         'date-parts' => [array_filter($date_parts)],
       ];
