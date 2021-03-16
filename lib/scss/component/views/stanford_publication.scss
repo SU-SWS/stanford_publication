@@ -208,3 +208,27 @@
   }
 }
 
+// Related views block on the node page.
+.stanford-publications-related {
+  .stanford-publications {
+    &.view {
+      > div:first-of-type {
+        @include modular-spacing('padding-top', 3);
+
+      }
+    }
+  }
+
+  //Back to all Publications link
+  .more-link {
+    @include modular-spacing('margin', 3 null 9 null);
+
+    margin: 0 auto;
+    text-align: center;
+
+    a {
+      @include button-primary;
+    }
+  }
+}
+
