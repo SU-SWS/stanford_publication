@@ -20,7 +20,6 @@ function stanford_publication_theme() {
   ];
 }
 
-
 /**
  * Implements hook_library_info_build().
  */
