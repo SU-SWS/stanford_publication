@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./lib/js/stanford_publication.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./lib/js/stanford_publication.behavior.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -118,23 +118,7 @@ window.Drupal.behaviors.stanford_publication = {
   }
 };
 
-/***/ }),
-
-/***/ "./lib/js/stanford_publication.js":
-/*!****************************************!*\
-  !*** ./lib/js/stanford_publication.js ***!
-  \****************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _stanford_publication_behavior_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stanford_publication.behavior.js */ "./lib/js/stanford_publication.behavior.js");
-/* harmony import */ var _stanford_publication_behavior_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_stanford_publication_behavior_js__WEBPACK_IMPORTED_MODULE_0__);
-// Main Webpack entry file.
- // Your code goes below.
-
 /***/ })
 
 /******/ });
-//# sourceMappingURL=stanford_publication.js.js.map
+//# sourceMappingURL=stanford_publication.behavior.js.map

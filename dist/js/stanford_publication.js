@@ -137,4 +137,4 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 /******/ });
-//# sourceMappingURL=stanford_publication.js.js.map
+//# sourceMappingURL=stanford_publication.js.map

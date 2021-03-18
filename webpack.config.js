@@ -58,27 +58,19 @@ const distAssets = path.resolve(__dirname, distDir, "assets");
 
 const entryPoints = glob.sync('./lib/{scss,js}/**/*.{scss,js}').reduce((acc, filePath) => {
 
-  const filePathParts = filePath.replace('./lib/scss/', '').split('/');
-  const filePathPartsjs = filePath.replace('./lib/js/', '').split('/');
-  const allFiles = filePathParts.concat(filePathPartsjs);
+  const filePathParts = filePath.replace('./lib/scss/', '').replace('./lib/js/', '').split('/');
 
-  console.log('DEBUG: ');
-  console.log(filePathParts);
-  console.log(filePathPartsjs);
-  console.log('END DEBUG');
-
-  let fileName = allFiles.pop();
+  let fileName = filePathParts.pop();
   if (fileName.indexOf('_') === 0) {
     return acc;
   }
   if (fileName === 'index.scss') {
-    fileName = allFiles.pop();
+    fileName = filePathParts.pop();
   }
 
-  const entry = allFiles.length >= 1 ? allFiles.join('/') + '/' + fileName : fileName;
+  const entry = filePathParts.length >= 1 ? filePathParts.join('/') + '/' + fileName : fileName;
 
-  acc[entry.replace('.scss', '')] = filePath;
-  acc[entry.replace('.js', '')] = filePath;
+  acc[entry.replace('.scss', '').replace('.js', '')] = filePath;
   console.log(entry);
   return acc;
 }, {});
