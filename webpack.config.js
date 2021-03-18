@@ -56,13 +56,16 @@ const distAssets = path.resolve(__dirname, distDir, "assets");
 // }, {});
 
 
-  const entryPoints = glob.sync('./lib/{scss,js}/**/*.{scss,js}').reduce((acc, filePath) => {
+const entryPoints = glob.sync('./lib/{scss,js}/**/*.{scss,js}').reduce((acc, filePath) => {
 
   const filePathParts = filePath.replace('./lib/scss/', '').split('/');
   const filePathPartsjs = filePath.replace('./lib/js/', '').split('/');
-
   const allFiles = filePathParts.concat(filePathPartsjs);
 
+  console.log('DEBUG: ');
+  console.log(filePathParts);
+  console.log(filePathPartsjs);
+  console.log('END DEBUG');
 
   let fileName = allFiles.pop();
   if (fileName.indexOf('_') === 0) {
@@ -72,11 +75,11 @@ const distAssets = path.resolve(__dirname, distDir, "assets");
     fileName = allFiles.pop();
   }
 
-  const entry = allFiles.length  >= 1 ? allFiles.join('/') + '/' + fileName : fileName;
+  const entry = allFiles.length >= 1 ? allFiles.join('/') + '/' + fileName : fileName;
 
   acc[entry.replace('.scss', '')] = filePath;
   acc[entry.replace('.js', '')] = filePath;
-console.log(entry);
+  console.log(entry);
   return acc;
 }, {});
 
@@ -218,7 +221,7 @@ var webpackConfig = {
     new FixStyleOnlyEntriesPlugin(),
     // Output css files.
     new MiniCssExtractPlugin({
-      filename:  "../css/[name].css"
+      filename: "../css/[name].css"
     }),
     // A webpack plugin to manage files before or after the build.
     // https://www.npmjs.com/package/filemanager-webpack-plugin
@@ -241,7 +244,7 @@ var webpackConfig = {
     }),
     // Add a plugin to watch other files other than that required by webpack.
     // https://www.npmjs.com/package/filewatcher-webpack-plugin
-    new ExtraWatchWebpackPlugin( {
+    new ExtraWatchWebpackPlugin({
       files: [
         srcDir + '/**/*.twig',
         srcDir + '/**/*.json'
@@ -251,4 +254,4 @@ var webpackConfig = {
 };
 
 // Add the configuration.
-module.exports = [ webpackConfig ];
+module.exports = [webpackConfig];
