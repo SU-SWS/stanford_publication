@@ -1,6 +1,23 @@
 @charset 'UTF-8';
 @import '../config';
 
+// Results for
+.results-for {
+  @include small-paragraph;
+
+  .results-for--publications {
+    font-weight: $su-font-semi-bold;
+  }
+
+  .results-for--name {
+    a {
+      color: $su-color-bright-blue;
+      text-decoration: underline;
+    }
+  }
+}
+
+
 .menu--stanford-publication-topics {
   @include modular-spacing('padding', 3);
   @include modular-spacing('margin-bottom', 4);
@@ -8,7 +25,7 @@
   // Sidebar topics menu styles.
   border: 1px solid $su-color-cool-grey-25;
 
-  h2 {
+  button {
     @include small-paragraph;
     @include padding(0);
     @include link-icon(caret-down, 14px, down);
@@ -20,6 +37,13 @@
     text-align: left;
     text-decoration: none;
     width: 100%;
+
+    &:hover,
+    &:focus {
+      color: $su-color-black;
+      background-color: transparent;
+      text-decoration: underline;
+    }
 
     &::after {
       background-color: $su-color-black;
@@ -83,5 +107,4 @@
       display: block;
     }
   }
-
 }

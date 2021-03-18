@@ -137,12 +137,12 @@
     }
 
     > div:not(:first-of-type) {
-      @include modular-spacing('padding-top', 3);
+      @include responsive-spacing('padding-top', 3);
 
     }
 
     > div:last-of-type {
-      @include modular-spacing('padding-bottom', 3);
+      @include responsive-spacing('padding-bottom', 3);
 
       margin-bottom: 0;
     }
@@ -180,7 +180,7 @@
   .views-infinite-scroll-content-wrapper {
     &,
     + .js-pager__items {
-      @include modular-spacing('margin-bottom', 8);
+      @include responsive-spacing('margin-bottom', 8);
     }
   }
 
@@ -213,7 +213,7 @@
   .stanford-publications {
     &.view {
       > div:first-of-type {
-        @include modular-spacing('padding-top', 3);
+        @include responsive-spacing('padding-top', 3);
 
       }
     }
@@ -221,13 +221,24 @@
 
   //Back to all Publications link
   .more-link {
-    @include modular-spacing('margin', 3 null 9 null);
+    @include responsive-spacing('margin', 3 null 9 null);
 
     margin: 0 auto;
     text-align: center;
 
     a {
       @include button-primary;
+    }
+  }
+}
+
+// adjusting to match the other list page gutter spacing.
+.jumpstart-ui--two-column {
+  >.left-region {
+    + .main-region {
+      @include modular-spacing('padding-left', 2);
+
+      display: flex;
     }
   }
 }

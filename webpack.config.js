@@ -41,7 +41,6 @@ const distAssets = path.resolve(__dirname, distDir, "assets");
 // Config //////////////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-
 const entryPoints = glob.sync('./lib/scss/**/*.scss').reduce((acc, filePath) => {
   const filePathParts = filePath.replace('./lib/scss/', '').split('/');
   let fileName = filePathParts.pop();
@@ -56,8 +55,10 @@ const entryPoints = glob.sync('./lib/scss/**/*.scss').reduce((acc, filePath) => 
   return acc
 }, {});
 
-// const entryPoints = glob.sync('./lib/{scss,js}/**/*.*').reduce((acc, filePath) => {
-//   const filePathParts = filePath.replace('./lib/', '').split('/');
+
+// const entryPoints = glob.sync('./lib/{scss,js}/**/*.{scss,js}').reduce((acc, filePath) => {
+//   const filePathParts = filePath.replace('./lib/scss/', '').split('/');
+//   const filePathPartsjs = filePath.replace('./lib/js/', '').split('/');
 //   let fileName = filePathParts.pop();
 //   if (fileName.indexOf('_') === 0) {
 //     return acc;
@@ -65,10 +66,11 @@ const entryPoints = glob.sync('./lib/scss/**/*.scss').reduce((acc, filePath) => 
 //   if (fileName === 'index.scss') {
 //     fileName = filePathParts.pop();
 //   }
-//   const entry = filePathParts.length >= 1 ? filePathParts.join('/') + '/' + fileName : fileName;
+//   const entry = filePathParts.lengthjs && filePathParts.length >= 1 ? filePathParts.join('/') + '/' + fileName : fileName;
 //   acc[entry.replace('.scss', '')] = filePath
 //   return acc;
 // }, {});
+
 
 // Start configuring webpack.
 var webpackConfig = {
