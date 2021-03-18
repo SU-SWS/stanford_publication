@@ -56,6 +56,20 @@ const entryPoints = glob.sync('./lib/scss/**/*.scss').reduce((acc, filePath) => 
   return acc
 }, {});
 
+// const entryPoints = glob.sync('./lib/{scss,js}/**/*.*').reduce((acc, filePath) => {
+//   const filePathParts = filePath.replace('./lib/', '').split('/');
+//   let fileName = filePathParts.pop();
+//   if (fileName.indexOf('_') === 0) {
+//     return acc;
+//   }
+//   if (fileName === 'index.scss') {
+//     fileName = filePathParts.pop();
+//   }
+//   const entry = filePathParts.length >= 1 ? filePathParts.join('/') + '/' + fileName : fileName;
+//   acc[entry.replace('.scss', '')] = filePath
+//   return acc;
+// }, {});
+
 // Start configuring webpack.
 var webpackConfig = {
   // What am i?

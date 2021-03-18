@@ -75,4 +75,13 @@
     }
   }
 
+  @include grid-media-max('md') {
+    button ~ .menu {
+      display: none;
+    }
+    button:focus ~ .menu {
+      display: block;
+    }
+  }
+
 }
