@@ -12,7 +12,7 @@ use Drupal\views\ViewExecutable;
 use Symfony\Component\Finder\Finder;
 
 /**
- * Set the taxomony menu template
+ * Set the taxomony menu template.
  */
 function stanford_publication_theme() {
   return [
