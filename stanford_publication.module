@@ -54,7 +54,6 @@ function stanford_publication_library_info_build() {
       ],
     ];
   }
-
   return $libraries;
 }
 
@@ -76,6 +75,7 @@ function stanford_publication_preprocess_node(&$variables) {
  */
 function stanford_publication_preprocess_menu__stanford_publication_topics(&$variables) {
   $variables['#attached']['library'][] = 'stanford_publication/menu.taxonomy_menu';
+  $variables['#attached']['library'][] = 'stanford_publication/taxonomy_menu';
 }
 
 /**
