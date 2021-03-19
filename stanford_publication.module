@@ -11,6 +11,9 @@ use Drupal\node\NodeInterface;
 use Drupal\views\ViewExecutable;
 use Symfony\Component\Finder\Finder;
 
+/**
+ * Set the taxomony menu template
+ */
 function stanford_publication_theme() {
   return [
     'block__system_menu_block__stanford_publication_topics' => [
