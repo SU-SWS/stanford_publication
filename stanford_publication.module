@@ -5,6 +5,8 @@
  * stanford_publication.module
  */
 
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
@@ -47,6 +49,39 @@ function stanford_publication_library_info_build() {
   }
 
   return $libraries;
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function stanford_publication_entity_extra_field_info() {
+  $extra['node']['stanford_publication']['display']['citation_type'] = [
+    'label' => t('Publication Type'),
+    'visible' => FALSE,
+  ];
+
+  return $extra;
+}
+
+/**
+ * Implements hook_entity_view().
+ */
+function stanford_publication_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if (
+    $entity instanceof NodeInterface &&
+    $entity->bundle() == 'stanford_publication' &&
+    $display->getComponent('citation_type') &&
+    $citation = _stanford_pubs_get_citation_entity($entity)
+  ) {
+    $citation_type = \Drupal::entityTypeManager()
+      ->getStorage('citation_type')
+      ->load($citation->bundle());
+
+    $build['citation_type'] = [
+      '#type' => 'markup',
+      '#markup' => $citation_type->label(),
+    ];
+  }
 }
 
 /**
@@ -119,16 +154,6 @@ function stanford_publication_node_delete(NodeInterface $entity) {
     // Clean up nested Citation entity after node deletion.
     $citation_entity->delete();
   }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function stanford_publication_preprocess_field__su_publication_topics(&$variables) {
-  // This will display only the first term for field displays set as "Label",
-  // but it will also display all terms for field displays set as "Label List"
-  // provided by the "element_class_formatter" module.
-  $variables['items'] = array_slice($variables['items'], 0, 1);
 }
 
 /**
