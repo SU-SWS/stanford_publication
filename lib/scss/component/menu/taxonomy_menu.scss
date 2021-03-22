@@ -25,40 +25,50 @@
   // Sidebar topics menu styles.
   border: 1px solid $su-color-cool-grey-25;
 
-  button {
-    background-color: transparent;
-    color: $su-color-black;
-
-    padding: 0;
-    text-align: left;
-    text-decoration: none;
-    width: 100%;
-
-    &:hover,
-    &:focus {
-      color: $su-color-black;
-      background-color: transparent;
-      text-decoration: underline;
-    }
-
-    @include grid-media('xl') {
-      @include modular-spacing('margin-bottom', 2);
-    }
-
-    h2 {
+  @include grid-media-max('lg') {
+    button {
       @include small-paragraph;
-      @include padding(0);
-      @include margin(0);
       @include link-icon(caret-down, 14px, down);
 
-      display: inline;
+      background-color: transparent;
+      color: $su-color-black;
       font-weight: $su-font-semi-bold;
+      padding: 0;
+      text-align: left;
+      text-decoration: none;
+      width: 100%;
 
       &::after {
         background-color: $su-color-bright-blue;
         float: right;
         margin-top: 3px;
       }
+
+      &:hover,
+      &:focus {
+        color: $su-color-black;
+        background-color: transparent;
+        text-decoration: underline;
+      }
+
+      @include grid-media('xl') {
+        @include modular-spacing('margin-bottom', 2);
+      }
+    }
+  }
+
+  h2 {
+    @include small-paragraph;
+    @include padding(0);
+    @include margin(0);
+    @include link-icon(caret-down, 14px, down);
+
+    font-weight: $su-font-semi-bold;
+
+    &::after {
+      background-color: $su-color-bright-blue;
+      float: right;
+      margin-top: 3px;
     }
   }
 
@@ -107,7 +117,7 @@
 
   .publication-topics__collapsable-menu {
     color: $su-color-bright-blue;
-    cursor: pointer;
+    //cursor: pointer;
 
     @include grid-media('xl') {
       @include modular-spacing('margin-bottom', 2);
@@ -131,9 +141,11 @@
       }
     }
 
-    &:hover,
-    &:focus {
-      text-decoration: underline;
+    @include grid-media-max('lg') {
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
     }
 
     .su-link--jump {
