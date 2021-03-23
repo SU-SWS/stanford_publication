@@ -238,7 +238,7 @@
 // adjusting to match the other list page gutter spacing.
 .jumpstart-ui--two-column {
   >.left-region {
-    + .main-region {
+    + .flex-lg-9-of-12 {
       @include modular-spacing('padding-left', 2);
 
       display: flex;
