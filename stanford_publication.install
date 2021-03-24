@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * stanford_publication.install
+ */
+
+use Drupal\redirect\Entity\Redirect;
+
+/**
+ * Implements hook_install().
+ */
+function stanford_publication_install() {
+  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+  $all_term = ['name' => 'All', 'vid' => 'stanford_publication_topics'];
+  if (empty($term_storage->loadByProperties($all_term))) {
+    $all_term['weight'] = -99;
+    $all_term = $term_storage->create($all_term);
+    $all_term->save();
+
+    $redirect = Redirect::create();
+    $redirect->setSource($all_term->toUrl()->toString());
+    $redirect->setRedirect('/publications');
+    $redirect->setStatusCode(301);
+    $redirect->save();
+  }
+}
+
+/**
+ * Create the 'All' publication topic term'
+ */
+function stanford_publication_post_update_8001() {
+  stanford_publication_install();
+}
