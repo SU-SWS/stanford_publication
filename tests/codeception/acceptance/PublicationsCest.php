@@ -22,6 +22,7 @@ class PublicationsCest {
    * The "All" topic term should be created with a redirect.
    */
   public function testDefaultContent(AcceptanceTester $I){
+    $I->logInWithRole('administrator');
     $I->amOnPage('/admin/structure/taxonomy/manage/stanford_publication_topics/overview');
     $I->canSeeLink('All');
     $I->click('All');
