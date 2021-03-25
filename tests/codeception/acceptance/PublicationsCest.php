@@ -23,9 +23,8 @@ class PublicationsCest {
    */
   public function testDefaultContent(AcceptanceTester $I){
     $I->logInWithRole('administrator');
-    $I->amOnPage('/admin/structure/taxonomy/manage/stanford_publication_topics/overview');
-    $I->canSeeLink('All');
-    $I->click('All');
+    $I->amOnPage('/admin/structure/menu/manage/stanford-publication-topics');
+    $I->click('All', '#menu-overview');
     $I->assertEquals('/publications', $I->grabFromCurrentUrl());
   }
 
