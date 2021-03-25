@@ -17,7 +17,6 @@ dependencies:
   - pathauto:pathauto
   - rabbit_hole:rabbit_hole
   - react_paragraphs:react_paragraphs
-  - redirect:redirect
   - taxonomy_menu:taxonomy_menu
   - ui_patterns:ui_patterns_views
   - views_infinite_scroll:views_infinite_scroll

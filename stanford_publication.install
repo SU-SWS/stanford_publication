@@ -5,25 +5,18 @@
  * stanford_publication.install
  */
 
-use Drupal\redirect\Entity\Redirect;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 /**
  * Implements hook_install().
  */
 function stanford_publication_install() {
-  $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
-  $all_term = ['name' => 'All', 'vid' => 'stanford_publication_topics'];
-  if (empty($term_storage->loadByProperties($all_term))) {
-    $all_term['weight'] = -99;
-    $all_term = $term_storage->create($all_term);
-    $all_term->save();
-
-    $redirect = Redirect::create();
-    $redirect->setSource($all_term->toUrl()->toString());
-    $redirect->setRedirect('/publications');
-    $redirect->setStatusCode(301);
-    $redirect->save();
-  }
+  MenuLinkContent::create([
+    'title' => 'All',
+    'link' => 'internal:/publications',
+    'weight' => -99,
+    'menu_name' => 'stanford-publication-topics',
+  ])->save();
 }
 
 /**
