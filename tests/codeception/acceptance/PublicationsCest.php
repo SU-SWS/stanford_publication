@@ -18,4 +18,14 @@ class PublicationsCest {
     $I->canSee('Foo Bar Publication', 'h1');
   }
 
+  /**
+   * The "All" topic term should be created with a redirect.
+   */
+  public function testDefaultContent(AcceptanceTester $I){
+    $I->logInWithRole('administrator');
+    $I->amOnPage('/admin/structure/menu/manage/stanford-publication-topics');
+    $I->click('All', '#menu-overview');
+    $I->assertEquals('/publications', $I->grabFromCurrentUrl());
+  }
+
 }
