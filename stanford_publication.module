@@ -77,9 +77,10 @@ function stanford_publication_entity_view(array &$build, EntityInterface $entity
       ->getStorage('citation_type')
       ->load($citation->bundle());
 
+    $citation_type = $citation_type->label() == 'Other' ? 'Publication' : $citation_type->label();
     $build['citation_type'] = [
       '#type' => 'markup',
-      '#markup' => $citation_type->label(),
+      '#markup' => $citation_type,
     ];
   }
 }

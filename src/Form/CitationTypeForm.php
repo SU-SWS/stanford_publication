@@ -64,6 +64,7 @@ class CitationTypeForm extends EntityForm {
         'map' => 'map',
         'motion_picture' => 'motion_picture',
         'musical_score' => 'musical_score',
+        'other' => 'other',
         'pamphlet' => 'pamphlet',
         'paper-conference' => 'paper-conference',
         'patent' => 'patent',
