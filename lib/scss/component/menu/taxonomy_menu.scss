@@ -28,7 +28,6 @@
   @include grid-media-max('lg') {
     button {
       @include small-paragraph;
-      @include link-icon(caret-down, 14px, down);
 
       background-color: transparent;
       color: $su-color-black;
@@ -74,7 +73,7 @@
 
   .menu {
     @include margin(0);
-    @include padding(0);
+    @include modular-spacing('padding', 2 0 0 0);
 
     .menu-item {
       @include modular-spacing('padding-bottom', 2);
@@ -117,28 +116,9 @@
 
   .publication-topics__collapsable-menu {
     color: $su-color-bright-blue;
-    //cursor: pointer;
 
     @include grid-media('xl') {
       @include modular-spacing('margin-bottom', 2);
-    }
-
-    &.show {
-      @include modular-spacing('margin-bottom', 2);
-
-      @include grid-media('xl') {
-        margin-bottom: 0;
-
-        & + .menu {
-          & > li {
-            &.menu-item {
-              &:last-of-type {
-                padding-bottom: 0;
-              }
-            }
-          }
-        }
-      }
     }
 
     @include grid-media-max('lg') {
@@ -173,28 +153,17 @@
       display: none;
     }
 
-    .publication-topics__collapsable-menu {
-      &.show {
-        & + .menu {
-          display: block;
-        }
+    &.show {
+      .menu {
+        display: block;
       }
     }
   }
 
-
-  // Filter open/close for xl
+  // No open and close for XL
   @include grid-media('xl') {
-    & > .menu {
+    .menu {
       display: block;
-    }
-
-    .publication-topics__collapsable-menu {
-      &.show {
-        + .menu {
-          display: none;
-        }
-      }
     }
   }
 
