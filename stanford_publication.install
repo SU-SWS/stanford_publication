@@ -22,6 +22,6 @@ function stanford_publication_install() {
 /**
  * Create the 'All' publication topic term.
  */
-function stanford_publication_post_update_8001() {
+function stanford_publication_update_8001() {
   stanford_publication_install();
 }
