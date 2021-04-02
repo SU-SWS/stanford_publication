@@ -74,6 +74,7 @@
       @include link-icon(caret-down, 14px, down);
 
       color: $su-color-bright-blue;
+
       &::before {
         @include small-paragraph;
         @include padding(null 15px null null);
