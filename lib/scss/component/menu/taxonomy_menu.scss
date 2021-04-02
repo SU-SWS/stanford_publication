@@ -60,7 +60,6 @@
     @include small-paragraph;
     @include padding(0);
     @include margin(0);
-    @include link-icon(caret-down, 14px, down);
 
     font-weight: $su-font-semi-bold;
 
@@ -68,6 +67,22 @@
       background-color: $su-color-bright-blue;
       float: right;
       margin-top: 3px;
+    }
+
+    // Used on the mobile view only and gets the filter icon
+    @include grid-media-between('xs', 'md')  {
+      @include link-icon(caret-down, 14px, down);
+
+      color: $su-color-bright-blue;
+      &::before {
+        @include small-paragraph;
+        @include padding(null 15px null null);
+
+        color: $su-color-bright-blue;
+        content: "\f1de";
+        font-family: 'Font Awesome 5 Free';
+        font-weight: $su-font-semi-bold; // Need this for the new version of FA. Will go away later.
+      }
     }
   }
 
@@ -114,39 +129,8 @@
     }
   }
 
-  .publication-topics__collapsable-menu {
-    color: $su-color-bright-blue;
-
-    @include grid-media('xl') {
-      @include modular-spacing('margin-bottom', 2);
-    }
-
-    @include grid-media-max('lg') {
-      &:hover,
-      &:focus {
-        text-decoration: underline;
-      }
-    }
-
-    .su-link--jump {
-      float: right;
-    }
-
-    @include grid-media-max('lg') {
-      &::before {
-        @include small-paragraph;
-        @include padding(null 15px null null);
-
-        color: $su-color-bright-blue;
-        content: "\f1de";
-        font-family: 'Font Awesome 5 Free';
-        font-weight: $su-font-semi-bold; // Need this for the new version of FA. Will go away later.
-      }
-    }
-  }
-
   // Filter open/close for xs-lg
-  @include grid-media-max('lg') {
+  @include grid-media-max('xl') {
     @include modular-spacing('margin', null null 4 null);
 
     & > .menu {
