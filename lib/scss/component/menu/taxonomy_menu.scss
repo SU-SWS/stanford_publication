@@ -25,7 +25,7 @@
   // Sidebar topics menu styles.
   border: 1px solid $su-color-cool-grey-25;
 
-  @include grid-media-max('lg') {
+  @include grid-media-max('md') {
     button {
       @include small-paragraph;
 
@@ -131,7 +131,7 @@
   }
 
   // Filter open/close for xs-lg
-  @include grid-media-max('xl') {
+  @include grid-media-max('md') {
     @include modular-spacing('margin', null null 4 null);
 
     & > .menu {
