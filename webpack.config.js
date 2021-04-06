@@ -42,8 +42,8 @@ const distAssets = path.resolve(__dirname, distDir, "assets");
 // /////////////////////////////////////////////////////////////////////////////
 
 
-const entryPoints = glob.sync('./lib/scss/**/*.scss').reduce((acc, filePath) => {
-  const filePathParts = filePath.replace('./lib/scss/', '').split('/');
+const entryPoints = glob.sync('./lib/{scss,js}/**/*.{scss,js}').reduce((acc, filePath) => {
+  const filePathParts = filePath.replace('./lib/scss/', '').replace('./lib/js/', '').split('/');
   let fileName = filePathParts.pop();
   if (fileName.indexOf('_') === 0) {
     return acc;
@@ -52,9 +52,10 @@ const entryPoints = glob.sync('./lib/scss/**/*.scss').reduce((acc, filePath) => 
     fileName = filePathParts.pop();
   }
   const entry = filePathParts.length >= 1 ? filePathParts.join('/') + '/' + fileName : fileName;
-  acc[entry.replace('.scss', '')] = filePath
-  return acc
+  acc[entry.replace('.scss', '').replace('.js', '')] = filePath;
+  return acc;
 }, {});
+
 
 // Start configuring webpack.
 var webpackConfig = {
@@ -193,7 +194,7 @@ var webpackConfig = {
     new FixStyleOnlyEntriesPlugin(),
     // Output css files.
     new MiniCssExtractPlugin({
-      filename:  "../css/[name].css"
+      filename: "../css/[name].css"
     }),
     // A webpack plugin to manage files before or after the build.
     // https://www.npmjs.com/package/filemanager-webpack-plugin
@@ -216,7 +217,7 @@ var webpackConfig = {
     }),
     // Add a plugin to watch other files other than that required by webpack.
     // https://www.npmjs.com/package/filewatcher-webpack-plugin
-    new ExtraWatchWebpackPlugin( {
+    new ExtraWatchWebpackPlugin({
       files: [
         srcDir + '/**/*.twig',
         srcDir + '/**/*.json'
@@ -226,4 +227,4 @@ var webpackConfig = {
 };
 
 // Add the configuration.
-module.exports = [ webpackConfig ];
+module.exports = [webpackConfig];

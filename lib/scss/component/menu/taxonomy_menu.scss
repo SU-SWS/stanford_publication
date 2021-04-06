@@ -1,6 +1,23 @@
 @charset 'UTF-8';
 @import '../config';
 
+// Results for filtered page
+.results-for {
+  @include small-paragraph;
+
+  .results-for--publications {
+    font-weight: $su-font-semi-bold;
+  }
+
+  .results-for--name {
+    a {
+      color: $su-color-bright-blue;
+      text-decoration: underline;
+    }
+  }
+}
+
+// Menu details
 .menu--stanford-publication-topics {
   @include modular-spacing('padding', 3);
   @include modular-spacing('margin-bottom', 4);
@@ -8,34 +25,71 @@
   // Sidebar topics menu styles.
   border: 1px solid $su-color-cool-grey-25;
 
+  @include grid-media-max('md') {
+    button {
+      @include small-paragraph;
+
+      background-color: transparent;
+      color: $su-color-black;
+      font-weight: $su-font-semi-bold;
+      padding: 0;
+      text-align: left;
+      text-decoration: none;
+      width: 100%;
+
+      &::after {
+        background-color: $su-color-bright-blue;
+        float: right;
+        margin-top: 3px;
+      }
+
+      &:hover,
+      &:focus {
+        color: $su-color-black;
+        background-color: transparent;
+        text-decoration: underline;
+      }
+
+      @include grid-media('xl') {
+        @include modular-spacing('margin-bottom', 2);
+      }
+    }
+  }
+
   h2 {
     @include small-paragraph;
     @include padding(0);
-    @include link-icon(caret-down, 14px, down);
+    @include margin(0);
 
-
-    background-color: transparent;
-    color: $su-color-black;
-    font-weight: $su-font-bold;
-    text-align: left;
-    text-decoration: none;
-    width: 100%;
+    font-weight: $su-font-semi-bold;
 
     &::after {
-      background-color: $su-color-black;
+      background-color: $su-color-bright-blue;
       float: right;
       margin-top: 3px;
     }
 
-    @include grid-media('xl') {
-      @include modular-spacing('margin-bottom', 2);
-    }
+    // Used on the mobile view only and gets the filter icon
+    @include grid-media-between('xs', 'md')  {
+      @include link-icon(caret-down, 14px, down);
 
+      color: $su-color-bright-blue;
+
+      &::before {
+        @include small-paragraph;
+        @include padding(null 15px null null);
+
+        color: $su-color-bright-blue;
+        content: "\f1de";
+        font-family: 'Font Awesome 5 Free';
+        font-weight: $su-font-semi-bold; // Need this for the new version of FA. Will go away later.
+      }
+    }
   }
 
   .menu {
     @include margin(0);
-    @include padding(0);
+    @include modular-spacing('padding', 2 0 0 0);
 
     .menu-item {
       @include modular-spacing('padding-bottom', 2);
@@ -57,6 +111,7 @@
       }
     }
 
+    // Adds the icon to active link
     .menu-item--active-trail {
       &::before {
         @include small-paragraph;
@@ -72,6 +127,28 @@
       .is-active {
         color: $su-color-bright-blue;
       }
+    }
+  }
+
+  // Filter open/close for xs-lg
+  @include grid-media-max('md') {
+    @include modular-spacing('margin', null null 4 null);
+
+    & > .menu {
+      display: none;
+    }
+
+    &.show {
+      .menu {
+        display: block;
+      }
+    }
+  }
+
+  // No open and close for XL
+  @include grid-media('xl') {
+    .menu {
+      display: block;
     }
   }
 
