@@ -1,5 +1,15 @@
 # Stanford Publications
 
+8.x-1.5
+--------------------------------------------------------------------------------
+_Release Date: 2021-04-09_
+
+- D8CORE-3722: Publication Module styling updates. (#32) (56b5a33)
+- Corrected the database update function name (ea62ea3)
+- D8CORE-3538 Change "Other" to "Publication" (#35) (364195a)
+- D8CORE-3952 Create the "All" topic term (#34) (8d22f92)
+- D8CORE-3536 Add pseudo field for easily displaying the citation type (#33) (dca4af5)
+
 8.x-1.4
 --------------------------------------------------------------------------------
 _Release Date: 2021-03-16_

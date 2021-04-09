@@ -3,7 +3,7 @@ type: module
 description: "Stanford Publications Module."
 core_version_requirement: ^8.8 || ^9
 package: Stanford
-version: 8.x-1.4
+version: 8.x-1.5
 dependencies:
   - ctools:ctools
   - drupal:layout_builder
@@ -17,7 +17,7 @@ dependencies:
   - pathauto:pathauto
   - rabbit_hole:rabbit_hole
   - react_paragraphs:react_paragraphs
-  - ui_patterns:ui_patterns_views
   - taxonomy_menu:taxonomy_menu
+  - ui_patterns:ui_patterns_views
   - views_infinite_scroll:views_infinite_scroll
   - views_taxonomy_term_name_depth:views_taxonomy_term_name_depth

@@ -7,9 +7,11 @@
 
 
   // Header Related Topics
-  .jumpstart-ui--one-column {
-    .su-publication-topics {
-      margin-bottom: 0.63rem;
+  .stanford-publications-pub-type {
+    .pub-type {
+      > .views-row {
+        @include responsive-spacing('padding-bottom', 0);
+      }
     }
   }
 
@@ -126,4 +128,6 @@
     }
   }
 }
+
+
 
