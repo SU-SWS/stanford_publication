@@ -28,6 +28,8 @@
 
       > span {
         @include small-paragraph;
+        @include responsive-spacing('margin-bottom', -1);
+
         font-weight: 600;
       }
 
@@ -226,6 +228,7 @@
   .more-link {
     @include responsive-spacing('margin', 3 null 9 null);
 
+    flex: 100%;
     margin: 0 auto;
     text-align: center;
 
