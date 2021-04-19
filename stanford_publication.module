@@ -136,10 +136,14 @@ function stanford_publication_node_update(NodeInterface $entity) {
  */
 function _stanford_publication_node_post_save(NodeInterface $entity) {
   $citation_entity = _stanford_pubs_get_citation_entity($entity);
+  if (isset($entity->original) && $entity->original->id()) {
+    $original_title = $entity->original->label();
+  }
+
   if (!$citation_entity) {
     return;
   }
-  if (empty($citation_entity->label())) {
+  if (empty($citation_entity->label()) || $citation_entity->label() == $original_title) {
     $citation_entity->setLabel($entity->label());
   }
   // Set the entity label to the node label & save the parent entity info.
