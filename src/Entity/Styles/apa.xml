@@ -1468,6 +1468,7 @@
     </group>
   </macro>
   <macro name="container-booklike">
+    <text variable="subtitle" text-case="title"/>
     <choose>
       <if variable="container-title" match="any">
         <group delimiter=" ">
