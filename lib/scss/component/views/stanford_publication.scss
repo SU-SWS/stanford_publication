@@ -97,7 +97,7 @@
 
 // Extra spacing needed.
 .centered-container {
-  &.su-publications-node--filtered {
+  .su-publications-node--filtered {
     @include responsive-spacing('margin-bottom', 6);
   }
 }
