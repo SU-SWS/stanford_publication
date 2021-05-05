@@ -244,7 +244,14 @@
     + .flex-lg-9-of-12 {
       @include modular-spacing('padding-left', 2);
 
-      display: flex;
+      .ptype-stanford-lists {
+        padding-left: 0;
+        max-width: 100%;
+
+        .field--name-su-list-view {
+          padding: 0;
+        }
+      }
     }
   }
 }
