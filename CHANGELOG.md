@@ -1,5 +1,15 @@
 # Stanford Publications
 
+8.x-1.6
+--------------------------------------------------------------------------------
+_Release Date: 2021-05-07_
+
+- D8CORE-3951 : fixing up some missing styles (#43) (60836d5)
+- D8CORE-3951: adding margin bottom to the filtered list of publications (#41) (6fcf7a5)
+- D8CORE-4066 Display the subtitle on book citations (#40) (a6bdf5f)
+- D8CORE-4069 Changing the node label will change the citation label (#39) (c4a6563)
+- D8CORE-4012 and D8CORE-4072: Tweaks to spacing for the publications (#38) (98ebeaa)
+
 8.x-1.5
 --------------------------------------------------------------------------------
 _Release Date: 2021-04-09_
