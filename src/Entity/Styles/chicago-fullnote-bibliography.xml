@@ -665,6 +665,7 @@
             <number variable="number-of-volumes" form="numeric"/>
             <text term="volume" form="short" plural="true"/>
           </group>
+          <text variable="subtitle" text-case="title"/>
         </group>
       </else-if>
       <else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any">

@@ -7,12 +7,8 @@
 
 
   // Header Related Topics
-  .stanford-publications-pub-type {
-    .pub-type {
-      > .views-row {
-        @include responsive-spacing('padding-bottom', 0);
-      }
-    }
+  .node-stanford-publication-citation-type {
+    @include responsive-spacing('padding-bottom', 1);
   }
 
   h1 {

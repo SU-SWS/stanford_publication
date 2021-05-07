@@ -28,6 +28,8 @@
 
       > span {
         @include small-paragraph;
+        @include responsive-spacing('margin-bottom', -1);
+
         font-weight: 600;
       }
 
@@ -95,7 +97,7 @@
 
 // Extra spacing needed.
 .centered-container {
-  &.su-publications-node--filtered {
+  .su-publications-node--filtered {
     @include responsive-spacing('margin-bottom', 6);
   }
 }
@@ -226,6 +228,7 @@
   .more-link {
     @include responsive-spacing('margin', 3 null 9 null);
 
+    flex: 100%;
     margin: 0 auto;
     text-align: center;
 
@@ -241,7 +244,14 @@
     + .flex-lg-9-of-12 {
       @include modular-spacing('padding-left', 2);
 
-      display: flex;
+      .ptype-stanford-lists {
+        padding-left: 0;
+        max-width: 100%;
+
+        .field--name-su-list-view {
+          padding: 0;
+        }
+      }
     }
   }
 }
