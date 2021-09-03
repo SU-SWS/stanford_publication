@@ -1,5 +1,13 @@
 # Stanford Publications
 
+
+8.x-1.8
+--------------------------------------------------------------------------------
+_Release Date: 2021-09-03
+
+- D8CORE-3161: moving the pager to the theme (#47)
+- D8CORE-4697 Fix month displaying if no month selected (#46)
+
 8.x-1.6
 --------------------------------------------------------------------------------
 _Release Date: 2021-05-07_
