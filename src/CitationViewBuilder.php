@@ -46,33 +46,32 @@ class CitationViewBuilder extends EntityViewBuilder {
    *   Modified render array
    */
   protected function buildDateDisplay(array $build): array {
+    $month = $build['su_month'] ?? [];
+    $day = $build['su_day'] ?? [];
+    unset($build['su_month'], $build['su_day']);
+
     // Publications need a year if they have a month and/or day, so if no year
     // is available, force the month and day to be removed.
     if (empty($build['su_year'][0]['#markup'])) {
-      unset($build['su_month'], $build['su_day']);
       return $build;
     }
-
 
     // Copy the year over so that it has its own unique keys.
     $build['su_year']['#title'] = $this->t('Publication Date');
 
-    if (isset($build['su_month'])) {
-      $build['su_month']['#label_display'] = 'hidden';
-      $month = (int) trim(strip_tags(render($build['su_month'])));
-      $month = date('F', strtotime("1-$month-2000"));
+    $month['#label_display'] = 'hidden';
+    $day['#label_display'] = 'hidden';
+    $month = (int) trim(strip_tags(render($month)));
+    $day = (int) trim(strip_tags(render($day)));
 
-      if (isset($build['su_day'])) {
-        $build['su_day']['#label_display'] = 'hidden';
-        $day = (int) trim(strip_tags(render($build['su_day'])));
-        if ($day) {
-          $month .= ' ' . $day;
-        }
+    if ($month) {
+      $date = date('F', strtotime("1-$month-2000"));
+
+      if ($day) {
+        $date .= ' ' . $day;
       }
-
-      $build['su_year'][0]['#markup'] = "$month, " . $build['su_year'][0]['#markup'];
+      $build['su_year'][0]['#markup'] = trim("$date, " . $build['su_year'][0]['#markup'], ', ');
     }
-    unset($build['su_month'], $build['su_day']);
 
     return $build;
   }

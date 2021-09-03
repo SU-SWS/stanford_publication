@@ -72,12 +72,20 @@ class CitationViewBuilderTest extends PublicationTestBase {
       });
 
     $this->assertEquals('May 20, 2020', $build['su_year'][0]['#markup']);
+
+    $citation->set('su_month', NULL)->set('su_day', NULL)->save();
+    $build = $view_builder->view($citation);
+    $build = \Drupal::service('renderer')
+      ->executeInRenderContext($context, function () use ($view_builder, $build) {
+        return $view_builder->build($build);
+      });
+    $this->assertEquals('2020', $build['su_year'][0]['#markup']);
   }
 
   /**
    * Without a day value, the month and year should still display.
    */
-  public function testDateDisplayNoDay(){
+  public function testDateDisplayNoDay() {
     /** @var \Drupal\stanford_publication\Entity\CitationInterface $citation */
     $citation = Citation::create([
       'title' => 'Foo Bar',

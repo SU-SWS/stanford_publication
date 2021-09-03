@@ -187,20 +187,6 @@
       @include responsive-spacing('margin', 5 null 5 null);
     }
   }
-
-  // Load more button.
-  .js-pager__items {
-    text-align: center;
-
-    .pager__item {
-      display: inline-block;
-
-      a {
-        @include button-primary;
-      }
-    }
-  }
-
 }
 
 // Views in the paragraphs
