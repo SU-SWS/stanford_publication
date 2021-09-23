@@ -50,9 +50,9 @@ source:
       label: 'Citation Type'
       selector: citationType
     -
-      name: author
+      name: authors
       label: Author(s)
-      selector: author
+      selector: authors
     -
       name: month
       label: Month
@@ -128,6 +128,65 @@ process:
       bundle: stanford_publication_topics
       value_key: name
       ignore_case: true
+  su_publication_text_area:
+    -
+      plugin: skip_on_empty
+      source: body
+      method: process
+    -
+      plugin: entity_revision_generate
+      entity_type: paragraph
+      bundle_key: type
+      bundle: stanford_wysiwyg
+      value_key: su_wysiwyg_text
+      ignore_case: true
+      values:
+        su_wysiwyg_text/value: body
+        su_wysiwyg_text/format: constants/basic_html
+  text_area_target_id:
+    -
+      plugin: skip_on_empty
+      source: '@su_publication_text_area'
+      method: process
+    -
+      plugin: extract
+      index:
+        - 0
+  text_area_target_revision_id:
+    -
+      plugin: skip_on_empty
+      source: '@su_publication_text_area'
+      method: process
+    -
+      plugin: extract
+      index:
+        - 1
+  su_publication_components:
+    -
+      plugin: skip_on_empty
+      source: '@text_area_target_id'
+      method: process
+    -
+      plugin: entity_revision_generate
+      entity_type: paragraph_row
+      bundle_key: type
+      bundle: su_pub_rows
+      value_key: su_pubs_components
+      ignore_case: true
+      values:
+        su_pubs_components/target_id: '@text_area_target_id'
+        su_pubs_components/target_revision_id: '@text_area_target_revision_id'
+  citation_url:
+    plugin: url_check
+    source: url
+    method: process
+  citation_authors:
+    -
+      plugin: explode
+      source: authors
+      delimiter: '|'
+    -
+      plugin: name_field
   su_publication_citation:
     -
       plugin: skip_on_empty
@@ -155,8 +214,9 @@ process:
         su_publisher_place: pubPlace
         su_publisher: publisher
         su_subtitle: subtitle
-        su_url: url
         su_volume: volume
+        su_url: '@citation_url'
+        su_author: '@citation_authors'
 destination:
   plugin: 'entity:node'
   default_bundle: stanford_publication
