@@ -25,7 +25,7 @@
   // Sidebar topics menu styles.
   border: 1px solid $su-color-cool-grey-25;
 
-  @include grid-media-max('md') {
+  @include grid-media-max('lg') {
     button {
       @include small-paragraph;
 
@@ -70,7 +70,7 @@
     }
 
     // Used on the mobile view only and gets the filter icon
-    @include grid-media-between('xs', 'md')  {
+    @include grid-media-between('xs', 'lg')  {
       @include link-icon(caret-down, 14px, down);
 
       color: $su-color-bright-blue;
@@ -131,7 +131,7 @@
   }
 
   // Filter open/close for xs-lg
-  @include grid-media-max('md') {
+  @include grid-media-max('lg') {
     @include modular-spacing('margin', null null 4 null);
 
     & > .menu {
@@ -152,4 +152,16 @@
     }
   }
 
+}
+
+// Collapsible menu
+// Changing the layout for the filtered pages.
+@include grid-media-max('lg') {
+  .left-region {
+    &.flex-lg-3-of-12 {
+
+      flex: auto;
+      max-width: 100%;
+    }
+  }
 }
