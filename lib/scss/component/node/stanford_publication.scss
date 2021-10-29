@@ -5,6 +5,12 @@
 .publication {
   @include responsive-spacing('padding-top', 6);
 
+  .su-wysiwyg-text {
+    @include big-paragraph;
+    @include margin(0 null null null);
+    @include modular-spacing('margin', null null 2 null);
+    @include padding(0 null 0 null);
+  }
 
   // Header Related Topics
   .node-stanford-publication-citation-type {
