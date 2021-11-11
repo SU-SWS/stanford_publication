@@ -5,11 +5,13 @@
  * stanford_publication.module
  */
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
+use Drupal\stanford_publication\Entity\CitationInterface;
 use Drupal\views\ViewExecutable;
 use Symfony\Component\Finder\Finder;
 
@@ -81,6 +83,51 @@ function stanford_publication_entity_view(array &$build, EntityInterface $entity
       '#type' => 'markup',
       '#markup' => $citation_type,
     ];
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function stanford_publication_form_taxonomy_overview_terms_alter(&$form, FormStateInterface $form_state) {
+  if ($form_state->get('taxonomy')['vocabulary']->id() == 'stanford_publication_topics') {
+    $form['citation_format'] = [
+      '#type' => 'select',
+      '#title' => t('Citation Format'),
+      '#options' => [
+        'apa' => 'APA',
+        'chicago' => t('Chicago'),
+      ],
+      '#default_value' => \Drupal::state()->get('stanford_publication.citation_format', 'chicago'),
+    ];
+    $form['#submit'][] = '_stanford_publication_term_overview_submit';
+  }
+}
+
+/**
+ * Taxonomy term overview form submit to save the citation format value.
+ *
+ * @param array $form
+ *   Complete form.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Submitted form state.
+ */
+function _stanford_publication_term_overview_submit(array $form, FormStateInterface $form_state) {
+  $state = \Drupal::state();
+  if ($state->get('stanford_publication.citation_format') != $form_state->getValue('citation_format')) {
+    $state->set('stanford_publication.citation_format', $form_state->getValue('citation_format'));
+    Cache::invalidateTags(['citation_view']);
+  }
+}
+
+/**
+ * Implements hook_entity_view_mode_alter().
+ */
+function stanford_publication_entity_view_mode_alter(&$view_mode, EntityInterface $entity) {
+  if ($entity instanceof CitationInterface) {
+    // Change the view mode to what the user chose in the term overview page.
+    $view_mode = \Drupal::state()
+      ->get('stanford_publication.citation_format', $view_mode);
   }
 }
 
