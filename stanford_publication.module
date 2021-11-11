@@ -124,8 +124,12 @@ function _stanford_publication_term_overview_submit(array $form, FormStateInterf
  * Implements hook_entity_view_mode_alter().
  */
 function stanford_publication_entity_view_mode_alter(&$view_mode, EntityInterface $entity) {
-  if ($entity instanceof CitationInterface) {
-    // Change the view mode to what the user chose in the term overview page.
+  if (
+    $entity instanceof CitationInterface &&
+    \Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical'
+  ) {
+    // Change the view mode on taxonomy term pages to what the user chose in the
+    // term overview page.
     $view_mode = \Drupal::state()
       ->get('stanford_publication.citation_format', $view_mode);
   }
