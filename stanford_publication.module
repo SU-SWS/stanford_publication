@@ -94,6 +94,7 @@ function stanford_publication_form_taxonomy_overview_terms_alter(&$form, FormSta
     $form['citation_format'] = [
       '#type' => 'select',
       '#title' => t('Citation Format'),
+      '#description' => t('Change the citation format for the publication items displayed on the taxonomy pages.'),
       '#options' => [
         'apa' => 'APA',
         'chicago' => t('Chicago'),
