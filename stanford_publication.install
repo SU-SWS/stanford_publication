@@ -20,6 +20,13 @@ function stanford_publication_install() {
 }
 
 /**
+ * Implements hook_uninstall().
+ */
+function stanford_publication_uninstall() {
+  \Drupal::state()->delete('stanford_publication.citation_format');
+}
+
+/**
  * Create the 'All' publication topic term.
  */
 function stanford_publication_update_8001() {
