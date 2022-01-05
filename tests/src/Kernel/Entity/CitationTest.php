@@ -33,7 +33,7 @@ class CitationTest extends PublicationTestBase {
     $citation = Citation::create([
       'type' => 'su_book',
       'su_author' => [['given' => 'John', 'family' => 'Doe']],
-      'su_year' => date('Y'),
+      'su_year' => 2021,
       'su_edition' => 5,
       'su_page' => '10-20',
       'su_publisher' => 'Awesome Publishing',
