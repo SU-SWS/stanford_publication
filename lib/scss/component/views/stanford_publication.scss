@@ -157,31 +157,11 @@
     }
   }
 
+  // This creates the indent on subsequent lines.
   // Default should be Chicago
   .csl-entry {
     margin-left: 0.9em;
     text-indent: -0.9em;
-  }
-
-  // Apa settings
-  &.apa-list {
-
-    // This creates the indent on subsequent lines.
-    // The default Chicago list.
-    .csl-entry {
-      margin-left: inherit;
-      text-indent: unset;
-    }
-  }
-
-  // This creates the indent on subsequent lines.
-  // The default Chicago list.
-  &.chicago-list {
-
-    .csl-entry {
-      margin-left: 0.9em;
-      text-indent: -0.9em;
-    }
   }
 
   // More link
