@@ -2,8 +2,15 @@
 
 @import '../config';
 
+// Publication list page spacing
+.section-publications {
+  h1 {
+    @include responsive-spacing('margin-bottom', 5);
+  }
+}
+
 .stanford-publications-related {
-  @include responsive-spacing('margin-bottom', 9);
+  @include responsive-spacing('margin-bottom', 6);
 
   .block__title {
     @include type-b;
@@ -150,31 +157,11 @@
     }
   }
 
+  // This creates the indent on subsequent lines.
   // Default should be Chicago
   .csl-entry {
     margin-left: 0.9em;
     text-indent: -0.9em;
-  }
-
-  // Apa settings
-  &.apa-list {
-
-    // This creates the indent on subsequent lines.
-    // The default Chicago list.
-    .csl-entry {
-      margin-left: inherit;
-      text-indent: unset;
-    }
-  }
-
-  // This creates the indent on subsequent lines.
-  // The default Chicago list.
-  &.chicago-list {
-
-    .csl-entry {
-      margin-left: 0.9em;
-      text-indent: -0.9em;
-    }
   }
 
   // More link
@@ -203,8 +190,9 @@
 .stanford-publications-related {
   .stanford-publications {
     &.view {
-      > div:first-of-type {
-        @include responsive-spacing('padding-top', 3);
+      > div:first-of-type,
+      > div {
+        padding-top: 0;
 
       }
     }
