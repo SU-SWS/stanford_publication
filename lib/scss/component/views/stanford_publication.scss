@@ -10,7 +10,7 @@
 }
 
 .stanford-publications-related {
-  @include responsive-spacing('margin-bottom', 6);
+  @include responsive-spacing('margin-bottom', 9);
 
   .block__title {
     @include type-b;
@@ -151,8 +151,6 @@
     }
 
     > div:last-of-type {
-      @include responsive-spacing('padding-bottom', 3);
-
       margin-bottom: 0;
     }
   }
