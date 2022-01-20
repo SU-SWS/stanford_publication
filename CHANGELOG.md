@@ -1,6 +1,14 @@
 # Stanford Publications
 
 
+8.x-1.12
+--------------------------------------------------------------------------------
+_Release Date: 2022-01-20_
+
+- D8CORE-5107: changes to the spacing on the publications views. (#59)
+- Corrected unit tests with dynamic year to be static
+
+
 8.x-1.11
 --------------------------------------------------------------------------------
 _Release Date: 2021-11-19_
