@@ -54,8 +54,8 @@
         "drupal/views_taxonomy_term_name_depth": "^7.0",
         "seboettg/citeproc-php": "2.4.1",
         "su-sws/drupal-patches": "^8.0",
-        "su-sws/jumpstart_ui": "^8.1",
-        "su-sws/react_paragraphs": "^8.2"
+        "su-sws/jumpstart_ui": "8.x-dev",
+        "su-sws/react_paragraphs": "8.x-dev"
     },
     "autoload": {
         "psr-4": {
